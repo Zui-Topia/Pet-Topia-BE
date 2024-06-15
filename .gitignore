@@ -15,7 +15,7 @@ local.properties
 .recommenders
 .DS_Store
 src/main/resources/application.properties
-target/classes/application.properties
+target/
 petopia.iml
 .idea
 
