@@ -16,6 +16,8 @@ local.properties
 .DS_Store
 src/main/resources/application.properties
 target/classes/application.properties
+petopia.iml
+.idea
 
 # External tool builders
 .externalToolBuilders/
