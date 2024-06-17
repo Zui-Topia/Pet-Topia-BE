@@ -1,6 +1,6 @@
 package com.zuitopia.petopia.sample.controller;
 
-import com.zuitopia.petopia.sample.dto.SampleVO;
+import com.zuitopia.petopia.dto.SampleVO;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;

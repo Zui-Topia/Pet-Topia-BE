@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.zuitopia.petopia.sample.dto.SampleVO;
+import com.zuitopia.petopia.dto.SampleVO;
 
 @Mapper
 public interface SampleMapper {
