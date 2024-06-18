@@ -32,8 +32,8 @@ public class SampleMapperTests {
 			assertEquals(2, list.size());
 		}
 		catch (Exception e) {
-			log.info("message : " + e.getMessage());
-			log.info(e.getStackTrace());
+			log.error("message : " + e.getMessage());
+			log.error(e.getStackTrace());
 		}
 	}
 	
