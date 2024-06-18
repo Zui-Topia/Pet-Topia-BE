@@ -32,6 +32,20 @@
 		<level value="info" />
 	</logger>
 
+	<!-- jdbc log -->
+
+	<logger name="jdbc.audit">
+		<level value="info" />
+	</logger>
+
+	<logger name="jdbc.resultset">
+		<level value="info" />
+	</logger>
+
+	<logger name="jdbc.connection">
+		<level value="info" />
+	</logger>
+
 
 	<!-- Root Logger -->
 	

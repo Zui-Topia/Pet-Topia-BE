@@ -1,4 +1,4 @@
-package com.zuitopia.petopia.sample.dto;
+package com.zuitopia.petopia.dto;
 
 import lombok.Data;
 

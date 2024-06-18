@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.zuitopia.petopia.sample.dto.SampleVO;
+import com.zuitopia.petopia.dto.SampleVO;
 import com.zuitopia.petopia.sample.mapper.SampleMapper;
 
 import lombok.extern.log4j.Log4j;
