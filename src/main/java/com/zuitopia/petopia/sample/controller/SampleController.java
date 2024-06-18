@@ -1,7 +1,7 @@
 package com.zuitopia.petopia.sample.controller;
 
 import com.zuitopia.petopia.dto.SampleVO;
-import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
+//import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
 import com.zuitopia.petopia.util.BaseResponse;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
