@@ -34,10 +34,13 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="typeAliasesPackage" value="com.zuitopia.petopia.dto
 													com.zuitopia.petopia.mypage.dto"/>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
 	</bean>
-	
-	<mybatis-spring:scan base-package="com.zuitopia.petopia"/>
-	<context:component-scan base-package="com.zuitopia.petopia" />	
+
+	<mybatis-spring:scan base-package="com.zuitopia.petopia.**.mapper"
+					annotation="org.apache.ibatis.annotations.Mapper"/>
+
+	<context:component-scan base-package="com.zuitopia.petopia.**.service" />
 	
 	<context:annotation-config></context:annotation-config>
 	
