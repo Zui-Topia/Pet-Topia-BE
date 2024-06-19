@@ -17,5 +17,13 @@
 			from test
 		]]>
 	</select>
+
+	<select id="getUser" >
+		<![CDATA[
+		select count(*)
+		from USERS
+		where  user_email = #{userEmail}
+		]]>
+	</select>
 </mapper>
 

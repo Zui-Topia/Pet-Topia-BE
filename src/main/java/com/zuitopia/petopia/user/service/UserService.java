@@ -1,7 +1,7 @@
 package com.zuitopia.petopia.user.service;
 
-import com.zuitopia.petopia.user.dto.UserReactVO;
+import com.zuitopia.petopia.user.dto.UserReactDTO;
 
 public interface UserService {
-    public int getTotalUsers(UserReactVO userReactVO);
+    boolean checkEmailExists(String userEmail);
 }
