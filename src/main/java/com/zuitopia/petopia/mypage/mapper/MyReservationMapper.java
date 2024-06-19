@@ -1,9 +1,7 @@
 package com.zuitopia.petopia.mypage.mapper;
 
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.dto.SampleVO;
 import com.zuitopia.petopia.mypage.dto.PlaceDTO;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

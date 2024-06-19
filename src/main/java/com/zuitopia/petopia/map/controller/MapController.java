@@ -6,10 +6,8 @@ import com.zuitopia.petopia.map.service.MapService;
 import com.zuitopia.petopia.util.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +34,9 @@ public class MapController {
     @ResponseBody
     @GetMapping("/{mapId}/places")
     public ResponseEntity<BaseResponse> getMapImg(@PathVariable int mapId) {
-        List<PlaceVO> places = service.getMapInfo(mapId);
+        PlaceVO placeVO = new PlaceVO();
+        placeVO.setMapId(mapId);
+        List<PlaceVO> places = service.getMapInfo(placeVO);
         return ResponseEntity
                 .ok()
                 .body(BaseResponse.builder()
