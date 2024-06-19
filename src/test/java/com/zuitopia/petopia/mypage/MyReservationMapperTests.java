@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.zuitopia.petopia.dto.ReservationVO;
 import com.zuitopia.petopia.dto.SampleVO;
+import com.zuitopia.petopia.mypage.dto.PlaceDTO;
 import com.zuitopia.petopia.mypage.mapper.MyReservationMapper;
 import java.util.List;
 import lombok.extern.log4j.Log4j;
@@ -24,13 +25,13 @@ public class MyReservationMapperTests {
 
     @Test
     public void testGetReservationVO() {
-        try {
-            ReservationVO reservationVO = myReservationMapper.getReservationVO(2l);
-            assertEquals("123456", reservationVO.getReservationToken());
-        }
-        catch (Exception e) {
-            log.error("message : " + e.getMessage());
-            log.error(e.getStackTrace());
-        }
+        ReservationVO reservationVO = myReservationMapper.getReservationVO(2);
+        assertEquals("123456", reservationVO.getReservationToken());
+    }
+
+    @Test
+    public void testGetReservationPlaceInfo() {
+        PlaceDTO placeDTO = myReservationMapper.getReservationPlaceInfo(1);
+        assertEquals(1, placeDTO.getBranchId());
     }
 }
