@@ -25,10 +25,11 @@
 		<![CDATA[
 		select
 			pc.place_id,
-			map.branch_id,
+			branch.branch_id,
 			map.map_id,
 			pc.place_info,
-			pc.place_name
+			pc.place_name,
+			branch.branch_name
 		from
 			(
 				select
@@ -42,7 +43,9 @@
 			) pc
 				left join map
 						  on pc.map_id = map.map_id
-		where branch_id = #{branchId}
+				left join branch
+						  on map.branch_id = branch.branch_id
+		where branch.branch_id = #{branchId}
 		]]>
 	</select>
 </mapper>

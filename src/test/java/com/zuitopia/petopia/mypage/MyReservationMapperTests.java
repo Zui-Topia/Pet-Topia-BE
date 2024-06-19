@@ -33,5 +33,6 @@ public class MyReservationMapperTests {
     public void testGetReservationPlaceInfo() {
         PlaceDTO placeDTO = myReservationMapper.getReservationPlaceInfo(1);
         assertEquals(1, placeDTO.getBranchId());
+        log.info("[LOG] " + placeDTO.getBranchName());
     }
 }
