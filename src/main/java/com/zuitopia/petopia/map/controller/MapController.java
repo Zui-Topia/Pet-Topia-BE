@@ -21,6 +21,7 @@ public class MapController {
 
     private final MapService service;
 
+    @ResponseBody
     @GetMapping("/branch/{branchId}/floors")
     public ResponseEntity<BaseResponse> getListFloorMapId(@PathVariable("branchId") int branchId) {
         List<MapVO> floors = service.getListFloorMapId(branchId);
@@ -31,8 +32,8 @@ public class MapController {
                         .data(floors)
                         .build());
     }
-
-    @GetMapping("/map/{mapId}/image")
+    @ResponseBody
+    @GetMapping("/{mapId}/image")
     public ResponseEntity<BaseResponse> getMapImg(@PathVariable int mapId) {
         MapVO mapImage = service.getMapImg(mapId);
         return ResponseEntity

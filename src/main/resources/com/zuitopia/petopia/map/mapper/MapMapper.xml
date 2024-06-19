@@ -5,16 +5,17 @@
 <mapper namespace="com.zuitopia.petopia.map.mapper.MapMapper">
     <select id = "getListFloorMapId" resultType="MapVO">
         <![CDATA[
-select map_id, floor
+        select map_id, floor, map_img
         from map
-        where branch_id = #{branchId};
+        where branch_id = #{branchId}
         ]]>
     </select>
-    <select id = "getMapImg" resultType="MapVO">
+
+    <select id = "getMapInfo" resultType="PlaceVO">
      <![CDATA[
-     select map_img
-        from map
-        where map_id = #{mapId};
+        select place_id, category_id, place_name, place_position_x, place_position_y, place_info
+        from place
+        where map_id = #{mapId} and category_id is not null
         ]]>
     </select>
 </mapper>
