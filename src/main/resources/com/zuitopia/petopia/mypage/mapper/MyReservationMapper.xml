@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.zuitopia.petopia.mypage.mapper.MyReservationMapper">
 
     <select id="getReservationVO" resultType="ReservationVO">
@@ -20,5 +19,30 @@
                 reservation
             where user_id = #{userId}
         ]]>
+	</select>
+
+	<select id="getReservationPlaceInfo" resultType="PlaceDTO">
+		<![CDATA[
+		select
+			pc.place_id,
+			map.branch_id,
+			map.map_id,
+			pc.place_info,
+			pc.place_name
+		from
+			(
+				select
+					place_id,
+					map_id,
+					place_info,
+					place_name
+				from
+					place
+				where category_id = 2
+			) pc
+				left join map
+						  on pc.map_id = map.map_id
+		where branch_id = #{branchId}
+		]]>
 	</select>
 </mapper>
