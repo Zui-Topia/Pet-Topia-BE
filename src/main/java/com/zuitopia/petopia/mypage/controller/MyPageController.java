@@ -22,7 +22,7 @@ public class MyPageController {
 
     @ResponseBody
     @GetMapping("")
-    public ResponseEntity<BaseResponse> myPage(@RequestParam Long userId){
+    public ResponseEntity<BaseResponse> myPage(@RequestParam int userId){
         log.info("myPage " + userId);
         MyReservationDTO myReservationDTO = myReservationService.getMyLatestReservation(userId);
 
