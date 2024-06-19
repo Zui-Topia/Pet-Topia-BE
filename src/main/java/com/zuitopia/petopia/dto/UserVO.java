@@ -12,5 +12,10 @@ public class UserVO {
     private String userAccessToken;
     private Date joinDate;
     private int joinMethod; //가입 방법
+    private int petId;
+    private String petName;
+    private int petWeight;
+    private int petSize;
+    private int userId;
 
 }

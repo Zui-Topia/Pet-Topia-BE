@@ -4,7 +4,7 @@
 
 <mapper namespace="com.zuitopia.petopia.sample.mapper.SampleMapper">
 
-	<select id="getList" resultType="SampleVO">
+	<select id="getList" resultType="dto.SampleVO">
 		<![CDATA[
 			select id, name
 			from test
