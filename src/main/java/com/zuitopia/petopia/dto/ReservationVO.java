@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 public class ReservationVO {
-    private Long reservationId;
-    private Long userId; // 예약한 유저 아이디
-    private Long branchId; // 예약 지점 아이디
+    private int reservationId;
+    private int userId; // 예약한 유저 아이디
+    private int branchId; // 예약 지점 아이디
     private String reservationToken; // 예약 번호
     private Date reservationDate; // 원하는 예약 날짜
     private String reservationVisitTime; // 원하는 방문 날짜

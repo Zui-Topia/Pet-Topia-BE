@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class PlaceDTO {
-    private Long placeId;
-    private Long branchId;
-    private Long mapId;
+    private int placeId;
+    private int branchId;
+    private int mapId;
     private String placeInfo;
     private String placeName;
     private String branchName;
