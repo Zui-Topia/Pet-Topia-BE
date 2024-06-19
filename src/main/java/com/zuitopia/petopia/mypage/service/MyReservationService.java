@@ -5,6 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 public interface MyReservationService {
-    public MyReservationDTO getMyLatestReservation(Long userId); // 최신 예약 1건 가져오기
+    public MyReservationDTO getMyLatestReservation(int userId); // 최신 예약 1건 가져오기
 
 }
