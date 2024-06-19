@@ -1,6 +1,7 @@
 package com.zuitopia.petopia.map;
 
 import com.zuitopia.petopia.dto.MapVO;
+import com.zuitopia.petopia.dto.PlaceVO;
 import com.zuitopia.petopia.dto.SampleVO;
 import com.zuitopia.petopia.map.mapper.MapMapper;
 import com.zuitopia.petopia.sample.mapper.SampleMapper;
@@ -30,6 +31,18 @@ public class MapMapperTests {
 			List<MapVO> list = mapMapper.getListFloorMapId(1);
 
 			assertEquals(12, list.size());
+		}
+		catch (Exception e) {
+			log.info("message : " + e.getMessage());
+			log.info(e.getStackTrace());
+		}
+	}
+	@Test
+	public void testGet1() {
+		try {
+			List<PlaceVO> list = mapMapper.getMapInfo(1);
+
+			assertEquals(3, list.size());
 		}
 		catch (Exception e) {
 			log.info("message : " + e.getMessage());

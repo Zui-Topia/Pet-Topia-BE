@@ -17,15 +17,15 @@ import java.util.Map;
 @AllArgsConstructor
 public class MapServiceImpl implements MapService{
 
-    private final MapMapper mapper;
+    private final MapMapper mapMapper;
 
     @Override
     public List<MapVO> getListFloorMapId(int branchId) {
-        return mapper.getListFloorMapId(branchId);
+        return mapMapper.getListFloorMapId(branchId);
     }
 
     @Override
-    public MapVO getMapImg(int mapId) {
-        return mapper.getMapImg(mapId);
+    public List<PlaceVO> getMapInfo(int mapId) {
+        return mapMapper.getMapInfo(mapId);
     }
 }

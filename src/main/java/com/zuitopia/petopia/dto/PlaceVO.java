@@ -1,5 +1,8 @@
 package com.zuitopia.petopia.dto;
 
+import lombok.Data;
+
+@Data
 public class PlaceVO {
     private int placeId;
     private int mapId;

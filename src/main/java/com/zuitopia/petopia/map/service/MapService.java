@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MapService {
     List<MapVO> getListFloorMapId(int branchId);
-    MapVO getMapImg(int mapId);
+    List<PlaceVO> getMapInfo(int mapId);
 }

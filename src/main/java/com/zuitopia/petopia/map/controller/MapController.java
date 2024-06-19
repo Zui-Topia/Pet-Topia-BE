@@ -1,6 +1,7 @@
 package com.zuitopia.petopia.map.controller;
 
 import com.zuitopia.petopia.dto.MapVO;
+import com.zuitopia.petopia.dto.PlaceVO;
 import com.zuitopia.petopia.map.service.MapService;
 import com.zuitopia.petopia.util.BaseResponse;
 import lombok.AllArgsConstructor;
@@ -33,14 +34,14 @@ public class MapController {
                         .build());
     }
     @ResponseBody
-    @GetMapping("/{mapId}/image")
+    @GetMapping("/{mapId}/places")
     public ResponseEntity<BaseResponse> getMapImg(@PathVariable int mapId) {
-        MapVO mapImage = service.getMapImg(mapId);
+        List<PlaceVO> places = service.getMapInfo(mapId);
         return ResponseEntity
                 .ok()
                 .body(BaseResponse.builder()
                         .success(true)
-                        .data(mapImage)
+                        .data(places)
                         .build());
     }
 }
