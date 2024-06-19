@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zuitopia.petopia.map.mapper.MapMapper">
+    <select id = "getListFloorMapId" resultType="MapVO">
+        <![CDATA[
+        select map_id, floor, map_img
+        from map
+        where branch_id = #{branchId}
+        ]]>
+    </select>
+
+    <select id = "getMapInfo" resultType="PlaceVO">
+     <![CDATA[
+        select place_id, category_id, place_name, place_position_x, place_position_y, place_info
+        from place
+        where map_id = #{mapId} and category_id is not null
+        ]]>
+    </select>
+</mapper>
