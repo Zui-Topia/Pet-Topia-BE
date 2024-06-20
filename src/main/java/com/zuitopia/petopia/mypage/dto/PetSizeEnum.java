@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum PetSize {
+public enum PetSizeEnum {
     BTN_1(1, "소형견"),
     BTN_2(2, "소형견"),
     BTN_3(3, "중형견"),
@@ -16,8 +16,8 @@ public enum PetSize {
     private final int petSizeBtnNumber;
     private final String petSize;
 
-    public static PetSize findByPetBtn(int btn){
-        return Arrays.stream(PetSize.values())
+    public static PetSizeEnum findByPetBtn(int btn){
+        return Arrays.stream(PetSizeEnum.values())
                 .filter(v->v.petSizeBtnNumber==btn)
                 .findAny()
                 .get();
