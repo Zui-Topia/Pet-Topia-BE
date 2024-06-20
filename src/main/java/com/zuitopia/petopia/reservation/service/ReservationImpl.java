@@ -1,16 +1,16 @@
 package com.zuitopia.petopia.reservation.service;
 
+import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
 import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
 import com.zuitopia.petopia.reservation.mapper.ReservationMapper;
-
-import java.util.Random;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 @Log
 @Service
@@ -53,4 +53,11 @@ public class ReservationImpl implements ReservationService {
 
         return isInserted;
     }
+
+    @Override
+    public int getStrollerCount(ReservationConfirmVO reservationConfirmVO) {
+        return mapper.getStrollerCount(reservationConfirmVO);
+    }
+
+
 }

@@ -18,4 +18,5 @@
         where map_id = #{mapId}
         ]]>
     </select>
+
 </mapper>
