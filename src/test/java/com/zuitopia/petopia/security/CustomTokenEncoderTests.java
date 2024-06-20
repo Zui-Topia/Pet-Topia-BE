@@ -1,5 +1,7 @@
 package com.zuitopia.petopia.security;
 
+import static org.junit.Assert.assertEquals;
+
 import io.jsonwebtoken.Claims;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,12 +24,13 @@ public class CustomTokenEncoderTests {
     @Test
     public void testTokenMatch(){
         Map<String, Object> m = new HashMap<>();
-        m.put("userId", Long.valueOf(1));
+        m.put("userId", Integer.valueOf(1));
 
         String token = customTokenEncoder.createAccessToken(m);
         log.info(token);
 
-        Claims claims = customTokenEncoder.extractClaims(token);
-        log.info(claims);
+        Map<String, Object> result =  customTokenEncoder.extractClaims(token);
+        //log.info(result);
+        assertEquals(Integer.valueOf(1), (Integer)result.get("userId"));
     }
 }
