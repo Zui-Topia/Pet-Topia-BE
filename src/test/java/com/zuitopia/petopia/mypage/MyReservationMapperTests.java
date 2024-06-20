@@ -3,10 +3,8 @@ package com.zuitopia.petopia.mypage;
 import static org.junit.Assert.assertEquals;
 
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.dto.SampleVO;
 import com.zuitopia.petopia.mypage.dto.PlaceDTO;
 import com.zuitopia.petopia.mypage.mapper.MyReservationMapper;
-import java.util.List;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
