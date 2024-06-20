@@ -20,11 +20,20 @@ public class ReservationController {
         log.info("Received reservation data: " + reservationDTO.toString());
         log.info(reservationDTO.getReservationDate().getClass().getName());
 
-        service.createReservation(reservationDTO);
+        int isInserted = service.createReservation(reservationDTO);
 
-        log.info("success reservation");
-        // 예약 성공 시 응답
-        return ResponseEntity.ok("Reservation created successfully");
+        if(isInserted == 1) {
+            log.info("Success reservation");
+            // 예약 성공 시 응답
+            return ResponseEntity.ok("Reservation created successfully");
+        }
+        else {
+            log.info("Failed to create reservation");
+            // 예약 실패 시 응답
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create reservation");
+
+        }
+
 
 //        try {
 //

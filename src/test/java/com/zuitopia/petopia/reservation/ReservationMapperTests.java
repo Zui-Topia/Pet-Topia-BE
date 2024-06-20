@@ -32,12 +32,12 @@ public class ReservationMapperTests {
 
 
 
-            reservationVO.setUserId(5);
+            reservationVO.setUserId(1);
             reservationVO.setBranchId(4);
             reservationVO.setReservationToken("3333");
             reservationVO.setReservationVisitTime("11 : 30 AM");
 
-            reservationVO.setReservationDate(new Date());
+            reservationVO.setReservationDate("2024-06-12");
             log.info(reservationVO.toString());
             mapper.insert(reservationVO);
 

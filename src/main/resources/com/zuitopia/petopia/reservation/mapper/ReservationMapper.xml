@@ -5,7 +5,7 @@
 <mapper namespace="com.zuitopia.petopia.reservation.mapper.ReservationMapper">
     <insert id="insert">
         insert into reservation (reservation_id, user_id, branch_id, reservation_token, reservation_date, reservation_visit_time, reservation_payment)
-        values (seq_reservation.nextval, #{userId}, #{branchId}, #{reservationToken}, to_char(#{reservationDate}, 'yyyy-MM-dd'), #{reservationVisitTime}, #{reservationPayment})
+        values (seq_reservation.nextval, #{userId}, #{branchId}, #{reservationToken}, #{reservationDate}, #{reservationVisitTime}, #{reservationPayment})
     </insert>
 
 </mapper>

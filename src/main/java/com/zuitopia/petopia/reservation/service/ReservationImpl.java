@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ReservationImpl implements ReservationService {
 
-    ReservationMapper mapper;
+    private final ReservationMapper mapper;
     @Override
-    public void createReservation(ReservationInfoDTO reservationInfoDTO) {
+    public int createReservation(ReservationInfoDTO reservationInfoDTO) {
         // 개모차가 남아있는지 확인한 후 예약 진행 여부 판단 (잔여개수 확인)
         
         // 1. ReservationVO 생성 및 ReservationDTO 정보 받아오기
@@ -49,6 +49,8 @@ public class ReservationImpl implements ReservationService {
         reservationVO.setReservationToken(reservationToken);
 
         // 3. 예약정보 저장하기
-        mapper.insert(reservationVO);
+        int isInserted = mapper.insert(reservationVO);
+
+        return isInserted;
     }
 }
