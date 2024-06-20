@@ -37,6 +37,10 @@
 		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
 	</bean>
 
+	<!-- PasswordEncoder 빈 설정 -->
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+
 	<mybatis-spring:scan base-package="com.zuitopia.petopia.**.mapper"
 					annotation="org.apache.ibatis.annotations.Mapper"/>
 
