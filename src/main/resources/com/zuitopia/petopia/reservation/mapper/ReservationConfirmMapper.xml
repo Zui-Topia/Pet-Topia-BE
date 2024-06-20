@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zuitopia.petopia.reservation.mapper.ReservationConfirmMapper">
+
+    <select id="getResrvationCnt" resultType="ReservationConfirmVO">
+    <![CDATA[
+        SELECT reservationCnt
+        FROM reservation_confirm
+        WHERE branch_id = #{branchId} AND reservation_cnt = #{reservationCnt}
+
+        ]]>
+</select>
+</mapper>

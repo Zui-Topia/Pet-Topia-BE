@@ -8,4 +8,12 @@
         values (seq_reservation.nextval, #{userId}, #{branchId}, #{reservationToken}, #{reservationDate}, #{reservationVisitTime}, #{reservationPayment})
     </insert>
 
+    <select id="getCurrentInfo" resultType="ReservationVO">
+    <![CDATA[
+        SELECT reservation_token, reservation_date, reservation_visit_time
+        FROM reservation
+        WHERE user_id = #{userId} AND branch_id = #{branchId}
+          AND reservation_date = #{reservationDate} AND reservation_visit_time = #{reservationVisitTime}
+        ]]>
+</select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.zuitopia.petopia.reservation.service;
 
 import com.zuitopia.petopia.dto.ReservationVO;
+import com.zuitopia.petopia.reservation.dto.CompletedReservationDTO;
 import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
 import com.zuitopia.petopia.reservation.mapper.ReservationMapper;
 
@@ -15,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Log
 @Service
 @AllArgsConstructor
-public class ReservationImpl implements ReservationService {
+public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationMapper mapper;
     @Override
-    public int createReservation(ReservationInfoDTO reservationInfoDTO) {
+    public int createReservation(ReservationInfoDTO reservationInfoDTO) { // 에약정보를 예약DB에 저장
         // 개모차가 남아있는지 확인한 후 예약 진행 여부 판단 (잔여개수 확인)
         
         // 1. ReservationVO 생성 및 ReservationDTO 정보 받아오기
@@ -52,5 +53,28 @@ public class ReservationImpl implements ReservationService {
         int isInserted = mapper.insert(reservationVO);
 
         return isInserted;
+    }
+    @Override
+    public CompletedReservationDTO getCurrenctReservationInfo(ReservationInfoDTO reservationInfoDTO) { // 현재 예약한 정보 가져오기
+        log.info("getCurrenctReservationInfo start!!!!!!!!!!");
+        // 1. ReservationVO 생성 및 ReservationDTO 정보 받아오기
+        ReservationVO reservationVO = new ReservationVO();
+
+        reservationVO.setUserId(reservationInfoDTO.getUserId());
+
+        reservationVO.setBranchId(reservationInfoDTO.getBranchId());
+
+        reservationVO.setReservationDate(reservationInfoDTO.getReservationDate());
+        reservationVO.setReservationVisitTime(reservationInfoDTO.getReservationVisitTime());
+
+        ReservationVO currentInfoVO = mapper.getCurrentInfo(reservationVO);
+
+        CompletedReservationDTO completedReservationDTO = new CompletedReservationDTO();
+        completedReservationDTO.setReservationToken(currentInfoVO.getReservationToken());
+        completedReservationDTO.setReservationDate(currentInfoVO.getReservationDate());
+        completedReservationDTO.setReservationVisitTime(currentInfoVO.getReservationVisitTime());
+
+        return completedReservationDTO;
+        
     }
 }
