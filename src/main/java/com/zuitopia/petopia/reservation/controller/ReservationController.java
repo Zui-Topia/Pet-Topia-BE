@@ -1,6 +1,8 @@
 package com.zuitopia.petopia.reservation.controller;
+import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
 import com.zuitopia.petopia.reservation.service.ReservationService;
+import com.zuitopia.petopia.util.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
@@ -42,5 +44,22 @@ public class ReservationController {
 //            // 예약 실패 시 응답
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create reservation");
 //        }
+
+    }
+    @ResponseBody
+    @GetMapping("/{branchId}")
+    public ResponseEntity<BaseResponse> petStrollerCnt(@PathVariable int branchId, @RequestParam String reservationDate) {
+        ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
+        reservationConfirmVO.setBranchId(branchId);
+        reservationConfirmVO.setReservationDate(reservationDate);
+
+        int petStrollerCnt = service.getStrollerCount(reservationConfirmVO);
+
+        return ResponseEntity
+                .ok()
+                .body(BaseResponse.builder()
+                        .success(true)
+                        .data(petStrollerCnt)
+                        .build());
     }
 }
