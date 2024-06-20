@@ -15,7 +15,7 @@
      <![CDATA[
         select place_id, category_id, place_name, place_position_x, place_position_y, place_info
         from place
-        where map_id = #{mapId} and category_id is not null
+        where map_id = #{mapId}
         ]]>
     </select>
 </mapper>

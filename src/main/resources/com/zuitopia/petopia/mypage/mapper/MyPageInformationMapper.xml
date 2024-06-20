@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zuitopia.petopia.mypage.mapper.MyPageInformationMapper">
+
+    <select id="getMyPageUserDTO" resultType="MyPageUserDTO">
+		<![CDATA[
+        select
+            user_id,
+            user_email
+        from
+            users
+        where user_id = #{userId}
+        ]]>
+	</select>
+
+    <select id="getMyPagePetDTO" resultType="MyPagePetDTO">
+		<![CDATA[
+        select
+            pet_id,
+            pet_name,
+            pet_weight,
+            pet_size
+        from
+            pet
+        where user_id = #{userId}
+        ]]>
+	</select>
+</mapper>
