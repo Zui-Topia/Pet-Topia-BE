@@ -30,13 +30,17 @@ public class DataSourceTests {
 	
 	@Test
 	public void testConnection() {
-		try(SqlSession session = sqlSessionFactory.openSession();
-				Connection con = session.getConnection();){
-			log.info(session);
-			log.info(con);
-		} 
-		catch (Exception e) {
-			fail(e.getMessage());
-		}
+
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection con = session.getConnection();
+
+		log.info(session);
+		log.info(con);
+//		try(){
+//
+//		}
+//		catch (Exception e) {
+//			fail(e.getMessage());
+//		}
 	}
 }
