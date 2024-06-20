@@ -20,7 +20,7 @@ public class CustomTokenEncoder {
     private String SECRET_KEY;
 
     @Value("${jwt.expire}")
-    private String ACCESS_TOKEN_EXPIRE_TIME;
+    private long ACCESS_TOKEN_EXPIRE_TIME;
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(this.SECRET_KEY);
@@ -32,16 +32,18 @@ public class CustomTokenEncoder {
         return Jwts.builder()
                 .claim("user", payloads)
                 .issuedAt(new Date())
-                .expiration(new Date(new Date() + ACCESS_TOKEN_EXPIRE_TIME))
-                .signWith(this.getSigningKey())
+                .expiration(new Date(new Date().getTime() + ACCESS_TOKEN_EXPIRE_TIME))
+                .signWith(this.getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public Claims extractClaims(String token){
-        return Jwts.parser()
+    public Map<String,Object> extractClaims(String token){
+        return (Map<String,Object>)
+                Jwts.parser()
                 .verifyWith(this.getSigningKey())
                 .build()
                 .parseSignedClaims(token)
-                .getPayload();
+                .getPayload()
+                .get("user");
     }
 }
