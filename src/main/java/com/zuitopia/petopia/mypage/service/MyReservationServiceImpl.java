@@ -5,9 +5,7 @@ import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
 import com.zuitopia.petopia.mypage.dto.PlaceDTO;
 import com.zuitopia.petopia.mypage.mapper.MyReservationMapper;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -2,9 +2,7 @@ package com.zuitopia.petopia.map;
 
 import com.zuitopia.petopia.dto.MapVO;
 import com.zuitopia.petopia.dto.PlaceVO;
-import com.zuitopia.petopia.dto.SampleVO;
 import com.zuitopia.petopia.map.mapper.MapMapper;
-import com.zuitopia.petopia.sample.mapper.SampleMapper;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,7 +38,9 @@ public class MapMapperTests {
 	@Test
 	public void testGet1() {
 		try {
-			List<PlaceVO> list = mapMapper.getMapInfo(1);
+			PlaceVO placeVO = new PlaceVO();
+			placeVO.setMapId(1);
+			List<PlaceVO> list = mapMapper.getMapInfo(placeVO);
 
 			assertEquals(3, list.size());
 		}
