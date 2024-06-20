@@ -1,5 +1,15 @@
 package com.zuitopia.petopia.reservation;
 
+<<<<<<< HEAD
+=======
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+import java.util.List;
+
+import com.zuitopia.petopia.dto.PlaceVO;
+import com.zuitopia.petopia.dto.ReservationConfirmVO;
+>>>>>>> 7d5f9f8f49e921197c035eb9b1fb26863aa29713
 import com.zuitopia.petopia.reservation.mapper.ReservationMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,6 +55,7 @@ public class ReservationMapperTests {
         }
     }
 
+<<<<<<< HEAD
     @Test
     public void testGetCurrentInfo() {
         try {
@@ -64,11 +75,27 @@ public class ReservationMapperTests {
 
 
 
+=======
+
+    @Test
+    public void testGet1() {
+        try {
+            ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
+            reservationConfirmVO.setBranchId(1);
+            reservationConfirmVO.setReservationDate("2024-06-20");
+
+            int petStrollerCnt = mapper.getStrollerCount(reservationConfirmVO);
+
+            assertEquals(18, petStrollerCnt);
+>>>>>>> 7d5f9f8f49e921197c035eb9b1fb26863aa29713
         }
         catch (Exception e) {
             log.info("message : " + e.getMessage());
             log.info(e.getStackTrace());
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7d5f9f8f49e921197c035eb9b1fb26863aa29713
 }

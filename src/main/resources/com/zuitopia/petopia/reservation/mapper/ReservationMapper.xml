@@ -16,4 +16,14 @@
           AND reservation_date = #{reservationDate} AND reservation_visit_time = #{reservationVisitTime}
         ]]>
 </select>
+
+    <select id="getStrollerCount">
+    <![CDATA[
+        SELECT (20 - reservation_cnt)
+        FROM reservation_confirm
+        WHERE branch_id = #{branchId} AND reservation_date = #{reservationDate}
+        ]]>
+</select>
+
+
 </mapper>
