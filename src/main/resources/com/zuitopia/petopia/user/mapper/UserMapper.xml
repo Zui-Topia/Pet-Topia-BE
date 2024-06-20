@@ -15,7 +15,7 @@
 
 
 
-	<insert id="insertUser" parameterType="com.zuitopia.petopia.user.dto.UserRequestDTO">
+	<insert id="insertUser" parameterType="UserRequestDTO">
     <![CDATA[
 		INSERT INTO USERS (USER_ID, PASSWORD, USER_EMAIL, USER_ACCESS_TOKEN, JOIN_DATE, JOIN_METHOD)
 		VALUES (seq_users.nextval, #{password}, #{userEmail}, sys_guid(), sysdate, 1)
@@ -30,7 +30,7 @@
 	</resultMap>
 
 	<select id="findByEmail" resultMap="UserResultMap">
-		SELECT * FROM users WHERE email = #{email}
+		SELECT * FROM users WHERE user_email = #{userEmail}
 	</select>
 
 
