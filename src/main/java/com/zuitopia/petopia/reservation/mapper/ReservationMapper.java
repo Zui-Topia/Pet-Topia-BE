@@ -7,13 +7,19 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ReservationMapper {
-<<<<<<< HEAD
+    
+    // 예약 정보 삽입
     public int insert(ReservationVO reservationVO);
-    public ReservationVO getCurrentInfo(ReservationVO reservationVO);
-=======
-    public int insert(ReservationVO reservation);
+//    public ReservationVO getCurrentInfo(ReservationVO reservationVO);
 
-    // 개모차 잔여갯수
-    public int getStrollerCount(ReservationConfirmVO reservationConfirmVO);
->>>>>>> 7d5f9f8f49e921197c035eb9b1fb26863aa29713
+    // 반려견 유모차 잔여 개수 받기
+    public Integer getStrollerCount(ReservationConfirmVO reservationConfirmVO);
+    
+    // 반려견 유모차 잔여 개숫 등록
+    public int insertStollerCount(ReservationConfirmVO reservationConfirmVO);
+    
+    //  반려견 유모차 잔여 개수 업데이트
+    public int updateStollerCount(ReservationConfirmVO reservatonConfirmVO);
+    
+
 }
