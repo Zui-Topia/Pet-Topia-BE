@@ -20,10 +20,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
-
     private UserService userService;
-
-    private UserRequestDTO userRequestDTO;
 
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
