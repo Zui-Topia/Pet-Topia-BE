@@ -18,6 +18,9 @@
             from
                 reservation
             where user_id = #{userId}
+			order by
+				reservation_create_date desc
+				FETCH FIRST 1 ROWS ONLY
         ]]>
 	</select>
 
@@ -46,9 +49,6 @@
 				left join branch
 						  on map.branch_id = branch.branch_id
 		where branch.branch_id = #{branchId}
-		order by
-			reservation_create_date desc
-			FETCH FIRST 1 ROWS ONLY;
 		]]>
 	</select>
 </mapper>

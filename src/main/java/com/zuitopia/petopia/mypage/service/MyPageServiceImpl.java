@@ -13,10 +13,12 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Log
 public class MyPageServiceImpl implements MyPageService {
     private final MyPageInformationMapper myPageInformationMapper;
     private final MyReservationMapper myReservationMapper;
@@ -43,7 +45,7 @@ public class MyPageServiceImpl implements MyPageService {
     public MyReservationDTO getMyLatestReservation(int userId) {
         // 사용자의 최신 예약 1건 가져오기
         ReservationVO reservationVO = myReservationMapper.getReservationVO(userId);
-
+        log.info(reservationVO.toString());
         if(reservationVO==null)
             return null;
 

@@ -8,6 +8,7 @@ import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,8 +24,7 @@ public class MyPageController {
     @GetMapping("")
     public ResponseEntity<BaseResponse> myPage(@RequestParam int userId){
         log.info("myPage " + userId);
-         MyInfoDTO myInfoDTO = myPageService.getMyInformation(userId);
-
+        MyInfoDTO myInfoDTO = myPageService.getMyInformation(userId);
         return ResponseEntity
                 .ok()
                 .body(BaseResponse.builder()
@@ -32,4 +32,11 @@ public class MyPageController {
                         .data(myInfoDTO)
                         .build());
     }
+
+//    @ResponseBody
+//    @GetMapping("/auth/{qrId}")
+//    public ResponseEntity<BaseResponse> authQR(@PathVariable("qrId") int qrId){
+//        log.info("qrId " + qrId);
+//        return null;
+//    }
 }
