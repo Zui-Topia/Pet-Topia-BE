@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface QRAuthMapper {
     public int createQR(int reservationId);
 
+    public int updateReservationAuthComplete(int reservationId);
+
     public ReservationQRVO getQRByQrId(int qrId);
     public ReservationQRVO getQRByReservationId(int reservationId);
 

@@ -43,7 +43,7 @@
     <select id="getReservationByQrId" resultType="ReservationVO">
 		<![CDATA[
         select
-            reservation_id,
+            reservation.reservation_id,
             user_id,
             branch_id,
             reservation_token,
@@ -68,4 +68,13 @@
             rq.qr_expire_time > sysdate
         ]]>
 	</select>
+
+    <update id="updateReservationAuthComplete">
+        update
+            reservation
+        set
+            reservation_delete = 1
+        where reservation_id = #{reservationId}
+    </update>
+
 </mapper>

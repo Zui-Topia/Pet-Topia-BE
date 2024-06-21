@@ -1,6 +1,7 @@
 package com.zuitopia.petopia.mypage.controller;
 
 
+import com.zuitopia.petopia.dto.ReservationVO;
 import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
 import com.zuitopia.petopia.mypage.service.QRService;
 import com.zuitopia.petopia.util.BaseResponse;
@@ -49,12 +50,12 @@ public class QRController {
     public ResponseEntity<BaseResponse> checkQr(@RequestParam int qrId){
         log.info("qrId" + qrId);
         try{
-            qrService.authQR(qrId);
+            ReservationVO reservationVO = qrService.authQR(qrId);
             return ResponseEntity
                     .ok()
                     .body(BaseResponse.builder()
                             .success(true)
-                            .data(qrId)
+                            .data(reservationVO)
                             .build());
         }
         catch (Exception e){
