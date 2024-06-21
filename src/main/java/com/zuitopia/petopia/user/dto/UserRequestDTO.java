@@ -9,5 +9,4 @@ public class UserRequestDTO {
     private String userEmail;
     private String password;
     private String petName;
-    private String userAccessToken;
 }
