@@ -1,14 +1,11 @@
 package com.zuitopia.petopia.user.controller;
 
-import com.zuitopia.petopia.dto.UserVO;
 import com.zuitopia.petopia.user.dto.LoginRequestDTO;
-import com.zuitopia.petopia.user.dto.SingUpRequestDTO;
+import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 import com.zuitopia.petopia.user.service.UserService;
 import com.zuitopia.petopia.util.BaseResponse;
-import com.zuitopia.petopia.util.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,8 +19,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
-
     private final UserService userService;
+
 
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
@@ -47,10 +44,10 @@ public class UserController {
 
     @PostMapping("/signup")
     @ResponseBody
-    public ResponseEntity<BaseResponse> signUpUser(@RequestBody SingUpRequestDTO singUpRequestDTO) {
-        log.info("userRequestDTO: " + singUpRequestDTO.toString());
+    public ResponseEntity<BaseResponse> signUpUser(@RequestBody SignUpRequestDTO signUpRequestDTO) {
+        log.info("userRequestDTO: " + signUpRequestDTO.toString());
         try {
-            userService.signUpUser(singUpRequestDTO);
+            userService.signUpUser(signUpRequestDTO);
             return ResponseEntity
                     .ok()
                     .body(BaseResponse.builder()
@@ -71,29 +68,27 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<BaseResponse> loginUser(@RequestBody LoginRequestDTO requestDTO, HttpServletRequest request) {
-        log.info("로그인 기록: " + requestDTO.toString());
-        try {
-            log.info("트라이들어옴");
-            LoginRequestDTO user = userService.loginUser(requestDTO.getUserEmail(), requestDTO.getPassword());
 
-          HttpSession session = request.getSession(true); // 세션이 없으면 새로 생성
-           session.setAttribute("user", user.getUserEmail()); // 세션에 로그인 사용자 정보 저장
+    public ResponseEntity<BaseResponse> loginUser(@RequestBody LoginRequestDTO loginRequestDTO ) { // }, HttpSession session) {
+        log.info("Login request for: " + loginRequestDTO.getUserEmail()+loginRequestDTO.getPassword());
+        try {
+            //아이디는 맞는데 비밀번호가 틀렸을 경우 처리 필요함
+            String accessToken = userService.loginUser(loginRequestDTO);
+//            session.setAttribute("user", user);
             return ResponseEntity
                     .ok()
-//                     .header(session.getAttribute("user"))
+                    .header("Authorization", accessToken)
                     .body(BaseResponse.builder()
-                            .success(true)
-                            .data(user.getUserEmail())
-                            .build());
+                        .success(true)
+                        .data(true)
+                        .build());
         } catch (Exception e) {
-            log.info(e.getMessage());
-            return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
+            log.info("로그인 실패: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(BaseResponse.builder()
-                            .success(false)
-                            .data(e.getMessage())
-                            .build());
+                    .success(false)
+                    .data(false)
+                    .build());
         }
     }
 
@@ -105,19 +100,5 @@ public class UserController {
         }
         return ResponseEntity.ok("Logged out successfully");
 //        return ResponseEntity.ok(BaseResponse.builder().success(true).data("Logged out successfully").build());
-    }
-
-
-    @GetMapping("/session")
-    @ResponseBody
-    public ResponseEntity<BaseResponse> getSessionUser(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            String userEmail = (String) session.getAttribute("user");
-            if (userEmail != null) {
-                return ResponseEntity.ok(BaseResponse.builder().success(true).data(userEmail).build());
-            }
-        }
-        return ResponseEntity.ok(BaseResponse.builder().success(false).data(null).build());
     }
 }

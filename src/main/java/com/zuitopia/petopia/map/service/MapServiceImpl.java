@@ -5,12 +5,9 @@ import com.zuitopia.petopia.dto.PlaceVO;
 import com.zuitopia.petopia.map.mapper.MapMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Log
 @Service
@@ -25,7 +22,7 @@ public class MapServiceImpl implements MapService{
     }
 
     @Override
-    public List<PlaceVO> getMapInfo(int mapId) {
-        return mapMapper.getMapInfo(mapId);
+    public List<PlaceVO> getMapInfo(PlaceVO place) {
+        return mapMapper.getMapInfo(place);
     }
 }

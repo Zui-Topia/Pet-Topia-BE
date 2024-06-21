@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface MapMapper {
     public List<MapVO> getListFloorMapId(int branchId); // 상점 아이디로 MapVO(층, 지도 아이디)가져오기
-    public List<PlaceVO> getMapInfo(int mapId);
+    public List<PlaceVO> getMapInfo(PlaceVO placeVO);
 }

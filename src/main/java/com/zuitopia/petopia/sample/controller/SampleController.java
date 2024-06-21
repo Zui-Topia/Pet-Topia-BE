@@ -5,7 +5,6 @@ import com.zuitopia.petopia.dto.SampleVO;
 import com.zuitopia.petopia.util.BaseResponse;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

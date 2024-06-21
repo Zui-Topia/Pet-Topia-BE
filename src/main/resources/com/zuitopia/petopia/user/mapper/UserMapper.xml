@@ -12,26 +12,48 @@
         ]]>
 	</select>
 
-
-
-
-	<insert id="insertUser" parameterType="com.zuitopia.petopia.user.dto.SingUpRequestDTO">
-    <![CDATA[
-		INSERT INTO USERS (USER_ID, PASSWORD, USER_EMAIL, USER_ACCESS_TOKEN, JOIN_DATE, JOIN_METHOD)
-		VALUES (seq_users.nextval, #{password}, #{userEmail}, sys_guid(), sysdate, 1)
+	<select id="getUserIdByEmail">
+		<![CDATA[
+			select
+			    user_id
+			from users
+			where user_email = #{userEmail}
 		]]>
-</insert>
+	</select>
 
 
+	<insert id="insertUser" parameterType="SignUpRequestDTO">
+		<![CDATA[
+			INSERT INTO USERS (USER_ID, USER_EMAIL, JOIN_DATE, JOIN_METHOD)
+			VALUES (seq_users.nextval, #{userEmail}, sysdate, 1)
+		]]>
+	</insert>
 
-	<select id="findByEmail" resultType="com.zuitopia.petopia.dto.UserVO">
+	<select id="findByEmail" resultType="UserVO">
 		SELECT *
 		FROM users
 		WHERE user_email = #{userEmail}
 	</select>
 
+	<insert id="insertUserSecurity" parameterType="UserSecurityVO">
+		<![CDATA[
+		INSERT INTO USERS_SECURITY (USER_ID, PASSWORD, USER_ACCESS_TOKEN)
+		VALUES (#{userId}, #{password}, #{userAccessToken})
+		]]>
+	</insert>
 
-
+	<select id="getUserSecurityByUserId" resultType="UserSecurityVO">
+		<![CDATA[
+			select
+			    user_id,
+			    password,
+				user_access_token
+			from
+			    users_security
+			where
+			    user_id = #{userId}
+		]]>
+	</select>
 
 </mapper>
 
