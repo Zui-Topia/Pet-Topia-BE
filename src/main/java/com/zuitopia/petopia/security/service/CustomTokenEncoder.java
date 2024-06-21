@@ -1,6 +1,5 @@
-package com.zuitopia.petopia.security;
+package com.zuitopia.petopia.security.service;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -8,19 +7,23 @@ import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import java.util.Map;
 import javax.crypto.SecretKey;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
 @Component
+@Log
+@PropertySource(value={"classpath:application.properties"})
 public class CustomTokenEncoder {
 
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
     @Value("${jwt.expire}")
-    private long ACCESS_TOKEN_EXPIRE_TIME;
+    private String ACCESS_TOKEN_EXPIRE_TIME;
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(this.SECRET_KEY);
@@ -29,10 +32,11 @@ public class CustomTokenEncoder {
     public String createAccessToken(Map<String, Object> payloads ){
        // SignatureAlgorithm signatureAlgorithm= SignatureAlgorithm.HS256;
 
+        log.info("expired date : " + new Date(new Date().getTime() + Long.parseLong(ACCESS_TOKEN_EXPIRE_TIME)));
         return Jwts.builder()
                 .claim("user", payloads)
                 .issuedAt(new Date())
-                .expiration(new Date(new Date().getTime() + ACCESS_TOKEN_EXPIRE_TIME))
+                .expiration(new Date(new Date().getTime() + Long.parseLong(ACCESS_TOKEN_EXPIRE_TIME)))
                 .signWith(this.getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
