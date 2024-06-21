@@ -12,25 +12,40 @@
         ]]>
 	</select>
 
-
-
+	<select id="getUserIdByEmail">
+		<![CDATA[
+			select
+			    user_id
+			from users
+			where user_email = #{userEmail}
+		]]>
+	</select>
 
 	<insert id="insertUser" parameterType="UserRequestDTO">
-    <![CDATA[
-		INSERT INTO USERS (USER_ID, PASSWORD, USER_EMAIL, USER_ACCESS_TOKEN, JOIN_DATE, JOIN_METHOD)
-		VALUES (seq_users.nextval, #{password}, #{userEmail}, sys_guid(), sysdate, 1)
+		<![CDATA[
+			INSERT INTO USERS (USER_ID, USER_EMAIL, JOIN_DATE, JOIN_METHOD)
+			VALUES (seq_users.nextval, #{userEmail}, sysdate, 1)
 		]]>
-</insert>
+	</insert>
 
-	<resultMap id="UserResultMap" type="com.zuitopia.petopia.dto.UserVO">
-		<id property="userId" column="user_id"/>
-		<result property="userEmail" column="user_email"/>
-		<result property="password" column="password"/>
-		<!-- 추가적인 필드들을 여기에 추가 -->
-	</resultMap>
+	<insert id="insertUserSecurity" parameterType="UserSecurityVO">
+		<![CDATA[
+		INSERT INTO USERS_SECURITY (USER_ID, PASSWORD, USER_ACCESS_TOKEN)
+		VALUES (#{userId}, #{password}, #{userAccessToken})
+		]]>
+	</insert>
 
-	<select id="findByEmail" resultMap="UserResultMap">
-		SELECT * FROM users WHERE user_email = #{userEmail}
+	<select id="getUserSecurityByUserId" resultType="UserSecurityVO">
+		<![CDATA[
+			select
+			    user_id,
+			    password,
+				user_access_token
+			from
+			    users_security
+			where
+			    user_id = #{userId}
+		]]>
 	</select>
 
 
