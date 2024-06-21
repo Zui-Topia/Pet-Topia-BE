@@ -8,12 +8,38 @@
         values (seq_reservation.nextval, #{userId}, #{branchId}, #{reservationToken}, #{reservationDate}, #{reservationVisitTime}, #{reservationPayment})
     </insert>
 
+<!--    <select id="getCurrentInfo" resultType="ReservationVO">-->
+<!--    <![CDATA[-->
+<!--        SELECT reservation_token, reservation_date, reservation_visit_time-->
+<!--        FROM (-->
+<!--                 SELECT reservation_token, reservation_date, reservation_visit_time-->
+<!--                 FROM reservation-->
+<!--                 WHERE user_id = #{userId} AND branch_id = #{branchId}-->
+<!--                   AND reservation_date = #{reservationDate} AND reservation_visit_time = #{reservationVisitTime}-->
+<!--                 ORDER BY reservation_create_date DESC-->
+<!--             )-->
+<!--        WHERE ROWNUM = 1-->
+<!--        ]]>-->
+<!--</select>-->
+
     <select id="getStrollerCount">
     <![CDATA[
-        SELECT (20 - reservation_cnt)
+        SELECT reservation_cnt
         FROM reservation_confirm
         WHERE branch_id = #{branchId} AND reservation_date = #{reservationDate}
         ]]>
 </select>
+
+    <update id="updateStollerCount" parameterType="ReservationConfirmVO">
+        UPDATE reservation_confirm
+        SET reservation_cnt = reservation_cnt + 1
+        WHERE branch_id = #{branchId}
+          AND reservation_date = #{reservationDate}
+    </update>
+
+    <insert id="insertStollerCount" parameterType="ReservationConfirmVO">
+        INSERT INTO reservation_confirm (branch_id, reservation_date, reservation_cnt)
+        VALUES (#{branchId}, #{reservationDate}, 1)
+    </insert>
 
 </mapper>
