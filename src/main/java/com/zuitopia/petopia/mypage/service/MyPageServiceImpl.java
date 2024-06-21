@@ -44,6 +44,9 @@ public class MyPageServiceImpl implements MyPageService {
         // 사용자의 최신 예약 1건 가져오기
         ReservationVO reservationVO = myReservationMapper.getReservationVO(userId);
 
+        if(reservationVO==null)
+            return null;
+
         String reservationDate = reservationVO.getReservationDate();
 
         // 날짜 가공하기

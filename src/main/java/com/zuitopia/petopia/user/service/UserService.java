@@ -8,14 +8,10 @@ import com.zuitopia.petopia.user.dto.UserRequestDTO;
 
 public interface UserService
 {
-
-
-
-
         boolean checkEmailExists(String userEmail);
-        void signUpUser(UserRequestDTO userRequestDTO) throws Exception;
+        String signUpUser(UserRequestDTO userRequestDTO) throws Exception; // 토큰 발급하기
         void signUpPet(PetVO petVO) throws Exception;
-        UserVO loginUser(String userEmail, String password) throws Exception; // 로그인 메서드 추가
+        String loginUser(UserRequestDTO userRequestDTO) throws Exception; // 로그인 메서드 추가
 }
 
 

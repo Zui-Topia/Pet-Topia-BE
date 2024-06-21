@@ -20,10 +20,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
-
     private UserService userService;
-
-    private UserRequestDTO userRequestDTO;
 
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
@@ -71,18 +68,22 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<BaseResponse> loginUser(@RequestBody UserRequestDTO userRequestDTO, HttpSession session) {
+    public ResponseEntity<BaseResponse> loginUser(@RequestBody UserRequestDTO userRequestDTO ) { // }, HttpSession session) {
         log.info("Login request for: " + userRequestDTO.getUserEmail());
         try {
-            UserVO user = userService.loginUser(userRequestDTO.getUserEmail(), userRequestDTO.getPassword());
-            session.setAttribute("user", user);
-            return ResponseEntity.ok().body(BaseResponse.builder()
-                    .success(true)
-                    .data(user)
-                    .build());
+            String accessToken = userService.loginUser(userRequestDTO);
+//            session.setAttribute("user", user);
+            return ResponseEntity
+                    .ok()
+                    .header("Authorization", accessToken)
+                    .body(BaseResponse.builder()
+                        .success(true)
+                        .data(true)
+                        .build());
         } catch (Exception e) {
-            log.info("Invalid login attempt: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(BaseResponse.builder()
+            log.info("로그인 실패: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(BaseResponse.builder()
                     .success(false)
                     .data(false)
                     .build());
