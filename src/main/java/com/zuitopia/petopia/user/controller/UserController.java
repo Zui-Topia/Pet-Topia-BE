@@ -24,6 +24,7 @@ public class UserController {
 
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
+        log.info("check들어옴:");
         boolean exists = userService.checkEmailExists(email);
         log.info("Email check request for: " + email + " - Exists: " + exists);
         return exists ? // 이메일이 존재하면 error
@@ -68,20 +69,22 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-
     public ResponseEntity<BaseResponse> loginUser(@RequestBody LoginRequestDTO loginRequestDTO ) { // }, HttpSession session) {
-        log.info("Login request for: " + loginRequestDTO.getUserEmail()+loginRequestDTO.getPassword());
+        log.info("Login request for: " + loginRequestDTO.getUserEmail());
         try {
             //아이디는 맞는데 비밀번호가 틀렸을 경우 처리 필요함
+            log.info("로그인들어옴1");
             String accessToken = userService.loginUser(loginRequestDTO);
+            log.info("로그인들어옴2");
 //            session.setAttribute("user", user);
             return ResponseEntity
                     .ok()
-                    .header("Authorization", accessToken)
+                    .header("Authorization", "Bearer " + accessToken)
                     .body(BaseResponse.builder()
                         .success(true)
                         .data(true)
                         .build());
+
         } catch (Exception e) {
             log.info("로그인 실패: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

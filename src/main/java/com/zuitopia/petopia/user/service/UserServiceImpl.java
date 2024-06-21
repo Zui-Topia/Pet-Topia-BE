@@ -27,9 +27,9 @@ public class UserServiceImpl implements UserService{
     private TokenService tokenService;
 
     @Override
-    public boolean checkEmailExists(String userEmail) {
+    public boolean checkEmailExists(String email) {
 
-        return userMapper.checkEmailExists(userEmail) > 0;
+        return userMapper.checkEmailExists(email) > 0;
     }
 
     @Override

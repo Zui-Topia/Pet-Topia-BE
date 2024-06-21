@@ -41,15 +41,15 @@ public class UserMapperTests {
 
     @Test
     public void testLogin() {
-        UserVO user = userMapper.findByEmail("bigstar2878@gmail.com");
-        assertEquals("bigstar2878@gmail.com", user.getUserEmail());
+        UserVO user = userMapper.findByEmail("petopia@gmail.com");
+        assertEquals("petopia@gmail.com", user.getUserEmail());
     }
 
     @Test
     public void testInsertUser() {
         // Create a UserVO instance with dummy data
         SignUpRequestDTO userRequestDTO = new SignUpRequestDTO();
-        userRequestDTO.setUserEmail("test@example.com");
+        userRequestDTO.setUserEmail("ddddd@gmail.com");
 
         // Insert user into the database
         int userId = userMapper.insertUser(userRequestDTO);

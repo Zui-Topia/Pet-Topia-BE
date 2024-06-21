@@ -7,7 +7,7 @@
     <select id="checkEmailExists">
 		<![CDATA[
 
-        SELECT COUNT(*) FROM users WHERE user_email = #{userEmail}
+        SELECT COUNT(*) FROM users WHERE user_email = #{email}
 
         ]]>
 	</select>
