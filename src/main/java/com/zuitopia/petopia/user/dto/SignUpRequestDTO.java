@@ -5,8 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class UserRequestDTO {
+public class SignUpRequestDTO {
     private String userEmail;
     private String password;
-    private String petName;
+
+
+
 }

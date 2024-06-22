@@ -2,7 +2,7 @@ package com.zuitopia.petopia.user;
 
 import com.zuitopia.petopia.security.service.TokenService;
 import com.zuitopia.petopia.security.UserClaimDTO;
-import com.zuitopia.petopia.user.dto.UserRequestDTO;
+import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 import com.zuitopia.petopia.user.service.UserService;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class UserServiceTests {
 
     @Test
     public void testUserService(){
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
+        SignUpRequestDTO userRequestDTO = new SignUpRequestDTO();
         userRequestDTO.setUserEmail("1234@gmail.com");
         userRequestDTO.setPassword("1234");
         try{

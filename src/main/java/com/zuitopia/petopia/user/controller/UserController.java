@@ -1,18 +1,17 @@
 package com.zuitopia.petopia.user.controller;
 
-import com.zuitopia.petopia.dto.PetVO;
-import com.zuitopia.petopia.dto.UserVO;
-import com.zuitopia.petopia.user.dto.UserRequestDTO;
+import com.zuitopia.petopia.user.dto.LoginRequestDTO;
+import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 import com.zuitopia.petopia.user.service.UserService;
 import com.zuitopia.petopia.util.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -20,10 +19,12 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
+
 
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
+        log.info("check들어옴:");
         boolean exists = userService.checkEmailExists(email);
         log.info("Email check request for: " + email + " - Exists: " + exists);
         return exists ? // 이메일이 존재하면 error
@@ -44,10 +45,10 @@ public class UserController {
 
     @PostMapping("/signup")
     @ResponseBody
-    public ResponseEntity<BaseResponse> signUpUser(@RequestBody UserRequestDTO userRequestDTO) {
-        log.info("userRequestDTO: " + userRequestDTO.toString());
+    public ResponseEntity<BaseResponse> signUpUser(@RequestBody SignUpRequestDTO signUpRequestDTO) {
+        log.info("userRequestDTO: " + signUpRequestDTO.toString());
         try {
-            userService.signUpUser(userRequestDTO);
+            userService.signUpUser(signUpRequestDTO);
             return ResponseEntity
                     .ok()
                     .body(BaseResponse.builder()
@@ -68,18 +69,22 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<BaseResponse> loginUser(@RequestBody UserRequestDTO userRequestDTO ) { // }, HttpSession session) {
-        log.info("Login request for: " + userRequestDTO.getUserEmail());
+    public ResponseEntity<BaseResponse> loginUser(@RequestBody LoginRequestDTO loginRequestDTO ) { // }, HttpSession session) {
+        log.info("Login request for: " + loginRequestDTO.getUserEmail());
         try {
-            String accessToken = userService.loginUser(userRequestDTO);
+            //아이디는 맞는데 비밀번호가 틀렸을 경우 처리 필요함
+            log.info("로그인들어옴1");
+            String accessToken = userService.loginUser(loginRequestDTO);
+            log.info("로그인들어옴2");
 //            session.setAttribute("user", user);
             return ResponseEntity
                     .ok()
-                    .header("Authorization", accessToken)
+                    .header("Authorization", "Bearer " + accessToken)
                     .body(BaseResponse.builder()
                         .success(true)
                         .data(true)
                         .build());
+
         } catch (Exception e) {
             log.info("로그인 실패: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -91,11 +96,12 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<BaseResponse> logoutUser(HttpSession session) {
-        session.invalidate();
-        return ResponseEntity.ok().body(BaseResponse.builder()
-                .success(true)
-                .data(true)
-                .build());
+    public ResponseEntity<String> logoutUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // 현재 세션 가져오기 (없으면 null 반환)
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+        return ResponseEntity.ok("Logged out successfully");
+//        return ResponseEntity.ok(BaseResponse.builder().success(true).data("Logged out successfully").build());
     }
 }

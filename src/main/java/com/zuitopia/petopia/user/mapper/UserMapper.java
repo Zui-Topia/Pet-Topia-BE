@@ -1,18 +1,19 @@
 package com.zuitopia.petopia.user.mapper;
 
+
 import com.zuitopia.petopia.dto.PetVO;
 import com.zuitopia.petopia.dto.UserSecurityVO;
 import com.zuitopia.petopia.dto.UserVO;
+import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
-import com.zuitopia.petopia.user.dto.UserRequestDTO;
+
 @Mapper
 public interface UserMapper {
-    int checkEmailExists(String userEmail);
+    int checkEmailExists(String email);
     int getUserIdByEmail(String userEmail);
-    int insertUser(UserRequestDTO userRequestDTO);
+    int insertUser(SignUpRequestDTO signUpRequestDTO);
     int insertUserSecurity(UserSecurityVO userSecurityVO);
     void insertPet(PetVO petVO);
-    UserVO findByEmail(String email);
-
+    UserVO findByEmail(String userEmail);
     UserSecurityVO getUserSecurityByUserId(int userId);
 }
