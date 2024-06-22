@@ -7,7 +7,7 @@
     <select id="checkEmailExists">
 		<![CDATA[
 
-        SELECT COUNT(*) FROM users WHERE user_email = #{userEmail}
+        SELECT COUNT(*) FROM users WHERE user_email = #{email}
 
         ]]>
 	</select>
@@ -21,12 +21,19 @@
 		]]>
 	</select>
 
-	<insert id="insertUser" parameterType="UserRequestDTO">
+
+	<insert id="insertUser" parameterType="SignUpRequestDTO">
 		<![CDATA[
 			INSERT INTO USERS (USER_ID, USER_EMAIL, JOIN_DATE, JOIN_METHOD)
 			VALUES (seq_users.nextval, #{userEmail}, sysdate, 1)
 		]]>
 	</insert>
+
+	<select id="findByEmail" resultType="UserVO">
+		SELECT *
+		FROM users
+		WHERE user_email = #{userEmail}
+	</select>
 
 	<insert id="insertUserSecurity" parameterType="UserSecurityVO">
 		<![CDATA[
@@ -47,9 +54,6 @@
 			    user_id = #{userId}
 		]]>
 	</select>
-
-
-
 
 </mapper>
 
