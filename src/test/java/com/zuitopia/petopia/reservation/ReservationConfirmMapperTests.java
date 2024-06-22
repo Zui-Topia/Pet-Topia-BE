@@ -23,10 +23,10 @@ public class ReservationConfirmMapperTests {
     @Test
     public void testGetStrollerCnt() {
 
-        ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
-
-        reservationConfirmVO.setBranchId(3);
-        reservationConfirmVO.setReservationDate("2024-06-20");
+        ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
+                .branchId(1)
+                .reservationDate("2024-06-20")
+                .build();
 
 
         Integer count = mapper.getStollerCount(reservationConfirmVO);
@@ -40,10 +40,10 @@ public class ReservationConfirmMapperTests {
 
     @Test
     public void testUpdateReservationCnt() {
-        ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
-
-        reservationConfirmVO.setBranchId(1);
-        reservationConfirmVO.setReservationDate("2024-06-20");
+        ReservationConfirmVO reservationConfirmVO =  ReservationConfirmVO.builder()
+                .branchId(1)
+                .reservationDate("2024-06-20")
+                .build();
 
         int check = mapper.updateStollerCount(reservationConfirmVO);
         assertEquals(1, check);
@@ -51,11 +51,11 @@ public class ReservationConfirmMapperTests {
 
     @Test
     public void testInseReservationCnt() {
-        ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
-
-        reservationConfirmVO.setBranchId(1);
-        reservationConfirmVO.setReservationDate("2024-06-20");
-        reservationConfirmVO.setReservationCnt(1);
+        ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
+                .branchId(1)
+                .reservationDate("2024-06-20")
+                .reservationCnt(1)
+                .build();
         int check = mapper.insertStollerCount(reservationConfirmVO);
         assertEquals(1, check);
     }

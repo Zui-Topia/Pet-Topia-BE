@@ -23,14 +23,14 @@ public class MyPageInformationMapperTests {
 
     @Test
     public void testGetMyPageUserDTO(){
-        MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(2);
+        MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(1);
         assertEquals("zuitopia@naver.com", myPageUserDTO.getUserEmail());
     }
 
     @Test
     public void testGetMyPagePetDTO(){
-        MyPagePetDTO myPagePetDTO = myPageInformationMapper.getMyPagePetDTO(2);
-        assertEquals("토피아", myPagePetDTO.getPetName());
+        MyPagePetDTO myPagePetDTO = myPageInformationMapper.getMyPagePetDTO(1);
+        assertEquals("Buddy", myPagePetDTO.getPetName());
     }
 
 }
