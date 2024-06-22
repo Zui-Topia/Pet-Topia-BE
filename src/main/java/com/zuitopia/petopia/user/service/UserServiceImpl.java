@@ -3,7 +3,7 @@ package com.zuitopia.petopia.user.service;
 import com.zuitopia.petopia.user.dto.LoginRequestDTO;
 import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 
-import com.zuitopia.petopia.dto.PetVO;
+
 import com.zuitopia.petopia.dto.UserSecurityVO;
 import com.zuitopia.petopia.security.service.TokenService;
 import com.zuitopia.petopia.security.UserClaimDTO;
@@ -38,7 +38,10 @@ public class UserServiceImpl implements UserService{
         try{
             // users 테이블에 새로운 유저를 생성하기
             int insertResult = userMapper.insertUser(signUpRequestDTO);
-
+//            int insertPet= userMapper.insertPet(signUpRequestDTO);
+//            if(insertPet < 1){
+//                throw new Exception("반려견이 생성되지 않았습니다.");
+//            }
             if(insertResult < 1)
                 throw new Exception("유저가 생성되지 않았습니다");
 
@@ -51,6 +54,18 @@ public class UserServiceImpl implements UserService{
             String accessToken = tokenService.generateToken(UserClaimDTO.builder()
                     .userId(userId)
                     .build());
+            // 할당받은 userId 를 활용해서 pet 삽입 진행
+            int insertPet= userMapper.insertPet(SignUpRequestDTO.builder()
+                    .userId(userId)
+                            .petName(signUpRequestDTO.getPetName())
+                            .petWeight(signUpRequestDTO.getPetWeight())
+                            .petSize(signUpRequestDTO.getPetSize())
+                    .build());
+
+
+            if(insertPet < 1){
+                throw new Exception("반려견이 생성되지 않았습니다.");
+            }
 
             log.info("accessToken : " + accessToken);
             // 암호화된 비밀번호화 액세스 토큰도 데이터베이스에 별도로 저장하기
@@ -70,10 +85,10 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
-    @Override
-    public void signUpPet(PetVO petVO) throws Exception {
-        userMapper.insertPet(petVO);
-    }
+//    @Override
+//    public void signUpPet(PetVO petVO) throws Exception {
+//        userMapper.insertPet(petVO);
+//    }
 
     @Override
     public String loginUser(LoginRequestDTO loginRequestDTO) throws Exception {

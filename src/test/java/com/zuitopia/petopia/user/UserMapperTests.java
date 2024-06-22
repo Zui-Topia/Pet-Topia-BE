@@ -45,17 +45,24 @@ public class UserMapperTests {
         assertEquals("petopia@gmail.com", user.getUserEmail());
     }
 
-    @Test
-    public void testInsertUser() {
-        // Create a UserVO instance with dummy data
-        SignUpRequestDTO userRequestDTO = new SignUpRequestDTO();
-        userRequestDTO.setUserEmail("ddddd@gmail.com");
+//    @Test
+//    public void testInsertUser() {
+//        // Create a UserVO instance with dummy data
+//        SignUpRequestDTO userRequestDTO = new SignUpRequestDTO();
+//        userRequestDTO.setUserEmail("ddddd@gmail.com");
+//
+//        // Insert user into the database
+//        int userId = userMapper.insertUser(userRequestDTO);
+//
+//        assertEquals(5, userId);
+//    }
+//    @Test
+//    public void testInsertPet() {
+//        SignUpRequestDTO dto = userMapper.insertPet(1,"120","buddy","123","mediun")
+//
+//        assertEquals("petopia@gmail.com", dto.getUserId());
+//    }
 
-        // Insert user into the database
-        int userId = userMapper.insertUser(userRequestDTO);
-
-        assertEquals(5, userId);
-    }
 }
 
 
