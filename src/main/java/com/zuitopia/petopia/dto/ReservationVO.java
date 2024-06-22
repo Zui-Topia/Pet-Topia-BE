@@ -1,9 +1,13 @@
 package com.zuitopia.petopia.dto;
 
-import java.util.Date;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
+@Builder
 public class ReservationVO {
     private int reservationId;
     private int userId; // 예약한 유저 아이디
