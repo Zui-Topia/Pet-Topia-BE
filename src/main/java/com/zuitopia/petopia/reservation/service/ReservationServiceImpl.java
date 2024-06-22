@@ -13,6 +13,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @Log
 @Service
@@ -24,7 +29,6 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public ReservationVO createReservation(ReservationInfoDTO reservationInfoDTO) throws Exception { // 에약정보를 예약DB에 저장
 
-        // 개모차가 남아있는지 확인한 후 예약 진행 여부 판단 (잔여개수 확인)
         // 1. ReservationVO 생성 및 ReservationDTO 정보 받아오기
         ReservationVO reservationVO = ReservationVO.builder()
                 .userId(reservationInfoDTO.getUserId())
@@ -32,6 +36,8 @@ public class ReservationServiceImpl implements ReservationService {
                 .reservationDate(reservationInfoDTO.getReservationDate())
                 .reservationVisitTime(reservationInfoDTO.getReservationVisitTime())
                 .build();
+
+        log.info(reservationVO.getReservationDate());
         
         // 2. reservationToken 생성
         String reservationToken = createRandomReservationToken(reservationInfoDTO.getUserId());

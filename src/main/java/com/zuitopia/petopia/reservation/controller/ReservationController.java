@@ -34,7 +34,7 @@ public class ReservationController {
                 
                 // 예약 등록하기
                 ReservationVO reservationVO = service.createReservation(reservationDTO);
-                
+                log.info(reservationVO.toString());
                 // 반려견 유모차 잔여 개수 업데이트 
                 service.insertOrUpdateStollerCount(petStrollerCnt, reservationConfirmVO);
                 return ResponseEntity
