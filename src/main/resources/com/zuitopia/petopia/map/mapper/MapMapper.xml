@@ -8,6 +8,7 @@
         select map_id, floor
         from map
         where branch_id = #{branchId}
+        order by floor desc
         ]]>
     </select>
 
@@ -17,6 +18,14 @@
         from place
         where map_id = #{mapId}
         ]]>
+    </select>
+
+
+    <select id = "getSearchInfo" resultType="PlaceVO">
+     <![CDATA[
+        SELECT * FROM place WHERE map_id IN (
+            SELECT map_id FROM map WHERE branch_id = #{branchId}
+        )]]>
     </select>
 
 </mapper>
