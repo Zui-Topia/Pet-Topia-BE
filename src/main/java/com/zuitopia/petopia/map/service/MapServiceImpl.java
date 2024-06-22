@@ -25,4 +25,9 @@ public class MapServiceImpl implements MapService{
     public List<PlaceVO> getMapInfo(PlaceVO place) {
         return mapMapper.getMapInfo(place);
     }
+
+    @Override
+    public List<PlaceVO> getSearchInfo(int branchId) {
+        return mapMapper.getSearchInfo(branchId);
+    }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface MapService {
     List<MapVO> getListFloorMapId(int branchId);
     List<PlaceVO> getMapInfo(PlaceVO placeVo);
+    List<PlaceVO> getSearchInfo(int branchId);
 }

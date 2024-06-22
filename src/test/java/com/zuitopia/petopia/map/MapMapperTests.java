@@ -50,4 +50,17 @@ public class MapMapperTests {
 		}
 	}
 
+	@Test
+	public void testGet2() {
+		try {
+			List<PlaceVO> list = mapMapper.getSearchInfo(1);
+
+			assertEquals(7, list.size());
+		}
+		catch (Exception e) {
+			log.info("message : " + e.getMessage());
+			log.info(e.getStackTrace());
+		}
+	}
+
 }

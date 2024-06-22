@@ -44,4 +44,17 @@ public class MapController {
                         .data(places)
                         .build());
     }
+
+    @ResponseBody
+    @GetMapping("/branch/{branchId}/places")
+    public ResponseEntity<BaseResponse> getSearchInfo(@PathVariable("branchId") int branchId) {
+        List<PlaceVO> places = service.getSearchInfo(branchId);
+        return ResponseEntity
+                .ok()
+                .body(BaseResponse.builder()
+                        .success(true)
+                        .data(places)
+                        .build());
+    }
+
 }
