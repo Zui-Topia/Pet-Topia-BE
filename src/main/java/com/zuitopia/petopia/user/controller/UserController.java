@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/signup")
     @ResponseBody
     public ResponseEntity<BaseResponse> signUpUser(@RequestBody SignUpRequestDTO signUpRequestDTO) {
-        log.info("userRequestDTO: " + signUpRequestDTO.toString());
+        log.info("signUpRequestDTO: " + signUpRequestDTO.toString());
         try {
             userService.signUpUser(signUpRequestDTO);
             return ResponseEntity
