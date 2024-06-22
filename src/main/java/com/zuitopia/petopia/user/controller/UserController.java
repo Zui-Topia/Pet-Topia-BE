@@ -79,7 +79,7 @@ public class UserController {
 //            session.setAttribute("user", user);
             return ResponseEntity
                     .ok()
-                    .header("Authorization", "Bearer " + accessToken)
+                    .header("Authorization", accessToken)
                     .body(BaseResponse.builder()
                         .success(true)
                         .data(true)

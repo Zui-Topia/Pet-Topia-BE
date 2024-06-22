@@ -7,11 +7,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum PetSizeEnum {
-    BTN_1(1, "소형견"),
-    BTN_2(2, "소형견"),
-    BTN_3(3, "중형견"),
-    BTN_4(4, "중현견"),
-    BTN_5(5, "중현견");
+    BTN_1(10, "소형견"),
+    BTN_2(20, "소형견"),
+    BTN_3(30, "중형견"),
+    BTN_4(40, "중현견"),
+    BTN_5(50, "중현견");
 
     private final int petSizeBtnNumber;
     private final String petSize;
