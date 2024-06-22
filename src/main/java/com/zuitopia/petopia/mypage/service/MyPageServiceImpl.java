@@ -17,6 +17,7 @@ import java.util.Locale;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -72,6 +73,7 @@ public class MyPageServiceImpl implements MyPageService {
         }
         return null;
     }
+
     @Override
     public List<MyReservationDTO> getMyReservationHistory(int userId) {
         List<MyReservationDTO> myReservationDTOList = new ArrayList<>();
@@ -105,8 +107,14 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     @Override
-    public int deleteMyReservation(int reservationId) {
-        return 0;
+    @Transactional
+    public int deleteMyReservation(int reservationId) throws Exception {
+        int deleteResult = myReservationMapper.deleteReservation(reservationId);
+
+        if(deleteResult!=1)
+            throw new Exception("예약 삭제가 실패하였습니다.");
+
+        return deleteResult;
     }
 
     private String convertToDateFormat(String reservationDate){

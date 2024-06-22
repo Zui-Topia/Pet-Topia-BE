@@ -72,4 +72,16 @@
 		where branch.branch_id = #{branchId}
 		]]>
 	</select>
+
+
+	<update id="deleteReservation">
+		<![CDATA[
+			update
+				reservation
+			set
+			    reservation_delete_date = sysdate
+			where
+			    reservation_id = #{reservationId}
+		]]>
+	</update>
 </mapper>

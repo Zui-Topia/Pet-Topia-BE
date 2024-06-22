@@ -49,16 +49,16 @@ public class MyPageController {
     }
 
 
-//    @ResponseBody
-//    @GetMapping("")
-//    public ResponseEntity<BaseResponse> deleteMyReservation(@RequestParam int userId){
-//        log.info("myPage " + userId);
-//        MyInfoDTO myInfoDTO = myPageService.getMyInformation(userId);
-//        return ResponseEntity
-//                .ok()
-//                .body(BaseResponse.builder()
-//                        .success(true)
-//                        .data(myInfoDTO)
-//                        .build());
-//    }
+    @ResponseBody
+    @GetMapping("/delete")
+    public ResponseEntity<BaseResponse> deleteMyReservation(@RequestParam int reservationId){
+        log.info("deleteMyReservation " + reservationId);
+        MyInfoDTO myInfoDTO = myPageService.getMyInformation(reservationId);
+        return ResponseEntity
+                .ok()
+                .body(BaseResponse.builder()
+                        .success(true)
+                        .data(myInfoDTO)
+                        .build());
+    }
 }
