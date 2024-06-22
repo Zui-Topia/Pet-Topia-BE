@@ -6,16 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Builder
 public class ReservationConfirmVO {
     private int branchId;
     private String reservationDate;
     private int reservationCnt;
-
-    public ReservationConfirmVO(int branchId, String reservationDate){
-        this.branchId = branchId;
-        this.reservationDate = reservationDate;
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.zuitopia.petopia.mypage.service;
 
+import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
 import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
 import com.zuitopia.petopia.mypage.dto.MyPagePetDTO;
@@ -9,6 +10,7 @@ import com.zuitopia.petopia.mypage.dto.PetSizeEnum;
 import com.zuitopia.petopia.mypage.dto.PlaceDTO;
 import com.zuitopia.petopia.mypage.mapper.MyPageInformationMapper;
 import com.zuitopia.petopia.mypage.mapper.MyReservationMapper;
+import com.zuitopia.petopia.reservation.mapper.ReservationMapper;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MyPageServiceImpl implements MyPageService {
     private final MyPageInformationMapper myPageInformationMapper;
     private final MyReservationMapper myReservationMapper;
+    private final ReservationMapper reservationMapper;
 
     @Override
     public MyInfoDTO getMyInformation(int userId) {
@@ -109,8 +112,22 @@ public class MyPageServiceImpl implements MyPageService {
     @Override
     @Transactional
     public int deleteMyReservation(int reservationId) throws Exception {
-        int deleteResult = myReservationMapper.deleteReservation(reservationId);
+        // 예약 내역 가져오기
+        ReservationVO reservationVO = myReservationMapper.getReservationVOByReservationId(reservationId);
+        if(reservationVO==null)
+            throw new Exception("이미 처리된 예약입니다.");
 
+        // 유모차 개수 업데이트 해주기
+        int deleteCount = reservationMapper.deleteStrollerCount(ReservationConfirmVO.builder()
+                .branchId(reservationVO.getBranchId())
+                .reservationDate(reservationVO.getReservationDate())
+                .build());
+
+        if(deleteCount!=1)
+            throw new Exception("예약 삭제가 실패하였습니다.");
+
+        // 예약 삭제하기
+        int deleteResult = myReservationMapper.deleteReservation(reservationId);
         if(deleteResult!=1)
             throw new Exception("예약 삭제가 실패하였습니다.");
 

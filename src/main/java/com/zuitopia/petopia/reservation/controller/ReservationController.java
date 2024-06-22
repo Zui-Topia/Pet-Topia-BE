@@ -21,9 +21,10 @@ public class ReservationController {
     @PostMapping("/create")
     public ResponseEntity<BaseResponse> reservation(@RequestBody ReservationInfoDTO reservationDTO) { // 예약하기
         log.info("들어옴 : " + reservationDTO.toString());
-        ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO(
-                                                        reservationDTO.getBranchId(),
-                                                        reservationDTO.getReservationDate());
+        ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
+                                                            .branchId(reservationDTO.getBranchId())
+                                                            .reservationDate(reservationDTO.getReservationDate())
+                                                            .build();
 
         // 반려견 유모차 잔여 개수 가져오기
         Integer petStrollerCnt = service.getStrollerCount(reservationConfirmVO);
@@ -62,9 +63,10 @@ public class ReservationController {
     @ResponseBody
     @GetMapping("/{branchId}")
     public ResponseEntity<BaseResponse> petStrollerCnt(@PathVariable int branchId, @RequestParam String reservationDate) { // 반려견 유모차 잔여 개수 조회
-        ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
-        reservationConfirmVO.setBranchId(branchId);
-        reservationConfirmVO.setReservationDate(reservationDate);
+        ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
+                                                            .branchId(branchId)
+                                                            .reservationDate(reservationDate)
+                                                            .build();
     
         // 반려견 유모차 잔여 개수 가져오기
         int petStrollerCnt = service.getStrollerCount(reservationConfirmVO);

@@ -65,9 +65,10 @@ public class  ReservationMapperTests {
     @Test
     public void testGet1() {
         try {
-            ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
-            reservationConfirmVO.setBranchId(1);
-            reservationConfirmVO.setReservationDate("2024-06-20");
+            ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
+                    .branchId(1)
+                    .reservationDate("2024-06-20")
+                    .build();
 
             int petStrollerCnt = mapper.getStrollerCount(reservationConfirmVO);
 
@@ -81,9 +82,10 @@ public class  ReservationMapperTests {
     @Test
     public void testGet2() {
         try {
-            ReservationConfirmVO reservationConfirmVO = new ReservationConfirmVO();
-            reservationConfirmVO.setBranchId(3);
-            reservationConfirmVO.setReservationDate("2024-06-20");
+            ReservationConfirmVO reservationConfirmVO =  ReservationConfirmVO.builder()
+                    .branchId(3)
+                    .reservationDate("2024-06-20")
+                    .build();
 
             Integer petStrollerCnt = mapper.getStrollerCount(reservationConfirmVO);
 

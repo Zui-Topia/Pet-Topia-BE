@@ -43,4 +43,12 @@
         VALUES (#{branchId}, #{reservationDate}, 1)
     </insert>
 
+
+    <update id="deleteStrollerCount" parameterType="ReservationConfirmVO">
+        UPDATE reservation_confirm
+        SET reservation_cnt = reservation_cnt - 1
+        WHERE branch_id = #{branchId}
+          AND reservation_date = #{reservationDate}
+    </update>
+
 </mapper>
