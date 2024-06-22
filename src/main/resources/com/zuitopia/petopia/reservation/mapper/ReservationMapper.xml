@@ -23,12 +23,12 @@
 <!--</select>-->
 
     <select id="getStrollerCount">
-    <![CDATA[
-        SELECT reservation_cnt
-        FROM reservation_confirm
-        WHERE branch_id = #{branchId} AND reservation_date = #{reservationDate}
-        ]]>
-</select>
+        <![CDATA[
+            SELECT reservation_cnt
+            FROM reservation_confirm
+            WHERE branch_id = #{branchId} AND reservation_date = #{reservationDate}
+            ]]>
+    </select>
 
     <update id="updateStollerCount" parameterType="ReservationConfirmVO">
         UPDATE reservation_confirm
@@ -36,6 +36,7 @@
         WHERE branch_id = #{branchId}
           AND reservation_date = #{reservationDate}
     </update>
+
 
     <insert id="insertStollerCount" parameterType="ReservationConfirmVO">
         INSERT INTO reservation_confirm (branch_id, reservation_date, reservation_cnt)

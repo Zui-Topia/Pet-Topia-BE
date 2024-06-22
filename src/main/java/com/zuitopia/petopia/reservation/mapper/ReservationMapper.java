@@ -20,6 +20,13 @@ public interface ReservationMapper {
     
     //  반려견 유모차 잔여 개수 업데이트
     public int updateStollerCount(ReservationConfirmVO reservatonConfirmVO);
-    
 
+
+    default int mergeStollerCount(ReservationConfirmVO vo) {
+        int updatedRows = updateStollerCount(vo);
+        if (updatedRows == 0) {
+            return insertStollerCount(vo);
+        }
+        return updatedRows;
+    }
 }
