@@ -14,6 +14,6 @@ public class SignUpRequestDTO {
     private String userEmail;
     private String password;
     private String petName;
-    private String petWeight;
-    private String petSize;
+    private int petWeight;
+    private int petSize;
 }

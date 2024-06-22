@@ -5,7 +5,7 @@
 <mapper namespace="com.zuitopia.petopia.map.mapper.MapMapper">
     <select id = "getListFloorMapId" resultType="MapVO">
         <![CDATA[
-        select map_id, floor, map_img
+        select map_id, floor
         from map
         where branch_id = #{branchId}
         ]]>
