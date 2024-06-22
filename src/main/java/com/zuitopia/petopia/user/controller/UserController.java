@@ -79,7 +79,7 @@ public class UserController {
 //            session.setAttribute("user", user);
             return ResponseEntity
                     .ok()
-                    .header("Authorization", "Bearer " + accessToken)
+                    .header("Authorization", accessToken)
                     .body(BaseResponse.builder()
                         .success(true)
                         .data(true)
@@ -93,15 +93,5 @@ public class UserController {
                     .data(false)
                     .build());
         }
-    }
-
-    @GetMapping("/logout")
-    public ResponseEntity<String> logoutUser(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); // 현재 세션 가져오기 (없으면 null 반환)
-        if (session != null) {
-            session.invalidate(); // 세션 무효화
-        }
-        return ResponseEntity.ok("Logged out successfully");
-//        return ResponseEntity.ok(BaseResponse.builder().success(true).data("Logged out successfully").build());
     }
 }

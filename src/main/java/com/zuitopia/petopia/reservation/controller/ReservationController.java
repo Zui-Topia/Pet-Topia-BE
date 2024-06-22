@@ -4,6 +4,8 @@ import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
 import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
 import com.zuitopia.petopia.reservation.service.ReservationService;
+import com.zuitopia.petopia.security.UserClaimDTO;
+import com.zuitopia.petopia.security.service.TokenService;
 import com.zuitopia.petopia.util.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -17,10 +19,13 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationController {
 
     private final ReservationService service;
-    
+    private final TokenService tokenService;
     @PostMapping("/create")
-    public ResponseEntity<BaseResponse> reservation(@RequestBody ReservationInfoDTO reservationDTO) { // 예약하기
-        log.info("들어옴 : " + reservationDTO.toString());
+    public ResponseEntity<BaseResponse> reservation(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody ReservationInfoDTO reservationDTO) { // 예약하기
+        UserClaimDTO userClaimDTO = tokenService.getClaims(token);
+        reservationDTO.setUserId(userClaimDTO.getUserId());
+
+        log.info("reservation : " + reservationDTO.toString());
         ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
                                                             .branchId(reservationDTO.getBranchId())
                                                             .reservationDate(reservationDTO.getReservationDate())
