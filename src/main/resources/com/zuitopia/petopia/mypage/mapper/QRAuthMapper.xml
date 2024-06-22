@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zuitopia.petopia.mypage.mapper.QRAuthMapper">
+
+    <insert id="createQR">
+        insert into reservation_qr (qr_id, reservation_id, qr_expire_time)
+        values (seq_reservation_qr.nextval, #{reservationId}, sysdate + (30 / 86400) )
+    </insert>
+
+    <select id="getQRByReservationId" resultType="ReservationQRVO">
+		<![CDATA[
+        select
+            qr_id,
+            reservation_id,
+            qr_expire_time
+        from
+            reservation_qr
+        where
+            reservation_id = #{reservationId} and
+            qr_expire_time > sysdate
+        order by
+            qr_id desc
+            FETCH FIRST 1 ROWS ONLY
+        ]]>
+	</select>
+
+    <select id="getQRByQrId" resultType="ReservationQRVO">
+		<![CDATA[
+        select
+            qr_id,
+            reservation_id,
+            qr_expire_time
+        from
+            reservation_qr
+        where
+            qr_id = #{qrId} and
+            qr_expire_time > sysdate
+        ]]>
+	</select>
+
+    <!--QR 만료일자 확인-->
+    <select id="getReservationByQrId" resultType="ReservationVO">
+		<![CDATA[
+        select
+            reservation.reservation_id,
+            user_id,
+            branch_id,
+            reservation_token,
+            reservation_date,
+            reservation_visit_time,
+            reservation_create_date,
+            reservation_payment,
+            reservation_delete
+        from
+            (select
+                 qr_id,
+                 reservation_id,
+                 qr_expire_time
+             from
+                 reservation_qr
+             where
+                 qr_id = #{qrId}
+            ) rq
+                left join reservation
+                          on rq.reservation_id = reservation.reservation_id
+        where
+            rq.qr_expire_time > sysdate
+        ]]>
+	</select>
+
+    <update id="updateReservationAuthComplete">
+        update
+            reservation
+        set
+            reservation_delete = 1
+        where reservation_id = #{reservationId}
+    </update>
+
+</mapper>

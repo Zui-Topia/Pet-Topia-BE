@@ -72,19 +72,11 @@ public class ReservationServiceImpl implements ReservationService {
     public int insertOrUpdateStollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception { // 반려견 잔여개수 업데이트
 
         log.info("잔여개수 : " + strollerCnt);
-        if(strollerCnt == 20) { // 20개 일 경우 예약이 없는 날짜
-            int isCreated = reservationMapper.insertStollerCount(reservationConfirmVO);
-            if (isCreated != 1) {
-                throw new Exception("개모차 잔여 개수 수 증가 실패");
-            }
+        int isUpdated = reservationMapper.mergeStollerCount(reservationConfirmVO);
+        if (isUpdated != 1) {
+            throw new Exception("개모차 잔여 개수 수 증가 실패");
         }
-        else{
-            int isUpdated = reservationMapper.updateStollerCount(reservationConfirmVO);
-            if (isUpdated != 1) {
-                throw new Exception("개모차 잔여 개수 수 증가 실패");
-            }
-        }
-        return 0;
+        return isUpdated;
     }
 
 
