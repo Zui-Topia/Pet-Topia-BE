@@ -17,11 +17,32 @@
 				reservation_delete
             from
                 reservation
-            where user_id = #{userId}
+            where user_id = #{userId} and
+				reservation_delete = 0
 			order by
 				reservation_create_date desc
 				FETCH FIRST 1 ROWS ONLY
         ]]>
+	</select>
+
+	<select id="getReservationVOList" resultType="ReservationVO">
+		<![CDATA[
+		select
+			reservation_id,
+			user_id,
+			branch_id,
+			reservation_token,
+			reservation_date,
+			reservation_visit_time,
+			reservation_create_date,
+			reservation_payment,
+			reservation_delete
+		from
+			reservation
+		where user_id = #{userId}
+		order by
+			reservation_create_date desc
+		]]>
 	</select>
 
 	<select id="getReservationPlaceInfo" resultType="PlaceDTO">

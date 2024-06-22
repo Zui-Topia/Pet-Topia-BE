@@ -1,8 +1,10 @@
 package com.zuitopia.petopia.mypage.controller;
 
 import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
+import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
 import com.zuitopia.petopia.mypage.service.MyPageService;
 import com.zuitopia.petopia.util.BaseResponse;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
@@ -33,10 +35,30 @@ public class MyPageController {
                         .build());
     }
 
+    @ResponseBody
+    @GetMapping("/history")
+    public ResponseEntity<BaseResponse> reservationHistory(@RequestParam int userId){
+        log.info("reservationHistory " + userId);
+        List<MyReservationDTO> myReservationDTOList = myPageService.getMyReservationHistory(userId);
+        return ResponseEntity
+                .ok()
+                .body(BaseResponse.builder()
+                        .success(true)
+                        .data(myReservationDTOList)
+                        .build());
+    }
+
+
 //    @ResponseBody
-//    @GetMapping("/auth/{qrId}")
-//    public ResponseEntity<BaseResponse> authQR(@PathVariable("qrId") int qrId){
-//        log.info("qrId " + qrId);
-//        return null;
+//    @GetMapping("")
+//    public ResponseEntity<BaseResponse> deleteMyReservation(@RequestParam int userId){
+//        log.info("myPage " + userId);
+//        MyInfoDTO myInfoDTO = myPageService.getMyInformation(userId);
+//        return ResponseEntity
+//                .ok()
+//                .body(BaseResponse.builder()
+//                        .success(true)
+//                        .data(myInfoDTO)
+//                        .build());
 //    }
 }
