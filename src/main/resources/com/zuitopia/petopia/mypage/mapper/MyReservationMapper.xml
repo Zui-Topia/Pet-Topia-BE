@@ -19,8 +19,8 @@
             from
                 reservation
             where user_id = #{userId} and
-				reservation_delete = 0 and
-				reservation_delete_date is null
+				reservation_delete = 0  and
+ 				reservation_delete_date is null
 			order by
 				reservation_create_date desc
 				FETCH FIRST 1 ROWS ONLY
@@ -38,7 +38,7 @@
 			reservation_visit_time,
 			reservation_create_date,
 			reservation_payment,
-			reservation_delete
+			reservation_delete,
 			reservation_delete_date
 		from
 			reservation
@@ -59,11 +59,12 @@
 			reservation_visit_time,
 			reservation_create_date,
 			reservation_payment,
-			reservation_delete
+			reservation_delete,
+			reservation_delete_date
 		from
 			reservation
-		where user_id = #{userId} and
-			reservation_delete_date is null
+		where user_id = #{userId} -- and
+-- 			reservation_delete_date is null
 		order by
 			reservation_create_date desc
 		]]>
