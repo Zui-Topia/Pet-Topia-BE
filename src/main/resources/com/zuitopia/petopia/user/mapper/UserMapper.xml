@@ -55,5 +55,17 @@
 		]]>
 	</select>
 
+	<insert id="insertPet" parameterType="SignUpRequestDTO">
+		<![CDATA[
+		INSERT INTO Pet (PET_ID, USER_ID, PET_NAME, PET_WEIGHT,PET_SIZE)
+		VALUES (seq_pet.nextval, #{userId}, #{petName}, #{petWeight},#{petSize})
+		]]>
+
+	</insert>
+
+
+
+
+
 </mapper>
 

@@ -31,20 +31,28 @@ public class MyPageServiceImpl implements MyPageService {
 
     @Override
     public MyInfoDTO getMyInformation(int userId) {
-        // 사용자 정보 가져오기
-        MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
+        try{
+            // 사용자 정보 가져오기
+            MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
+            log.info("myPageUserDTO : " + myPageUserDTO.toString());
 
-        // 반려견 정보 가져오기
-        MyPagePetDTO myPagePetDTO = myPageInformationMapper.getMyPagePetDTO(userId);
-        myPagePetDTO.setPetSizeString(PetSizeEnum
-                .findByPetBtn(myPagePetDTO.getPetSize())
-                .getPetSize());
+            // 반려견 정보 가져오기
+            MyPagePetDTO myPagePetDTO = myPageInformationMapper.getMyPagePetDTO(userId);
+            myPagePetDTO.setPetSizeString(PetSizeEnum
+                    .findByPetBtn(myPagePetDTO.getPetSize())
+                    .getPetSize());
+            log.info("myPagePetDTO : " + myPagePetDTO.toString());
 
-        return MyInfoDTO.builder()
-                .myPageUserDTO(myPageUserDTO)
-                .myPagePetDTO(myPagePetDTO)
-                .myReservationDTO(getMyLatestReservation(userId))
-                .build();
+            return MyInfoDTO.builder()
+                    .myPageUserDTO(myPageUserDTO)
+                    .myPagePetDTO(myPagePetDTO)
+                    .myReservationDTO(getMyLatestReservation(userId))
+                    .build();
+        }
+        catch (Exception e){
+            log.info(e.getMessage());
+        }
+        return null;
     }
 
     @Override
@@ -52,6 +60,7 @@ public class MyPageServiceImpl implements MyPageService {
         try{
             // 사용자의 최신 예약 1건 가져오기
             ReservationVO reservationVO = myReservationMapper.getReservationVO(userId);
+            log.info("reservationVO : " + reservationVO.toString());
             if(reservationVO==null)
                 return null;
 
