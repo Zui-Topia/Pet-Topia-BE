@@ -2,32 +2,25 @@ package com.zuitopia.petopia.reservation.service;
 
 import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.reservation.dto.CompletedReservationDTO;
 import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
-import com.zuitopia.petopia.reservation.mapper.ReservationConfirmMapper;
 import com.zuitopia.petopia.reservation.mapper.ReservationMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-import java.text.DateFormatSymbols;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+
 
 @Log
 @Service
 @AllArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
     private final ReservationMapper reservationMapper;
-    private final ReservationConfirmMapper reservationConfirmMapper;
+
 
     @Override
-    public ReservationVO createReservation(ReservationInfoDTO reservationInfoDTO) throws Exception { // 에약정보를 예약DB에 저장
+    public ReservationVO createReservation(ReservationInfoDTO reservationInfoDTO) throws Exception {
 
         // 1. ReservationVO 생성 및 ReservationDTO 정보 받아오기
         ReservationVO reservationVO = ReservationVO.builder()
@@ -36,8 +29,6 @@ public class ReservationServiceImpl implements ReservationService {
                 .reservationDate(reservationInfoDTO.getReservationDate())
                 .reservationVisitTime(reservationInfoDTO.getReservationVisitTime())
                 .build();
-
-        log.info(reservationVO.getReservationDate());
         
         // 2. reservationToken 생성
         String reservationToken = createRandomReservationToken(reservationInfoDTO.getUserId());
@@ -47,17 +38,19 @@ public class ReservationServiceImpl implements ReservationService {
         int isInserted = reservationMapper.insert(reservationVO);
 
         if (isInserted == 1) {  // 예약을 성공했을 때
-            log.info("Success reservation");
             return reservationVO;
         }
-        else { // 예약을 실패했을 때
-            throw new Exception("예약 실패");
+        else { // 예약을 실패했을 경우
+            throw new Exception("예약을 실패했습니다");
         }
 
     }
 
+
     @Override
-    public Integer getStrollerCount(ReservationConfirmVO reservationConfirmVO) { // 반려견 유모차 잔여 개수 가져오기
+    public Integer getStrollerCount(ReservationConfirmVO reservationConfirmVO) {
+        
+        // 개모차 잔여 개수 가져오기
         Integer confirmCnt = reservationMapper.getStrollerCount(reservationConfirmVO);
         
         // null값일 때 20으로 저장
@@ -68,19 +61,20 @@ public class ReservationServiceImpl implements ReservationService {
         return 20 - confirmCnt;
     }
 
-    @Override
-    public int insertOrUpdateStollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception { // 반려견 잔여개수 업데이트
 
-        log.info("잔여개수 : " + strollerCnt);
+    @Override
+    public int insertOrUpdateStollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception { 
+        
+        // 개모차 잔여 개수 업데이트하기
         int isUpdated = reservationMapper.mergeStollerCount(reservationConfirmVO);
         if (isUpdated != 1) {
-            throw new Exception("개모차 잔여 개수 수 증가 실패");
+            throw new Exception("개모차 잔여 개수 업데이트를 실패했습니다");
         }
         return isUpdated;
     }
 
 
-    private String createRandomReservationToken(int userId){ // 예약 토큰 생성하기
+    private String createRandomReservationToken(int userId){
         Random random = new Random();
         // 두자리수 난수
         int randomNumber = random.nextInt(90) + 10;
@@ -88,7 +82,8 @@ public class ReservationServiceImpl implements ReservationService {
         // 현재 시간 여섯자리수
         LocalTime currentTime = LocalTime.now();
         String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("HHmmss"));
-        // 예약 아이디
-        return randomString + formattedTime + userId;
+
+        String reservationToken = randomString + formattedTime + userId;
+        return reservationToken;
     }
 }
