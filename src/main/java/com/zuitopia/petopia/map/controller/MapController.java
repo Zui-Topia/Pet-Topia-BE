@@ -12,6 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 지도 관련 요청을 처리하는 Controller 클래스 개발
+ * 지도, 지점 정보 등의 기능을 제공합니다.
+ *
+ * @version 1.0
+ * @since 2024.06.20
+ *
+ * <pre>
+ * 수정일         수정자              수정내용
+ * ----------  ----------------    ---------------------------------
+ * 2024.06.19       김도연               최초 생성
+ * </pre>
+ */
 @Controller
 @Log
 @RequestMapping("/map")
@@ -19,7 +32,12 @@ import java.util.List;
 public class MapController {
 
     private final MapService service;
-
+    /**
+     * 지점/ 층에 대한  API
+     *
+     * @return ResponseEntity<BaseResponse> 지점/ 층에 대한 응답
+     * 메소드
+     */
     @ResponseBody
     @GetMapping("/branch/{branchId}/floors")
     public ResponseEntity<BaseResponse> getListFloorMapId(@PathVariable("branchId") int branchId) {
@@ -31,6 +49,13 @@ public class MapController {
                         .data(floors)
                         .build());
     }
+
+    /**
+     * 지점안 상점에 대한 API
+     *
+     * @return ResponseEntity<BaseResponse> 지점 안 층 지도 정보에 대한 응답
+     *
+     */
     @ResponseBody
     @GetMapping("/{mapId}/places")
     public ResponseEntity<BaseResponse> getMapImg(@PathVariable int mapId) {
@@ -44,7 +69,12 @@ public class MapController {
                         .data(places)
                         .build());
     }
-
+    /**
+     * 지점/층의 상점 검색 기능 정보에 대한 API
+     *
+     * @return ResponseEntity<BaseResponse> 지점/층의 상점 정보에 대한 응답
+     *
+     */
     @ResponseBody
     @GetMapping("/branch/{branchId}/places")
     public ResponseEntity<BaseResponse> getSearchInfo(@PathVariable("branchId") int branchId) {
