@@ -13,10 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @since 2024.06.27
  *
  * <pre>
- * 수정일         수정자              수정내용
+ * 수정일             수정자                      수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.21       임재성               모든 헤더 허용 설정 추가
- * 2024.06.18       최유경               최초 생성
+ * 2024.06.21       임재성                  모든 헤더 허용 설정 추가
+ * 2024.06.18       최유경                      최초 생성
  * </pre>
  */
 @Configuration
@@ -24,11 +24,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     /**
-     * CORS 매핑을 추가하는 메소드입니다.
-     * 모든 경로에 대해 모든 출처에서의 GET, POST, DELETE, PUT 메소드를 허용합니다.
-     *
+     * @apiNote CORS 매핑을 추가하는 메소드
+     *          모든 경로에 대해 모든 출처에서의 GET, POST, DELETE, PUT 메소드를 허용
      * @param registry CorsRegistry 객체
-     * 메소드
+     *
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {

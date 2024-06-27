@@ -16,17 +16,17 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 사용자 관련 요청을 처리하는 Controller 클래스 개발
- * 회원 가입, 로그인, 이메일 중복 확인 등의 기능을 제공합니다.
+ * 회원 가입, 로그인, 이메일 중복 확인 등의 기능을 제공
  *
  * @version 1.0
  * @since 2024.06.20
  *
  * <pre>
- * 수정일         수정자              수정내용
+ * 수정일             수정자                        수정내용
  * ----------  ----------------    ---------------------------------
  * 2024.06.21       최유경               로그인 시 토큰 발급 로직 추가
- * 2024.06.21       임재성               RequestDTO 클래스 이름변경으로 인한 메서드 이름 변경, 로그인 로직 추가
- * 2024.06.20       임재성               최초 생성
+ * 2024.06.21       임재성              메서드 이름 변경, 로그인 로직 추가
+ * 2024.06.20       임재성                       최초 생성
  * </pre>
  */
 @Controller
@@ -41,7 +41,7 @@ public class UserController {
      *
      * @param email 확인할 이메일 주소
      * @return ResponseEntity<BaseResponse> 이메일 중복 여부에 대한 응답
-     * 메소드
+     *
      */
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
@@ -68,7 +68,7 @@ public class UserController {
      * @param signUpRequestDTO 회원 가입 요청 정보가 담긴 DTO
      * @return ResponseEntity<BaseResponse> 회원 가입 처리 결과 응답
      * @throws Exception 회원 가입 중 발생할 수 있는 예외
-     * 메소드
+     *
      */
     @PostMapping("/signup")
     @ResponseBody
@@ -97,7 +97,7 @@ public class UserController {
      * @param loginRequestDTO 로그인 요청 정보가 담긴 DTO
      * @return ResponseEntity<BaseResponse> 로그인 처리 결과 응답
      * @throws Exception 로그인 중 발생할 수 있는 예외
-     * 메소드
+     *
      */
     @PostMapping("/login")
     @ResponseBody

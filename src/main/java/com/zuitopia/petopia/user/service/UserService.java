@@ -5,16 +5,16 @@ import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 
 /**
  * 사용자 관련 서비스 interface 개발
- * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공합니다.
+ * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공
  *
  * @version 1.0
  * @since 2024.06.20
  *
  * <pre>
- * 수정일         수정자              수정내용
+ * 수정일            수정자                        수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.21       임재성              RequestDTO 클래스 이름 변경으로 인한 파라미터 이름 변경
- * 2024.06.20       임재성              최초 생성
+ * 2024.06.21       임재성        RequestDTO 클래스 이름 변경으로 인한 파라미터 이름 변경
+ * 2024.06.20       임재성                       최초 생성
  * </pre>
  */
 public interface UserService {
@@ -24,7 +24,7 @@ public interface UserService {
          *
          * @param email 확인할 이메일 주소
          * @return boolean 이메일 존재 여부 (true: 존재, false: 존재하지 않음)
-         * 메소드
+         *
          */
         boolean checkEmailExists(String email);
 
@@ -34,7 +34,7 @@ public interface UserService {
          * @param signUpRequestDTO 회원 가입 요청 정보가 담긴 DTO
          * @return String 발급된 토큰
          * @throws Exception 회원 가입 중 발생할 수 있는 예외
-         * 메소드
+         *
          */
         String signUpUser(SignUpRequestDTO signUpRequestDTO) throws Exception;
 
@@ -44,7 +44,7 @@ public interface UserService {
          * @param loginRequestDTO 로그인 요청 정보가 담긴 DTO
          * @return String 발급된 토큰
          * @throws Exception 로그인 중 발생할 수 있는 예외
-         * 메소드
+         *
          */
         String loginUser(LoginRequestDTO loginRequestDTO) throws Exception;
 }

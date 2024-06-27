@@ -15,17 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 사용자 관련 서비스 구현 클래스
- * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공합니다.
+ * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공
  *
  * @version 1.0
  * @since 2024.06.20
  *
  * <pre>
- * 수정일         수정자              수정내용
+ * 수정일             수정자                       수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.22       임재성               반려견 삽입 메서드 추가
- * 2024.06.21       최유경               회원가입 시 토큰 발급 추가
- * 2024.06.20       임재성               최초 생성
+ * 2024.06.22       임재성                  반려견 삽입 메서드 추가
+ * 2024.06.21       최유경                 회원가입 시 토큰 발급 추가
+ * 2024.06.20       임재성                       최초 생성
  * </pre>
  */
 @Service
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param email 확인할 이메일 주소
      * @return boolean 이메일 존재 여부 (true: 존재, false: 존재하지 않음)
-     * 메소드
+     *
      */
     @Override
     public boolean checkEmailExists(String email) {
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
      * @throws Exception 1. 유저가 생성되지 않았습니다.
      *                   2. 반려견이 생성되지 않았습니다.
      *                   3. 이메일 또는 비밀번호가 유효하지 않습니다.
-     * 메소드
+     *
      */
     @Override
     @Transactional // insert 문 두 개가 모두 작동해야 회원가입 처리가 되는 것이므로 트랜잭션 처리
@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
      * @return String 발급된 토큰
      * @throws Exception 1. 사용자가 없습니다.
      *                   2. 비밀번호가 일치하지 않습니다.
-     * 메소드
+     *
      */
     @Override
     public String loginUser(LoginRequestDTO loginRequestDTO) throws Exception {
