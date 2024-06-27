@@ -12,37 +12,61 @@ import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 예약 관련 요청을 처리하는 Controller 클래스 개발
+ * 예약 등록, 개모차 잔여 개수 등의 기능을 제공합니다.
+ * @author Eunchan Jeong
+ * @since 2024.06.19
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자       				              수정내용
+ * ----------  ----------------    ------------------------------------------------------------------
+ *  2024.06.22      최유경
+ *  2024.06.21      정은찬                             개모차 잔여수 업데이트하기
+ *  2024.06.20      정은찬                                개모차 잔여 개수 API
+ *  2024.06.20      정은찬                                   예약 등록 API
+ *  2024.06.19     	정은찬        		                     최초 생성
+ * </pre>
+ */
 @RestController
 @RequestMapping("/reservation")
 @Log
 @AllArgsConstructor
 public class ReservationController {
 
-    private final ReservationService service;
+    private final ReservationService reservationService;
     private final TokenService tokenService;
+
+    /**
+     * 예약 등록에 대한 API
+     * @param token
+     * @param reservationDTO
+     * @return ResponseEntity<BaseResponse> 예약 등록에 대한 응답
+     */
     @PostMapping("/create")
     public ResponseEntity<BaseResponse> reservation(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody ReservationInfoDTO reservationDTO) { // 예약하기
+        // 유저 아이디 가져오기
         UserClaimDTO userClaimDTO = tokenService.getClaims(token);
         reservationDTO.setUserId(userClaimDTO.getUserId());
-
-        log.info("reservation : " + reservationDTO.toString());
+        
+        // 프론트엔드단에 받은 예약 정보 저장하기
         ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
                                                             .branchId(reservationDTO.getBranchId())
                                                             .reservationDate(reservationDTO.getReservationDate())
                                                             .build();
 
         // 반려견 유모차 잔여 개수 가져오기
-        Integer petStrollerCnt = service.getStrollerCount(reservationConfirmVO);
-        log.info("cnt----  " + petStrollerCnt);
+        Integer petStrollerCnt = reservationService.getStrollerCount(reservationConfirmVO);
 
         try{
             if ( petStrollerCnt > 0) { // 유모차 잔여 개수가 남아있을 때
                 
                 // 예약 등록하기
-                ReservationVO reservationVO = service.createReservation(reservationDTO);
-                log.info(reservationVO.toString());
+                ReservationVO reservationVO = reservationService.createReservation(reservationDTO);
+
                 // 반려견 유모차 잔여 개수 업데이트 
-                service.insertOrUpdateStollerCount(petStrollerCnt, reservationConfirmVO);
+                reservationService.insertOrUpdateStollerCount(petStrollerCnt, reservationConfirmVO);
                 return ResponseEntity
                         .ok()
                         .body(BaseResponse.builder()
@@ -65,6 +89,12 @@ public class ReservationController {
         }
     }
 
+    /**
+     * 개모차 잔여 개수에 대한 API
+     * @param branchId
+     * @param reservationDate
+     * @return ResponseEntity<BaseResponse>   개모차 잔여 개수에 대한 응답
+     */
     @ResponseBody
     @GetMapping("/{branchId}")
     public ResponseEntity<BaseResponse> petStrollerCnt(@PathVariable int branchId, @RequestParam String reservationDate) { // 반려견 유모차 잔여 개수 조회
@@ -74,7 +104,7 @@ public class ReservationController {
                                                             .build();
     
         // 반려견 유모차 잔여 개수 가져오기
-        int petStrollerCnt = service.getStrollerCount(reservationConfirmVO);
+        int petStrollerCnt = reservationService.getStrollerCount(reservationConfirmVO);
 
         return ResponseEntity
                 .ok()

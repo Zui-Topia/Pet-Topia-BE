@@ -12,13 +12,34 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 
+/**
+ * 예약 관련 서비스 interface 개발
+ * 예약 정보 저장, 개모차 잔여 개수 가져오기 등의 기능을 제공합니다.
+ * @author Eunchan Jeong
+ * @since 2024.06.19
+ *
+ * <pre>
+ * 수정일        	수정자       				              수정내용
+ * ----------  ----------------    ------------------------------------------------------------------
+ *  2024.06.22      최유경
+ *  2024.06.21      정은찬                             개모차 잔여수 업데이트하기
+ *  2024.06.20      정은찬                               개모차 잔여수 가져오기
+ *  2024.06.20      정은찬                             예약정보를 예약DB에 저장하기
+ *  2024.06.19     	정은찬        		                     최초 생성
+ * </pre>
+ */
 @Log
 @Service
 @AllArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
     private final ReservationMapper reservationMapper;
 
-
+    /**
+     * 예약정보를 예약DB에 저장하는 메소드
+     * @param reservationInfoDTO
+     * @return ReservationVO
+     * @throws Exception 1. 예약을 실패했습니다
+     */
     @Override
     public ReservationVO createReservation(ReservationInfoDTO reservationInfoDTO) throws Exception {
 
@@ -46,7 +67,11 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
-
+    /**
+     * 개모차 잔여 개수를 가져오는 메소드
+     * @param reservationConfirmVO
+     * @return Integer
+     */
     @Override
     public Integer getStrollerCount(ReservationConfirmVO reservationConfirmVO) {
         
@@ -61,7 +86,13 @@ public class ReservationServiceImpl implements ReservationService {
         return 20 - confirmCnt;
     }
 
-
+    /**
+     * 개모차 잔여 개수를 업데이트하는 메소드
+     * @param strollerCnt
+     * @param reservationConfirmVO
+     * @return int
+     * @throws Exception 1. 개모차 잔여개수 업데이트를 실패했습니다
+     */
     @Override
     public int insertOrUpdateStollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception { 
         
@@ -73,7 +104,11 @@ public class ReservationServiceImpl implements ReservationService {
         return isUpdated;
     }
 
-
+    /**
+     * 예약 토큰을 생성하는 메소드
+     * @param userId
+     * @return String
+     */
     private String createRandomReservationToken(int userId){
         Random random = new Random();
         // 두자리수 난수
