@@ -18,4 +18,5 @@ public class ReservationVO {
     private Date reservationCreateDate; //예약 생성 날짜
     private int reservationPayment;
     private int reservationDelete; // 예약 삭제 여부
+    private Date reservationDeleteDate;
 }

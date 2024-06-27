@@ -51,7 +51,8 @@
             reservation_visit_time,
             reservation_create_date,
             reservation_payment,
-            reservation_delete
+            reservation_delete,
+            reservation_delete_date
         from
             (select
                  qr_id,
