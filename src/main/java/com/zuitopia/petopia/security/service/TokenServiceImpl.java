@@ -4,6 +4,7 @@ import com.zuitopia.petopia.security.UserClaimDTO;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +19,11 @@ public class TokenServiceImpl implements TokenService {
         return customTokenEncoder.createAccessToken(map);
     }
     @Override
-    public UserClaimDTO getClaims(String token){
+    public UserClaimDTO getClaims(String token) throws NullPointerException {
         Map<String,Object> result = customTokenEncoder.extractClaims(token);
+
+        if(result.get("userId")==null)
+            throw new NullPointerException("해당 userId 값이 존재하지 않습니다.");
 
         return UserClaimDTO.builder()
                 .userId((Integer)result.get("userId"))

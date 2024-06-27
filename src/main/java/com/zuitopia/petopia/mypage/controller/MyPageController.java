@@ -32,54 +32,61 @@ public class MyPageController {
 
     @ResponseBody
     @GetMapping("")
-    public ResponseEntity<BaseResponse> myPage(@RequestHeader(value = "Authorization", required = false) String token){ //@RequestParam int userId
-        log.info("token 들어옴 -----------  " + token);
-        UserClaimDTO claimDTO = tokenService.getClaims(token);
-        log.info(claimDTO.toString());
-        if(claimDTO==null)
+    public ResponseEntity<BaseResponse> myPage(@RequestHeader(value = "Authorization", required = false) String token){
+        log.info("[myPage] -----------  ");
+        try{
+            UserClaimDTO claimDTO = tokenService.getClaims(token);
+            log.info(claimDTO.toString());
+
+            MyInfoDTO myInfoDTO = myPageService.getMyInformation(claimDTO.getUserId());
+            return ResponseEntity
+                    .ok()
+                    .body(BaseResponse.builder()
+                            .success(true)
+                            .data(myInfoDTO)
+                            .build());
+        }
+        catch (NullPointerException e){
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(BaseResponse.builder()
                             .success(false)
-                            .data(false)
+                            .data(e.getMessage())
                             .build());
-        MyInfoDTO myInfoDTO = myPageService.getMyInformation(claimDTO.getUserId());
-        return ResponseEntity
-                .ok()
-                .body(BaseResponse.builder()
-                        .success(true)
-                        .data(myInfoDTO)
-                        .build());
+        }
     }
 
     @ResponseBody
     @GetMapping("/history")
-    public ResponseEntity<BaseResponse> reservationHistory(@RequestHeader(value = "Authorization", required = false) String token) {//@RequestParam int userId){
-        UserClaimDTO claimDTO = tokenService.getClaims(token);
-        log.info(claimDTO.toString());
-        if(claimDTO==null)
+    public ResponseEntity<BaseResponse> reservationHistory(@RequestHeader(value = "Authorization", required = false) String token) {
+        log.info("[reservationHistory] -----------  ");
+        try{
+            UserClaimDTO claimDTO = tokenService.getClaims(token);
+            log.info(claimDTO.toString());
+
+            List<MyReservationDTO> myReservationDTOList = myPageService.getMyReservationHistory(claimDTO.getUserId());
+            return ResponseEntity
+                    .ok()
+                    .body(BaseResponse.builder()
+                            .success(true)
+                            .data(myReservationDTOList)
+                            .build());
+        }
+        catch (NullPointerException e){
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(BaseResponse.builder()
                             .success(false)
-                            .data(false)
+                            .data(e.getMessage())
                             .build());
-
-        log.info("reservationHistory " + claimDTO.getUserId());
-        List<MyReservationDTO> myReservationDTOList = myPageService.getMyReservationHistory(claimDTO.getUserId());
-        return ResponseEntity
-                .ok()
-                .body(BaseResponse.builder()
-                        .success(true)
-                        .data(myReservationDTOList)
-                        .build());
+        }
     }
 
 
     @ResponseBody
     @PostMapping("/delete")
     public ResponseEntity<BaseResponse> deleteMyReservation(@RequestBody DeleteRequestDTO deleteRequestDTO){
-        log.info("deleteMyReservation " + deleteRequestDTO.getReservationId());
+        log.info("[deleteMyReservation] -----------  ");
         try{
             int result = myPageService.deleteMyReservation(deleteRequestDTO.getReservationId());
             return ResponseEntity
@@ -97,6 +104,5 @@ public class MyPageController {
                             .data(e.getMessage())
                             .build());
         }
-
     }
 }
