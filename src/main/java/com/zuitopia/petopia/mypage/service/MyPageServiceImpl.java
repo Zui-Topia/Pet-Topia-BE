@@ -21,6 +21,19 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 마이페이지 interface 개발
+ * @author 최유경
+ * @since 2024.06.19
+ *
+ * <pre>
+ * 수정일        		수정자       				    수정내용
+ * ----------  ----------------    -----------------------------------
+ * 2024.06.22       최유경           최신 예약 1건, 과거 예약 내역, 예약 삭제 작성
+ * 2024.06.20       최유경                   날짜, 시간, 요일 가공하기
+ * 2024.06.19     	최유경        		        최초 생성
+ * </pre>
+ */
 @Service
 @AllArgsConstructor
 @Log
@@ -29,6 +42,11 @@ public class MyPageServiceImpl implements MyPageService {
     private final MyReservationMapper myReservationMapper;
     private final ReservationMapper reservationMapper;
 
+    /**
+     * 사용자 정보 조회 메소드
+     * @param userId
+     * @return MyInfoDTO
+     */
     @Override
     public MyInfoDTO getMyInformation(int userId) {
         try{
@@ -55,6 +73,11 @@ public class MyPageServiceImpl implements MyPageService {
         return null;
     }
 
+    /**
+     * 사용자의 최신 예약 1건 가져오는 메소드
+     * @param userId
+     * @return MyReservationDTO
+     */
     @Override
     public MyReservationDTO getMyLatestReservation(int userId) {
         try{
@@ -86,6 +109,12 @@ public class MyPageServiceImpl implements MyPageService {
         return null;
     }
 
+    /**
+     * 사용자 과거 예약 내역 전체 조회하는 메소드
+     * @apiNote 취소된 예약 내역까지 조회
+     * @param userId
+     * @return List<MyReservationDTO>
+     */
     @Override
     public List<MyReservationDTO> getMyReservationHistory(int userId) {
         List<MyReservationDTO> myReservationDTOList = new ArrayList<>();
@@ -118,13 +147,20 @@ public class MyPageServiceImpl implements MyPageService {
         return myReservationDTOList;
     }
 
+    /**
+     * 예약 취소하는 메소드
+     * @param reservationId
+     * @return int
+     * @throws Exception 예약 삭제가 실패하였습니다.
+     * @throws NullPointerException 이미 처리된 예약입니다.
+     */
     @Override
     @Transactional
     public int deleteMyReservation(int reservationId) throws Exception {
         // 예약 내역 가져오기
         ReservationVO reservationVO = myReservationMapper.getReservationVOByReservationId(reservationId);
         if(reservationVO==null)
-            throw new Exception("이미 처리된 예약입니다.");
+            throw new NullPointerException("이미 처리된 예약입니다.");
 
         // 유모차 개수 업데이트 해주기
         int deleteCount = reservationMapper.deleteStrollerCount(ReservationConfirmVO.builder()
@@ -143,6 +179,12 @@ public class MyPageServiceImpl implements MyPageService {
         return deleteResult;
     }
 
+    /**
+     * 날짜 형식을 바꾸는 메소드
+     * @apiNote YYYY-MM-DD 형식을 YYYY.MM.DD 형식으로 변경
+     * @param reservationDate
+     * @return String
+     */
     private String convertToDateFormat(String reservationDate){
         StringBuilder dateSb = new StringBuilder();
         dateSb.append(reservationDate.replace("-",".")); //yyyy-mm-dd 형식
@@ -151,6 +193,12 @@ public class MyPageServiceImpl implements MyPageService {
         return dateSb.toString();
     }
 
+    /**
+     * 시간 형식을 바꾸는 메소드
+     * @apiNote 오전과 오후까지 제공
+     * @param reservationVisitTime
+     * @return String
+     */
     private String convertToTimeFormat(String reservationVisitTime){
         String visitTimeOnly = reservationVisitTime
                 .substring(0, reservationVisitTime.length() - 2); // 마지막에서 두 번째 문자까지 잘라냄
@@ -161,7 +209,11 @@ public class MyPageServiceImpl implements MyPageService {
         return timeSb.toString();
     }
 
-
+    /**
+     * 요일을 추출하는 메소드
+     * @param date
+     * @return String
+     */
     private String StringWeekday(String date){
         LocalDate localDate = LocalDate.parse(date);
 
