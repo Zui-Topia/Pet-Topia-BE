@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 사용자 관련 서비스 구현 클래스
  * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공합니다.
- * @author jaeseong Im
  *
  * @version 1.0
  * @since 2024.06.20
@@ -24,9 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
  * <pre>
  * 수정일         수정자              수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.20       임재성               최초 생성
- * 2024.06.21       최유경               회원가입 시 토큰 발급 추가
  * 2024.06.22       임재성               반려견 삽입 메서드 추가
+ * 2024.06.21       최유경               회원가입 시 토큰 발급 추가
+ * 2024.06.20       임재성               최초 생성
  * </pre>
  */
 @Service
@@ -43,7 +42,7 @@ public class UserServiceImpl implements UserService {
     private TokenService tokenService;
 
     /**
-     * 이메일 중복 여부를 확인하는 메소드입니다.
+     * 이메일 중복 여부를 확인하는 메소드
      *
      * @param email 확인할 이메일 주소
      * @return boolean 이메일 존재 여부 (true: 존재, false: 존재하지 않음)
@@ -55,11 +54,13 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 사용자를 회원 가입시키고 토큰을 발급하는 메소드입니다.
+     * 사용자를 회원 가입시키고 토큰을 발급하는 메소드
      *
      * @param signUpRequestDTO 회원 가입 요청 정보가 담긴 DTO
      * @return String 발급된 토큰
-     * @throws Exception 회원 가입 중 발생할 수 있는 예외
+     * @throws Exception 1. 유저가 생성되지 않았습니다.
+     *                   2. 반려견이 생성되지 않았습니다.
+     *                   3. 이메일 또는 비밀번호가 유효하지 않습니다.
      * 메소드
      */
     @Override
@@ -106,7 +107,7 @@ public class UserServiceImpl implements UserService {
                 return accessToken;
         } catch (Exception e) {
             log.info(e.getMessage());
-            throw new Exception("Invalid email or password");
+            throw new Exception("이메일 또는 비밀번호가 유효하지 않습니다.");
         }
         return null;
     }
@@ -116,7 +117,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param loginRequestDTO 로그인 요청 정보가 담긴 DTO
      * @return String 발급된 토큰
-     * @throws Exception 로그인 중 발생할 수 있는 예외
+     * @throws Exception 1. 사용자가 없습니다.
+     *                   2. 비밀번호가 일치하지 않습니다.
      * 메소드
      */
     @Override
