@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * QR service 클래스 구현체
+ *
  * @author 최유경
  * @since 2024.06.21
  *
@@ -29,6 +30,7 @@ public class QRServiceImpl implements QRService {
 
     /**
      * QR 생성하는 메소드
+     *
      * @param reservationId
      * @return int
      * @throws Exception 1. QR이 생성되지 않았습니다.
@@ -45,8 +47,9 @@ public class QRServiceImpl implements QRService {
 
     /**
      * QR 인증 확인하는 메소드
+     *
      * @param qrId
-     * @return ReservationVO ㅇㅇㅇ
+     * @return ReservationVO
      * @throws NullPointerException QR이 만료되었거나 예약이 삭제되었습니다.
      * @throws Exception 1. 이미 사용된 예약입니다.
      *                   2. 당일에 예약된 내역이 없습니다.
@@ -84,6 +87,7 @@ public class QRServiceImpl implements QRService {
 
     /**
      * 당일 날짜로 예약한 내역이 맞는지 확인하는 메소드
+     *
      * @param date
      * @return boolean
      */
@@ -103,6 +107,7 @@ public class QRServiceImpl implements QRService {
     /**
      * 예약 방문 시간이 유효한지 확인하는 메소드
      * @apiNote 예약 방문 시간의 30분이 지난 시간까지 예약이 유효하다고 설정
+     *
      * @param reservationVO
      * @return boolean
      */

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * QR 관련 Mapper interface
+ *
  * @author 최유경
  * @since 2024.06.21
  *
@@ -19,6 +20,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface QRAuthMapper {
     /**
      * QR insert 하는 메소드
+     *
      * @param reservationId
      * @return int
      */
@@ -26,6 +28,7 @@ public interface QRAuthMapper {
 
     /**
      * QR update 하는 메소드
+     *
      * @param reservationId
      * @return int
      */
@@ -33,6 +36,7 @@ public interface QRAuthMapper {
 
     /**
      * 예약 아이디값으로 QR 조회하는 메소드
+     *
      * @param reservationId
      * @return ReservationQRVO
      */
@@ -40,6 +44,7 @@ public interface QRAuthMapper {
 
     /**
      * QR 아이디값으로 예약 조회하는 메소드
+     *
      * @param qrId
      * @return ReservationVO
      */

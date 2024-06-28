@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * 유저 보안 정보를 담은 UserSecurityVO
+ *
  * @author 최유경
  * @since 2024.06.21
  *
@@ -18,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Builder
 public class UserSecurityVO {
-    private int userId; // 유저 아이디
-    private String password; // 유저 비밀번호
+    private int userId;             // 유저 아이디
+    private String password;        // 유저 비밀번호
     private String userAccessToken; // 유저 엑세스 토큰
 }

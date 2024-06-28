@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 마이페이지 QR 관련 Controller
+ *
  * @author 최유경
  * @since 2024.06.21
  *
@@ -34,6 +35,7 @@ public class QRController {
 
     /**
      * QR 생성하는 API
+     *
      * @param reservationId
      * @return ResponseEntity<BaseResponse> qrId 값을 반환
      */
@@ -66,6 +68,7 @@ public class QRController {
      * QR 인증을 확인하는 API
      * @apiNote 1. 인증 성공 시, 예약 정보 전달
      *          2. 인증 실패 시, 오류 메시지 전달
+     *
      * @param qrId
      * @return ResponseEntity<BaseResponse> 예약 정보 전달
      */

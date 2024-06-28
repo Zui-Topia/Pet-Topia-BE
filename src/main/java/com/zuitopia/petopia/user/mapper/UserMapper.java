@@ -6,10 +6,11 @@ import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 사용자 관련 데이터베이스 작업을 처리하는 매퍼 interface 개발
- * 이메일 중복 확인, 사용자 정보 삽입, 사용자 및 반려동물 정보 조회 등의 기능을 제공
+ * 사용자 관련 데이터베이스 작업을 처리하는 매퍼 interface
+ * @apiNote 이메일 중복 확인, 사용자 정보 삽입, 사용자 및 반려동물 정보 조회 등의 기능을 제공
  *
- * @version 1.0
+ * @author 임재성
+ * @author 최유경
  * @since 2024.06.20
  *
  * <pre>

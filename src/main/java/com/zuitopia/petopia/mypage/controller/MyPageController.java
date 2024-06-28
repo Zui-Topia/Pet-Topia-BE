@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 마이페이지 Controller
+ *
  * @author 최유경
  * @since 2024.06.19
  *

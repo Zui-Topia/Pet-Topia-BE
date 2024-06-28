@@ -6,6 +6,7 @@ import lombok.Data;
 
 /**
  * UserClaimDTO 개발
+ *
  * @author 최유경
  * @since 2024.06.21
  *

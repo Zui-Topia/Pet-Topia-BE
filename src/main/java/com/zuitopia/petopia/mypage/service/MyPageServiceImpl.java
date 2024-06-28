@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 마이페이지 service 클래스 구현체
+ *
  * @author 최유경
  * @since 2024.06.19
  *
@@ -44,6 +45,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 사용자 정보 조회 메소드
+     *
      * @param userId
      * @return MyInfoDTO
      * @throws NullPointerException 1. 등록되지 않은 사용자입니다.
@@ -77,6 +79,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 사용자의 최신 예약 1건 가져오는 메소드
+     *
      * @param userId
      * @return MyReservationDTO
      * @throws NullPointerException 1. 예약 내역이 존재하지 않습니다.
@@ -111,6 +114,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 사용자 과거 예약 내역 전체 조회하는 메소드
+     *
      * @apiNote 취소된 예약 내역까지 조회
      * @param userId
      * @return List<MyReservationDTO>
@@ -149,6 +153,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 예약 취소하는 메소드
+     *
      * @param reservationId
      * @return int
      * @throws Exception 1. 예약 삭제가 실패하였습니다.
@@ -181,6 +186,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 날짜 형식을 바꾸는 메소드
+     *
      * @apiNote YYYY-MM-DD 형식을 YYYY.MM.DD 형식으로 변경
      * @param reservationDate
      * @return String
@@ -197,6 +203,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 시간 형식을 바꾸는 메소드
+     *
      * @apiNote 오전과 오후까지 제공
      * @param reservationVisitTime
      * @return String
@@ -216,6 +223,7 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 요일을 추출하는 메소드
+     *
      * @param date
      * @return String
      */

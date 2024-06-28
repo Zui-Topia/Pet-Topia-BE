@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * 마이페이지 service interface
+ *
  * @author 최유경
  * @since 2024.06.19
  *
@@ -20,14 +21,16 @@ public interface MyPageService {
 
     /**
      * 사용자 정보 조회 메소드
+     *
      * @param userId
-     * @return
+     * @return MyInfoDTO
      * @throws NullPointerException 사용자 정보 오류
      */
     MyInfoDTO getMyInformation(int userId) throws NullPointerException;
 
     /**
      * 사용자의 최신 예약 1건 가져오는 메소드
+     *
      * @param userId
      * @return MyReservationDTO
      * @throws NullPointerException 예약 정보 오류
@@ -36,6 +39,7 @@ public interface MyPageService {
 
     /**
      * 사용자 과거 예약 내역 전체 조회하는 메소드
+     *
      * @param userId
      * @return List<MyReservationDTO>
      */
@@ -43,6 +47,7 @@ public interface MyPageService {
 
     /**
      * 예약 취소하는 메소드
+     *
      * @param reservationId
      * @return int
      * @throws Exception 예약 취소 실패
