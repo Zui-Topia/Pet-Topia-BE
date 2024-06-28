@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zuitopia.petopia.mypage.mapper.QRAuthMapper">
-
+    <!-- QR을 새로 생성하는 쿼리 -->
     <insert id="createQR">
         insert into reservation_qr (qr_id, reservation_id, qr_expire_time)
-        values (seq_reservation_qr.nextval, #{reservationId}, sysdate + (30 / 86400) )
+        values (seq_reservation_qr.nextval, #{reservationId}, sysdate + (5 / 86400) )
     </insert>
 
+    <!-- 예약 아이디로 QR 정보를 조회하는 퀴리 -->
     <select id="getQRByReservationId" resultType="ReservationQRVO">
 		<![CDATA[
         select
@@ -25,6 +26,7 @@
         ]]>
 	</select>
 
+    <!-- QR 아이디로 QR 정보를 조회하는 퀴리 -->
     <select id="getQRByQrId" resultType="ReservationQRVO">
 		<![CDATA[
         select
@@ -39,7 +41,8 @@
         ]]>
 	</select>
 
-    <!--QR 만료일자 확인-->
+    <!-- QR 아이디로 예약 정보를 조회하는 퀴리 -->
+    <!-- QR 만료 조건 확인 -->
     <select id="getReservationByQrId" resultType="ReservationVO">
 		<![CDATA[
         select
@@ -70,6 +73,7 @@
         ]]>
 	</select>
 
+    <!-- 예약 인증 시 인증 완료로 업데이트 하는 쿼리 -->
     <update id="updateReservationAuthComplete">
         update
             reservation

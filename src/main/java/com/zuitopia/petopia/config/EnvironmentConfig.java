@@ -6,15 +6,15 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * 애플리케이션 환경 설정을 위한 구성 클래스
- * 프로퍼티 파일의 플레이스홀더를 지원하는 설정을 제공합니다.
+ * @apiNote 프로퍼티 파일의 플레이스홀더를 지원하는 설정 제공
  *
- * @version 1.0
- * @since 2024.06.27
+ * @author 최유경
+ * @since 2024.06.21
  *
  * <pre>
- * 수정일         수정자              수정내용
+ * 수정일         수정자                           수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.21       최유경               최초 생성
+ * 2024.06.21       최유경                       최초 생성
  * </pre>
  */
 @Configuration

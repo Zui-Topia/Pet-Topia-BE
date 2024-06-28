@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 지도 관련 요청을 처리하는 Controller 클래스 개발
- * 지도, 지점 정보 등의 기능을 제공합니다.
+ * 지도 관련 요청을 처리하는 Controller 클래스
+ * @apiNote 지도, 지점 정보 등의 기능을 제공합니다.
  *
- * @version 1.0
+ * @author 김도연
  * @since 2024.06.19
  *
  * <pre>
@@ -30,13 +30,13 @@ import java.util.List;
 @RequestMapping("/map")
 @AllArgsConstructor
 public class MapController {
-
     private final MapService service;
+
     /**
      * 지점/ 층에 대한  API
      *
+     * @param branchId
      * @return ResponseEntity<BaseResponse> 지점/ 층에 대한 응답
-     *
      */
     @ResponseBody
     @GetMapping("/branch/{branchId}/floors")
@@ -53,8 +53,8 @@ public class MapController {
     /**
      * 지점안 상점에 대한 API
      *
+     * @param mapId
      * @return ResponseEntity<BaseResponse> 지점 안 층 지도 정보에 대한 응답
-     *
      */
     @ResponseBody
     @GetMapping("/{mapId}/places")
@@ -69,11 +69,12 @@ public class MapController {
                         .data(places)
                         .build());
     }
+
     /**
      * 지점/층의 상점 검색 기능 정보에 대한 API
      *
+     * @param branchId
      * @return ResponseEntity<BaseResponse> 지점/층의 상점 정보에 대한 응답
-     *
      */
     @ResponseBody
     @GetMapping("/branch/{branchId}/places")

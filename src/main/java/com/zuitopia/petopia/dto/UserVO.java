@@ -6,9 +6,9 @@ import java.util.Date;
 
 /**
  * 사용자 정보를 담는 VO 클래스 개발
- * 사용자 ID, 이메일, 비밀번호, 액세스 토큰, 가입 날짜, 가입 방법 등의 정보를 포함
- * @author jaeseong Im
- * @version 1.0
+ * @apiNote 사용자 ID, 이메일, 비밀번호, 액세스 토큰, 가입 날짜, 가입 방법 등의 정보를 포함
+ *
+ * @author 임재성
  * @since 2024.06.20
  *
  * <pre>
