@@ -17,12 +17,12 @@ import java.util.List;
  * 지도, 지점 정보 등의 기능을 제공합니다.
  *
  * @version 1.0
- * @since 2024.06.20
+ * @since 2024.06.19
  *
  * <pre>
- * 수정일         수정자              수정내용
+ *    수정일          수정자                       수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.19       김도연               최초 생성
+ * 2024.06.19        김도연                      최초 생성
  * </pre>
  */
 @Controller
@@ -36,7 +36,7 @@ public class MapController {
      * 지점/ 층에 대한  API
      *
      * @return ResponseEntity<BaseResponse> 지점/ 층에 대한 응답
-     * 메소드
+     *
      */
     @ResponseBody
     @GetMapping("/branch/{branchId}/floors")

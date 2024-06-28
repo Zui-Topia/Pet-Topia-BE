@@ -10,21 +10,21 @@ import java.util.List;
  * 지점/ 층/ 상점 에 대한 정보, 마커의 정보 등의 기능을 제공합니다.
  *
  * @version 1.0
- * @since 2024.06.20
+ * @since 2024.06.19
  *
  * <pre>
- * 수정일         수정자              수정내용
+ *    수정일          수정자                      수정내용
  * ----------  ----------------    ---------------------------------
- * 2024.06.19       김도연               최초 생성
+ * 2024.06.19       김도연                      최초 생성
  * </pre>
  */
 @Mapper
 public interface MapMapper {
     /**
      * 지점에 대한 층 정보를 가져오는 메소드
-
+     *
      * @return getListFloorMapId 지점에 대한 층 정보 리턴
-     * 메소드
+     *
      */
     public List<MapVO> getListFloorMapId(int branchId);
     /**
