@@ -1,71 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zuitopia.petopia.user.mapper.UserMapper">
 
-    <select id="checkEmailExists">
-		<![CDATA[
+	<!-- 이메일 중복 여부를 확인하는 쿼리 -->
+	<select id="checkEmailExists">
+        <![CDATA[
+		SELECT COUNT(*) FROM users WHERE user_email = #{email}
+		]]>
+    </select>
 
-        SELECT COUNT(*) FROM users WHERE user_email = #{email}
-
-        ]]>
-	</select>
-
+	<!-- 이메일을 통해 사용자 ID를 가져오는 쿼리 -->
 	<select id="getUserIdByEmail">
-		<![CDATA[
-			select
-			    user_id
-			from users
-			where user_email = #{userEmail}
+        <![CDATA[
+		select
+			user_id
+		from users
+		where user_email = #{userEmail}
 		]]>
-	</select>
+    </select>
 
-
+	<!-- 새로운 사용자를 데이터베이스에 삽입하는 쿼리 -->
 	<insert id="insertUser" parameterType="SignUpRequestDTO">
-		<![CDATA[
-			INSERT INTO USERS (USER_ID, USER_EMAIL, JOIN_DATE, JOIN_METHOD)
-			VALUES (seq_users.nextval, #{userEmail}, sysdate, 1)
+        <![CDATA[
+		INSERT INTO USERS (USER_ID, USER_EMAIL, JOIN_DATE, JOIN_METHOD)
+		VALUES (seq_users.nextval, #{userEmail}, sysdate, 1)
 		]]>
-	</insert>
+    </insert>
 
+	<!-- 이메일을 통해 사용자 정보를 조회하는 쿼리 -->
 	<select id="findByEmail" resultType="UserVO">
 		SELECT *
 		FROM users
 		WHERE user_email = #{userEmail}
 	</select>
 
+	<!-- 사용자 보안 정보를 데이터베이스에 삽입하는 쿼리 -->
 	<insert id="insertUserSecurity" parameterType="UserSecurityVO">
-		<![CDATA[
+        <![CDATA[
 		INSERT INTO USERS_SECURITY (USER_ID, PASSWORD, USER_ACCESS_TOKEN)
 		VALUES (#{userId}, #{password}, #{userAccessToken})
 		]]>
-	</insert>
+    </insert>
 
+	<!-- 사용자 ID를 통해 사용자 보안 정보를 조회하는 쿼리 -->
 	<select id="getUserSecurityByUserId" resultType="UserSecurityVO">
-		<![CDATA[
-			select
-			    user_id,
-			    password,
-				user_access_token
-			from
-			    users_security
-			where
-			    user_id = #{userId}
+        <![CDATA[
+		select
+			user_id,
+			password,
+			user_access_token
+		from
+			users_security
+		where
+			user_id = #{userId}
 		]]>
-	</select>
+    </select>
 
+	<!-- 새로운 반려동물 정보를 데이터베이스에 삽입하는 쿼리 -->
 	<insert id="insertPet" parameterType="SignUpRequestDTO">
-		<![CDATA[
-		INSERT INTO Pet (PET_ID, USER_ID, PET_NAME, PET_WEIGHT,PET_SIZE)
-		VALUES (seq_pet.nextval, #{userId}, #{petName}, #{petWeight},#{petSize})
+        <![CDATA[
+		INSERT INTO Pet (PET_ID, USER_ID, PET_NAME, PET_WEIGHT, PET_SIZE)
+		VALUES (seq_pet.nextval, #{userId}, #{petName}, #{petWeight}, #{petSize})
 		]]>
-
-	</insert>
-
-
-
-
+    </insert>
 
 </mapper>
-
