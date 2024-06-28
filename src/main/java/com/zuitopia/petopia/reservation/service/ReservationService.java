@@ -43,6 +43,6 @@ public interface ReservationService {
      * @return int
      * @throws Exception 개모차 잔여 개수 업데이트 실패
      */
-    int insertOrUpdateStollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception;
+    int insertOrUpdateStrollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception;
 
 }

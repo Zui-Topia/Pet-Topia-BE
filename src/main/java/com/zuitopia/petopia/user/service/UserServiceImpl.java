@@ -9,7 +9,6 @@ import com.zuitopia.petopia.security.UserClaimDTO;
 import com.zuitopia.petopia.user.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
  * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공
  *
  * @author 임재성
- * @author 최유경
  * @since 2024.06.20
  *
  * <pre>

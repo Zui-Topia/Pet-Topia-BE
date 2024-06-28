@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 예약 관련 요청을 처리하는 Controller 클래스
  * @apiNote 예약 등록, 개모차 잔여 개수 등의 기능을 제공
+ *
  * @author 정은찬
- * @author 최유경
  * @since 2024.06.19
  *
  * <pre>
@@ -67,7 +67,7 @@ public class ReservationController {
                 ReservationVO reservationVO = reservationService.createReservation(reservationDTO);
 
                 // 반려견 유모차 잔여 개수 업데이트 
-                reservationService.insertOrUpdateStollerCount(petStrollerCnt, reservationConfirmVO);
+                reservationService.insertOrUpdateStrollerCount(petStrollerCnt, reservationConfirmVO);
                 return ResponseEntity
                         .ok()
                         .body(BaseResponse.builder()

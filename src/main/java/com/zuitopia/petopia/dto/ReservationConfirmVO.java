@@ -5,8 +5,8 @@ import lombok.Data;
 
 /**
  * 개모차 잔여 개수 정보를 담는 VO
- * @author Eunchan Jeong
- * @version 1.0
+ *
+ * @author 정은찬
  * @since 2024.06.20
  *
  * <pre>

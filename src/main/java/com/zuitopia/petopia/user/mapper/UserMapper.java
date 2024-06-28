@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @apiNote 이메일 중복 확인, 사용자 정보 삽입, 사용자 및 반려동물 정보 조회 등의 기능을 제공
  *
  * @author 임재성
- * @author 최유경
  * @since 2024.06.20
  *
  * <pre>

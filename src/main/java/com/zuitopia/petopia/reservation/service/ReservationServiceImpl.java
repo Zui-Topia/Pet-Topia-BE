@@ -17,8 +17,6 @@ import java.util.Random;
  * 예약 정보 저장, 개모차 잔여 개수 가져오기 등의 기능을 제공합니다.
  *
  * @author 정은찬
- * @author 김도연
- * @author 최유경
  * @since 2024.06.19
  *
  * <pre>
@@ -26,7 +24,7 @@ import java.util.Random;
  * ----------  ----------------    ---------------------------------
  *  2024.06.22      최유경                        리팩토링
  *  2024.06.21      정은찬                  개모차 잔여수 업데이트하기
- *  2024.06.20      김도연                   개모차 잔여수 가져오기
+ *  2024.06.20      정은찬                   개모차 잔여수 가져오기
  *  2024.06.20      정은찬                 예약정보를 예약 테이블에 저장하기
  *  2024.06.19     	정은찬        		       최초 생성
  * </pre>
@@ -97,7 +95,7 @@ public class ReservationServiceImpl implements ReservationService {
      * @throws Exception 1. 개모차 잔여개수 업데이트를 실패했습니다
      */
     @Override
-    public int insertOrUpdateStollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception { 
+    public int insertOrUpdateStrollerCount(Integer strollerCnt, ReservationConfirmVO reservationConfirmVO) throws Exception {
         
         // 개모차 잔여 개수 업데이트하기
         int isUpdated = reservationMapper.mergeStrollerCount(reservationConfirmVO);

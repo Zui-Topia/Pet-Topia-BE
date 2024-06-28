@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
  * @apiNote 회원 가입, 로그인, 이메일 중복 확인 등의 기능을 제공
  *
  * @author 임재성
- * @author 최유경
  * @since 2024.06.20
  *
  * <pre>

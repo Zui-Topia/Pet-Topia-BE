@@ -8,7 +8,6 @@ import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
  * @apiNote 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공
  *
  * @author 임재성
- * @author 최유경
  * @since 2024.06.20
  *
  * <pre>
