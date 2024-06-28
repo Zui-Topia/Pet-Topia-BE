@@ -5,7 +5,7 @@ import com.zuitopia.petopia.mypage.dto.MyPageUserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 마이페이지 유저 정보 interface 개발
+ * 마이페이지 유저 정보 Mapper interface
  * @author 최유경
  * @since 2024.06.19
  *

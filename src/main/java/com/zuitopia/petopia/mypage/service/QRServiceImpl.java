@@ -11,7 +11,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
 /**
- * QR interface 개발
+ * QR service 클래스 구현체
  * @author 최유경
  * @since 2024.06.21
  *
@@ -27,6 +27,21 @@ import org.springframework.stereotype.Service;
 public class QRServiceImpl implements QRService {
     private final QRAuthMapper qrAuthMapper;
 
+    /**
+     * QR 생성하는 메소드
+     * @param reservationId
+     * @return int
+     * @throws Exception 1. QR이 생성되지 않았습니다.
+     */
+    @Override
+    public int generateQR(int reservationId) throws Exception {
+        int create = qrAuthMapper.createQR(reservationId);
+        if(create!=1)
+            throw new Exception("QR이 생성되지 않았습니다");
+
+        ReservationQRVO reservationQRVO = qrAuthMapper.getQRByReservationId(reservationId);
+        return reservationQRVO.getQrId();
+    }
 
     /**
      * QR 인증 확인하는 메소드
@@ -137,21 +152,5 @@ public class QRServiceImpl implements QRService {
             log.info(e.getMessage());
         }
         return false;
-    }
-
-    /**
-     * QR 생성하는 메소드
-     * @param reservationId
-     * @return int
-     * @throws Exception QR이 생성되지 않았습니다.
-     */
-    @Override
-    public int generateQR(int reservationId) throws Exception {
-        int create = qrAuthMapper.createQR(reservationId);
-        if(create!=1)
-            throw new Exception("QR이 생성되지 않았습니다");
-
-        ReservationQRVO reservationQRVO = qrAuthMapper.getQRByReservationId(reservationId);
-        return reservationQRVO.getQrId();
     }
 }

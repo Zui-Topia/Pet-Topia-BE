@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 마이페이지 interface 개발
+ * 마이페이지 service 클래스 구현체
  * @author 최유경
  * @since 2024.06.19
  *
@@ -46,12 +46,15 @@ public class MyPageServiceImpl implements MyPageService {
      * 사용자 정보 조회 메소드
      * @param userId
      * @return MyInfoDTO
+     * @throws NullPointerException 1. 등록되지 않은 사용자입니다.
      */
     @Override
-    public MyInfoDTO getMyInformation(int userId) {
+    public MyInfoDTO getMyInformation(int userId) throws NullPointerException {
         try{
             // 사용자 정보 가져오기
             MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
+            if(myPageUserDTO==null)
+                throw new NullPointerException("등록되지 않은 사용자입니다.");
             log.info("myPageUserDTO : " + myPageUserDTO.toString());
 
             // 반려견 정보 가져오기
@@ -68,45 +71,42 @@ public class MyPageServiceImpl implements MyPageService {
                     .build();
         }
         catch (Exception e){
-            log.info(e.getMessage());
+            throw new NullPointerException(e.getMessage());
         }
-        return null;
     }
 
     /**
      * 사용자의 최신 예약 1건 가져오는 메소드
      * @param userId
      * @return MyReservationDTO
+     * @throws NullPointerException 1. 예약 내역이 존재하지 않습니다.
+     *                              2. 정보 데이터가 존재하지 않습니다.
      */
     @Override
-    public MyReservationDTO getMyLatestReservation(int userId) {
-        try{
-            // 사용자의 최신 예약 1건 가져오기
-            ReservationVO reservationVO = myReservationMapper.getReservationVO(userId);
-            log.info("reservationVO : " + reservationVO.toString());
-            if(reservationVO==null)
-                return null;
+    public MyReservationDTO getMyLatestReservation(int userId) throws NullPointerException {
+        // 사용자의 최신 예약 1건 가져오기
+        ReservationVO reservationVO = myReservationMapper.getReservationVO(userId);
+        if(reservationVO==null)
+            throw new NullPointerException("예약 내역이 존재하지 않습니다.");
+        log.info("reservationVO : " + reservationVO.toString());
 
-            // 날짜 가공하기
-            String reservationDate = reservationVO.getReservationDate();
-            reservationVO.setReservationDate(convertToDateFormat(reservationDate));
+        // 날짜 가공하기
+        String reservationDate = reservationVO.getReservationDate();
+        reservationVO.setReservationDate(convertToDateFormat(reservationDate));
 
-            // 시간 가공하기
-            String reservationVisitTime = reservationVO.getReservationVisitTime();
-            reservationVO.setReservationVisitTime(convertToTimeFormat(reservationVisitTime));
+        // 시간 가공하기
+        String reservationVisitTime = reservationVO.getReservationVisitTime();
+        reservationVO.setReservationVisitTime(convertToTimeFormat(reservationVisitTime));
 
-            // 해당 예약에 대해서 반려견 유모차 정보 가져오기
-            PlaceDTO placeDTO = myReservationMapper.getReservationPlaceInfo(reservationVO.getBranchId());
+        // 해당 예약에 대해서 반려견 유모차 정보 가져오기
+        PlaceDTO placeDTO = myReservationMapper.getReservationPlaceInfo(reservationVO.getBranchId());
+        if(placeDTO==null)
+            throw new NullPointerException("정보 데이터가 존재하지 않습니다.");
 
-            return MyReservationDTO.builder()
-                    .reservationVO(reservationVO)
-                    .placeDTO(placeDTO)
-                    .build();
-        }
-        catch (Exception e){
-            log.info(e.getMessage());
-        }
-        return null;
+        return MyReservationDTO.builder()
+                .reservationVO(reservationVO)
+                .placeDTO(placeDTO)
+                .build();
     }
 
     /**
@@ -151,8 +151,8 @@ public class MyPageServiceImpl implements MyPageService {
      * 예약 취소하는 메소드
      * @param reservationId
      * @return int
-     * @throws Exception 예약 삭제가 실패하였습니다.
-     * @throws NullPointerException 이미 처리된 예약입니다.
+     * @throws Exception 1. 예약 삭제가 실패하였습니다.
+     * @throws NullPointerException 1. 이미 처리된 예약입니다.
      */
     @Override
     @Transactional
@@ -187,7 +187,9 @@ public class MyPageServiceImpl implements MyPageService {
      */
     private String convertToDateFormat(String reservationDate){
         StringBuilder dateSb = new StringBuilder();
-        dateSb.append(reservationDate.replace("-",".")); //yyyy-mm-dd 형식
+
+        //yyyy-mm-dd 형식에서 yyyy.mm.dd 형식으로 변경하기
+        dateSb.append(reservationDate.replace("-","."));
         dateSb.append(" ");
         dateSb.append(StringWeekday(reservationDate));
         return dateSb.toString();
@@ -200,9 +202,12 @@ public class MyPageServiceImpl implements MyPageService {
      * @return String
      */
     private String convertToTimeFormat(String reservationVisitTime){
+        // 마지막에서 두 번째 문자까지 잘라내기
         String visitTimeOnly = reservationVisitTime
-                .substring(0, reservationVisitTime.length() - 2); // 마지막에서 두 번째 문자까지 잘라냄
+                .substring(0, reservationVisitTime.length() - 2);
         StringBuilder timeSb = new StringBuilder();
+
+        // 오전/오후 추출하기
         timeSb.append(reservationVisitTime.contains("AM") ? "오전" : "오후");
         timeSb.append(" ");
         timeSb.append(visitTimeOnly);
@@ -217,6 +222,7 @@ public class MyPageServiceImpl implements MyPageService {
     private String StringWeekday(String date){
         LocalDate localDate = LocalDate.parse(date);
 
+        // 한국 시간 기준으로 요일 추출하기
         String week = localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.KOREAN);
         return week;
     }

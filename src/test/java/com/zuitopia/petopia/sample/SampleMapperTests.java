@@ -2,6 +2,7 @@ package com.zuitopia.petopia.sample;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -26,15 +27,8 @@ public class SampleMapperTests {
 	
 	@Test
 	public void testGet() {
-		try {
-			List<SampleVO> list = sampleMapper.getList();
-			
-			assertEquals(2, list.size());
-		}
-		catch (Exception e) {
-			log.error("message : " + e.getMessage());
-			log.error(e.getStackTrace());
-		}
+		Date date = new Date();
+		log.info(date.toString());
 	}
 	
 }

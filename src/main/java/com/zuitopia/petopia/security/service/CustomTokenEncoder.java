@@ -13,6 +13,17 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+/**
+ * CustomTokenEncoder 클래스
+ * @author 최유경
+ * @since 2024.06.21
+ *
+ * <pre>
+ * 수정일        		수정자       				    수정내용
+ * ----------  ----------------    ---------------------------------
+ * 2024.06.21  	    최유경        		        최초 생성
+ * </pre>
+ */
 @Service
 @Component
 @Log
@@ -20,19 +31,27 @@ import org.springframework.stereotype.Service;
 public class CustomTokenEncoder {
 
     @Value("${jwt.secret}")
-    private String SECRET_KEY;
+    private String SECRET_KEY; // jwt 암호화 시 필요한 secret key
 
     @Value("${jwt.expire}")
-    private String ACCESS_TOKEN_EXPIRE_TIME;
+    private String ACCESS_TOKEN_EXPIRE_TIME; // accessToken 만료 시간
 
+    /**
+     * BASE64로 key 생성하는 메소드
+     * @return SecretKey
+     */
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(this.SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    public String createAccessToken(Map<String, Object> payloads ){
-       // SignatureAlgorithm signatureAlgorithm= SignatureAlgorithm.HS256;
 
-        log.info("expired date : " + new Date(new Date().getTime() + Long.parseLong(ACCESS_TOKEN_EXPIRE_TIME)));
+    /**
+     * JWT를 활용해서 accessToken 생성하는 메소드
+     * @apiNote 만료시간 30일
+     * @param payloads
+     * @return String
+     */
+    public String createAccessToken(Map<String, Object> payloads ){
         return Jwts.builder()
                 .claim("user", payloads)
                 .issuedAt(new Date())
@@ -41,6 +60,11 @@ public class CustomTokenEncoder {
                 .compact();
     }
 
+    /**
+     * Claims 값을 추출하는 메소드
+     * @param token
+     * @return Map<String,Object>
+     */
     public Map<String,Object> extractClaims(String token){
         return (Map<String,Object>)
                 Jwts.parser()
