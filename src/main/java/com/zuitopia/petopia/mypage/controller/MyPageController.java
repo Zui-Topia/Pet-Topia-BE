@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 마이페이지 Controller
+ * @apiNote 사용자 정보 조회, 예약 정보 조회 제공
  *
  * @author 최유경
  * @since 2024.06.19

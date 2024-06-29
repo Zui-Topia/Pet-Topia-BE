@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 회원 가입 요청 정보를 담는 DTO 클래스 개발
- * @apiNote 사용자가 회원 가입 시 입력하는 사용자 정보와 반려동물 정보를 포함
- *
+ * 회원 가입 요청 정보를 담는 DTO 클래스
  * @author 임재성
  * @since 2024.06.20
  *

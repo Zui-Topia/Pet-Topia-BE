@@ -5,9 +5,8 @@ import com.zuitopia.petopia.dto.ReservationVO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 예약 관련 데이터베이스 작업을 처리하는  Mapper interface
+ * 예약 관련 데이터베이스 작업을 처리하는 Mapper interface
  * @apiNote 예약 정보, 개모차 잔여 개수 등의 기능을 제공
- *
  * @author 정은찬
  * @since 2024.06.19
  *

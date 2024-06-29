@@ -7,7 +7,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 /**
  * 애플리케이션 환경 설정을 위한 구성 클래스
  * @apiNote 프로퍼티 파일의 플레이스홀더를 지원하는 설정 제공
- *
  * @author 최유경
  * @since 2024.06.21
  *
@@ -22,9 +21,7 @@ public class EnvironmentConfig {
 
     /**
      * 프로퍼티 파일의 플레이스홀더를 지원하는 빈을 생성
-     *
      * @return PropertySourcesPlaceholderConfigurer 프로퍼티 소스를 위한 플레이스홀더 설정 객체
-     * 메소드
      */
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

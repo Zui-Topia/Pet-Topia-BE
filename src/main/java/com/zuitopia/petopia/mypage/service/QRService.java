@@ -3,8 +3,8 @@ package com.zuitopia.petopia.mypage.service;
 import com.zuitopia.petopia.dto.ReservationVO;
 
 /**
- * QR service interface
- *
+ * QR 서비스 interface
+ * @apiNote QR을 생성하고 인증하는 기능 제공
  * @author 최유경
  * @since 2024.06.21
  *
@@ -17,7 +17,6 @@ import com.zuitopia.petopia.dto.ReservationVO;
 public interface QRService {
     /**
      * QR 인증 확인하는 메소드
-     *
      * @param qrId
      * @return ReservationVO
      * @throws Exception QR 인증 실패
@@ -26,7 +25,6 @@ public interface QRService {
 
     /**
      * QR 생성하는 메소드
-     *
      * @param reservationId
      * @return int
      * @throws Exception QR이 생성 실패

@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * 애플리케이션 보안 설정을 위한 구성 클래스
  * @apiNote 비밀번호 암호화를 위한 설정을 제공
- *
  * @author 임재성
  * @since 2024.06.20
  *
@@ -23,7 +22,6 @@ public class SecurityConfig {
 
     /**
      * 비밀번호 암호화를 위한 PasswordEncoder 빈을 생성
-     *
      * @return PasswordEncoder 비밀번호 암호화를 위한 BCryptPasswordEncoder 객체
      */
     @Bean

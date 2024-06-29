@@ -14,8 +14,7 @@ import java.util.List;
 
 /**
  * 지도 관련 요청을 처리하는 Controller 클래스
- * @apiNote 지도, 지점 정보 등의 기능을 제공합니다.
- *
+ * @apiNote 지도, 지점 정보 등의 기능을 제공
  * @author 김도연
  * @since 2024.06.19
  *

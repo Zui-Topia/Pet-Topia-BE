@@ -3,9 +3,7 @@ package com.zuitopia.petopia.user.dto;
 import lombok.Data;
 
 /**
- * 로그인 요청 정보를 담는 DTO 클래스 개발
- * @apiNote 사용자가 로그인 시 입력하는 이메일과 비밀번호 정보를 포함
- *
+ * 로그인 요청 정보를 담는 DTO 클래스
  * @author 임재성
  * @since 2024.06.20
  *

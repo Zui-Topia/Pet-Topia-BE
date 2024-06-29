@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * CORS(Cross-Origin Resource Sharing) 설정을 위한 필터 클래스
  * @apiNote 모든 도메인에 대해 CORS를 허용하며, 다양한 HTTP 메소드와 헤더를 지원
- *
  * @author 최유경
- * @author 임재성
  * @since 2024.06.18
  *
  * <pre>
@@ -50,7 +48,6 @@ public class CORSFilter implements Filter {
     /**
      * 필터 초기화 메소드
      * @param filterConfig 필터 설정 객체
-     *
      */
     @Override
     public void init(FilterConfig filterConfig) {}
