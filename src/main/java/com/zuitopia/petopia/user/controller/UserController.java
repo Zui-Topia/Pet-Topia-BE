@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 /**
  * 사용자 관련 요청을 처리하는 Controller 클래스
  * @apiNote 회원 가입, 로그인, 이메일 중복 확인 등의 기능을 제공
- *
  * @author 임재성
  * @since 2024.06.20
  *
@@ -38,10 +37,8 @@ public class UserController {
 
     /**
      * 이메일 중복 확인 API
-     *
      * @param email 확인할 이메일 주소
      * @return ResponseEntity<BaseResponse> 이메일 중복 여부에 대한 응답
-     *
      */
     @GetMapping("/check")
     public ResponseEntity<BaseResponse> checkEmailExists(@RequestParam String email) {
@@ -64,11 +61,8 @@ public class UserController {
 
     /**
      * 사용자 회원 가입 API
-     *
      * @param signUpRequestDTO 회원 가입 요청 정보가 담긴 DTO
      * @return ResponseEntity<BaseResponse> 회원 가입 처리 결과 응답
-     * @throws Exception 회원 가입 중 발생할 수 있는 예외
-     *
      */
     @PostMapping("/signup")
     @ResponseBody
@@ -93,11 +87,8 @@ public class UserController {
 
     /**
      * 사용자 로그인 API
-     *
      * @param loginRequestDTO 로그인 요청 정보가 담긴 DTO
      * @return ResponseEntity<BaseResponse> 로그인 처리 결과 응답
-     * @throws Exception 로그인 중 발생할 수 있는 예외
-     *
      */
     @PostMapping("/login")
     @ResponseBody

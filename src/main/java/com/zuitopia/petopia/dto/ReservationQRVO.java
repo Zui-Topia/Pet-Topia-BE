@@ -6,7 +6,6 @@ import lombok.Data;
 
 /**
  * 예약 QR 정보를 담는 ReservationQRVO
- *
  * @author 최유경
  * @since 2024.06.19
  *
@@ -19,7 +18,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ReservationQRVO {
-    private int qrId;           // qr 아이디
-    private int reservationId;  // 예약 아이디
+    private int qrId;           // qr ID
+    private int reservationId;  // 예약 ID
     private Date qrExpireTime;  // qr 만료시간
 }

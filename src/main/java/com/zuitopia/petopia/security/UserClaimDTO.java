@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * UserClaimDTO 개발
- *
+ * UserClaimDTO 클래스
+ * @apiNote 사용자 AccessToken 에서 인코딩에 사용되는 클래스
  * @author 최유경
  * @since 2024.06.21
  *
@@ -20,5 +20,5 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class UserClaimDTO {
-    private int userId; // 유저 아이디
+    private int userId; // 사용자 ID
 }

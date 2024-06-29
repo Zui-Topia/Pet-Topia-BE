@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * 지도 관련 서비스 interface
  * @apiNote 지점/ 층/ 상점 에 대한 정보, 마커의 정보 등의 기능을 제공
- *
  * @author 김도연
  * @since 2024.06.19
  *

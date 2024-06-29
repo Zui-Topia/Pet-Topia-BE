@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 마이페이지 유저 정보 Mapper interface
- *
  * @author 최유경
  * @since 2024.06.19
  *
@@ -21,7 +20,6 @@ public interface MyPageInformationMapper {
 
     /**
      * 유저 정보를 조회하는 메소드
-     *
      * @param userId
      * @return MyPageUserDTO
      */
@@ -29,7 +27,6 @@ public interface MyPageInformationMapper {
 
     /**
      * 펫 정보를 조회하는 메소드
-     *
      * @param userId
      * @return MyPagePetDTO
      */
