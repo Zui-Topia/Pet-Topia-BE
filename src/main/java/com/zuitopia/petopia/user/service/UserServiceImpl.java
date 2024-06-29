@@ -7,8 +7,8 @@ import com.zuitopia.petopia.dto.UserSecurityVO;
 import com.zuitopia.petopia.security.service.TokenService;
 import com.zuitopia.petopia.security.UserClaimDTO;
 import com.zuitopia.petopia.user.mapper.UserMapper;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,29 +17,24 @@ import org.springframework.transaction.annotation.Transactional;
  * 사용자 관련 서비스 구현 클래스
  * 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공
  *
- * @version 1.0
+ * @author 임재성
  * @since 2024.06.20
  *
  * <pre>
  * 수정일             수정자                       수정내용
  * ----------  ----------------    ---------------------------------
  * 2024.06.22       임재성                  반려견 삽입 메서드 추가
- * 2024.06.21       최유경                 회원가입 시 토큰 발급 추가
+ * 2024.06.21       최유경          회원가입 시 토큰 발급, 로그인 시 토큰 조회 추가
  * 2024.06.20       임재성                       최초 생성
  * </pre>
  */
 @Service
 @Log
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private TokenService tokenService;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
 
     /**
      * 이메일 중복 여부를 확인하는 메소드

@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zuitopia.petopia.mypage.mapper.MyReservationMapper">
 
+	<!-- 사용자의 최근 예약 1건 조회하는 쿼리 -->
     <select id="getReservationVO" resultType="ReservationVO">
 		<![CDATA[
             select
@@ -27,6 +28,7 @@
         ]]>
 	</select>
 
+	<!-- 예약 아이디로 예약 정보 가져오는 쿼리 -->
 	<select id="getReservationVOByReservationId" resultType="ReservationVO">
 		<![CDATA[
 		select
@@ -48,6 +50,7 @@
 		]]>
 	</select>
 
+	<!-- 유저 아이디로 예약 전체 내역 가져오는 쿼리 -->
 	<select id="getReservationVOList" resultType="ReservationVO">
 		<![CDATA[
 		select
@@ -63,14 +66,13 @@
 			reservation_delete_date
 		from
 			reservation
-		where user_id = #{userId} -- and
--- 			reservation_delete_date is null
+		where user_id = #{userId}
 		order by
 			reservation_create_date desc
 		]]>
 	</select>
 
-
+	<!-- 지점 아이디로 장소 내역 가져오는 쿼리 -->
 	<select id="getReservationPlaceInfo" resultType="PlaceDTO">
 		<![CDATA[
 		select
@@ -99,7 +101,7 @@
 		]]>
 	</select>
 
-
+	<!-- 예약 아이디로 예약 삭제하는 쿼리 -->
 	<update id="deleteReservation">
 		<![CDATA[
 			update
@@ -111,6 +113,7 @@
 		]]>
 	</update>
 
+	<!-- 예약 삭제 시, 개모차 잔여 개수 데이터 +1 해주는 쿼리 -->
 	<update id="deleteReservationConfirm">
 		<![CDATA[
 			UPDATE reservation_confirm
