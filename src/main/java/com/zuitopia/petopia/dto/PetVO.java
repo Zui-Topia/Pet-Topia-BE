@@ -3,11 +3,10 @@ package com.zuitopia.petopia.dto;
 import lombok.Data;
 
 /**
- * 반려동물 정보를 담는 VO 클래스 개발
- * 반려동물 ID, 이름, 몸무게, 크기, 소유자 ID 등의 정보를 포함
- * @author jaeseong Im
+ * 반려동물 정보를 담는 VO 클래스
+ * @apiNote 반려동물 ID, 이름, 몸무게, 크기, 소유자 ID 등의 정보를 포함
  *
- * @version 1.0
+ * @author 임재성
  * @since 2024.06.20
  *
  * <pre>

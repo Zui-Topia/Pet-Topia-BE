@@ -6,10 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 /**
- * 지도 관련 데이터베이스 작업을 처리하는 매퍼 interface 개발
- * 지점/ 층/ 상점 에 대한 정보, 마커의 정보 등의 기능을 제공합니다.
+ * 지도 관련 데이터베이스 작업을 처리하는 매퍼 interface
+ * @apiNote 지점/ 층/ 상점 에 대한 정보, 마커의 정보 등의 기능을 제공
  *
- * @version 1.0
+ * @author 김도연
  * @since 2024.06.19
  *
  * <pre>
@@ -20,25 +20,28 @@ import java.util.List;
  */
 @Mapper
 public interface MapMapper {
+
     /**
      * 지점에 대한 층 정보를 가져오는 메소드
      *
-     * @return getListFloorMapId 지점에 대한 층 정보 리턴
-     *
+     * @param branchId
+     * @return List<MapVO> 지점에 대한 층 정보
      */
-    public List<MapVO> getListFloorMapId(int branchId);
+    List<MapVO> getListFloorMapId(int branchId);
+
     /**
-     * 지점안 상점에 대한 API
+     * 지점안 상점에 대한 메소드
      *
-     * @return ResponseEntity<BaseResponse> 지점 안 층 지도 정보에 대한 응답
-     *
+     * @param placeVO
+     * @return List<PlaceVO> 지점 안 층 지도 정보
      */
-    public List<PlaceVO> getMapInfo(PlaceVO placeVO);
+    List<PlaceVO> getMapInfo(PlaceVO placeVO);
+
     /**
-     * 지점/층의 상점 검색 기능 정보에 대한 API
+     * 지점/층의 상점 검색 기능 정보에 대한 메소드
      *
-     * @return ResponseEntity<BaseResponse> 지점/층의 상점 정보에 대한 응답
-     *
+     * @param branchId
+     * @return List<PlaceVO> 지점/층의 상점 정보
      */
-    public List<PlaceVO> getSearchInfo(int branchId);
+    List<PlaceVO> getSearchInfo(int branchId);
 }
