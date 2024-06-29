@@ -4,7 +4,7 @@ import com.zuitopia.petopia.security.UserClaimDTO;
 
 /**
  * TokenService 토큰 관련 클래스
- *
+ * @apiNote AccessToken 생성 및 추출
  * @author 최유경
  * @since 2024.06.21
  *
@@ -17,7 +17,6 @@ import com.zuitopia.petopia.security.UserClaimDTO;
 public interface TokenService {
     /**
      * AccessToken 생성하는 메소드
-     *
      * @param dto
      * @return String
      */
@@ -25,7 +24,6 @@ public interface TokenService {
 
     /**
      * AccessToken 에서 userId를 추출하는 메소드
-     *
      * @param token
      * @return UserClaimDTO
      * @throws NullPointerException 토큰 오류

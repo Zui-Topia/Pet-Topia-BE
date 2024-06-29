@@ -7,7 +7,6 @@ import java.util.Date;
 
 /**
  * 예약 정보를 담는 VO
- *
  * @author 최유경
  * @since 2024.06.20
  *
@@ -21,9 +20,9 @@ import java.util.Date;
 @Data
 @Builder
 public class ReservationVO {
-    private int reservationId;              // 예약 아이디
-    private int userId;                     // 예약한 유저 아이디
-    private int branchId;                   // 예약 지점 아이디
+    private int reservationId;              // 예약 ID
+    private int userId;                     // 예약한 사용자 ID
+    private int branchId;                   // 예약 지점 ID
     private String reservationToken;        // 예약 번호
     private String reservationDate;         // 원하는 예약 날짜
     private String reservationVisitTime;    // 원하는 방문 날짜

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * CustomTokenEncoder 클래스
- *
+ * @apiNote JWT를 활용해서 사용자 accessToken 발급
  * @author 최유경
  * @since 2024.06.21
  *
@@ -39,7 +39,6 @@ public class CustomTokenEncoder {
 
     /**
      * BASE64로 key 생성하는 메소드
-     *
      * @return SecretKey
      */
     private SecretKey getSigningKey() {
@@ -49,8 +48,7 @@ public class CustomTokenEncoder {
 
     /**
      * JWT를 활용해서 accessToken 생성하는 메소드
-     * @apiNote 만료시간 30일
-     *
+     * @apiNote 만료시간 30일로 지정
      * @param payloads
      * @return String
      */
@@ -65,7 +63,6 @@ public class CustomTokenEncoder {
 
     /**
      * Claims 값을 추출하는 메소드
-     *
      * @param token
      * @return Map<String,Object>
      */

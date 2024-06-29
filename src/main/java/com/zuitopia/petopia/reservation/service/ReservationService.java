@@ -7,7 +7,6 @@ import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
 /**
  * 예약 관련 서비스 interface
  * @apiNote 예약 정보 저장, 개모차 잔여 개수 가져오기 등의 기능을 제공
- *
  * @author 정은찬
  * @since 2024.06.19
  *
@@ -22,7 +21,7 @@ import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
  */
 public interface ReservationService {
     /**
-     * 예약정보를 예약DB에 저장하는 메소드
+     * 예약정보를 생성하는 메소드
      * @param reservationDTO
      * @return ReservationVO
      * @throws Exception 예약 실패
