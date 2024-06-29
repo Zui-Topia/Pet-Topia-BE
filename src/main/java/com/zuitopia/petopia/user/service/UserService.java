@@ -6,7 +6,6 @@ import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 /**
  * 사용자 관련 서비스 interface 개발
  * @apiNote 이메일 중복 확인, 회원 가입, 로그인 등의 기능을 제공
- *
  * @author 임재성
  * @since 2024.06.20
  *
@@ -20,7 +19,6 @@ import com.zuitopia.petopia.user.dto.SignUpRequestDTO;
 public interface UserService {
     /**
     * 이메일 중복 여부를 확인하는 메소드
-    *
     * @param email 확인할 이메일 주소
     * @return boolean 이메일 존재 여부 (true: 존재, false: 존재하지 않음)
     *
@@ -29,7 +27,6 @@ public interface UserService {
 
     /**
     * 사용자를 회원 가입시키고 토큰을 발급하는 메소드
-    *
     * @param signUpRequestDTO 회원 가입 요청 정보가 담긴 DTO
     * @return String 발급된 토큰
     * @throws Exception 회원 가입 중 발생할 수 있는 예외
@@ -39,7 +36,6 @@ public interface UserService {
 
     /**
     * 사용자를 로그인시키는 메소드
-    *
     * @param loginRequestDTO 로그인 요청 정보가 담긴 DTO
     * @return String 발급된 토큰
     * @throws Exception 로그인 중 발생할 수 있는 예외

@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 /**
- * 지도 관련 서비스 구현 클래스
- * @apiNote 지점/ 층/ 상점 에 대한 정보, 마커의 정보 등의 기능을 제공
- *
+ * 지도 관련 서비스 구현체
  * @author 김도연
  * @since 2024.06.19
  *
@@ -28,7 +26,6 @@ public class MapServiceImpl implements MapService{
     private final MapMapper mapMapper;
 
     /**
-     * 지점에 대한 층 정보를 가져오는 메소드
      * @param branchId
      * @return List<MapVO> 지점에 대한 층 정보 리턴
      */
@@ -38,8 +35,6 @@ public class MapServiceImpl implements MapService{
     }
 
     /**
-     * 지점/ 층에 대한 지도 정보를 가져오는 메소드
-     *
      * @param place
      * @return List<PlaceVO> 지점/ 층에 대한 지도 정보 리턴
      */
@@ -49,8 +44,6 @@ public class MapServiceImpl implements MapService{
     }
 
     /**
-     * 지점에 대한 검색 상점 정보를 가져오는 메소드
-     *
      * @param branchId
      * @return List<PlaceVO> 지점에 대한 검색 상점 정보 리턴
      */

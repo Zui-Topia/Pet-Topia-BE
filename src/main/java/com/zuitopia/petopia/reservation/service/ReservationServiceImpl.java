@@ -13,9 +13,7 @@ import java.util.Random;
 
 
 /**
- * 예약 관련 서비스 interface 개발
- * 예약 정보 저장, 개모차 잔여 개수 가져오기 등의 기능을 제공합니다.
- *
+ * 예약 관련 서비스 구현체
  * @author 정은찬
  * @since 2024.06.19
  *
@@ -36,7 +34,6 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationMapper reservationMapper;
 
     /**
-     * 예약정보를 예약DB에 저장하는 메소드
      * @param reservationInfoDTO
      * @return ReservationVO
      * @throws Exception 1. 예약을 실패했습니다
@@ -69,7 +66,6 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     /**
-     * 개모차 잔여 개수를 가져오는 메소드
      * @param reservationConfirmVO
      * @return Integer
      */
@@ -88,7 +84,6 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     /**
-     * 개모차 잔여 개수를 업데이트하는 메소드
      * @param strollerCnt
      * @param reservationConfirmVO
      * @return int
@@ -106,7 +101,6 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     /**
-     * 예약 토큰을 생성하는 메소드
      * @param userId
      * @return String
      */

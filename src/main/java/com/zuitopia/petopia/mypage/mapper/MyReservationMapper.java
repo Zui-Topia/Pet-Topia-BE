@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 마이페이지 예약 정보 Mapper interface
- *
  * @author 최유경
  * @since 2024.06.19
  *
@@ -23,7 +22,6 @@ public interface MyReservationMapper {
 
     /**
      * 유저 아이디를 사용해서 최근 예약 1건 가져오는 메소드
-     *
      * @param userId
      * @return ReservationVO
      */
@@ -31,7 +29,6 @@ public interface MyReservationMapper {
 
     /**
      * 예약 아이디를 사용해서 예약 정보 가져오는 메소드
-     *
      * @param reservationId
      * @return ReservationVO
      */
@@ -46,7 +43,6 @@ public interface MyReservationMapper {
 
     /**
      *  지점 아이디를 사용해서 지점별 정보 가져오는 메소드
-     *
      * @param branchId
      * @return PlaceDTO
      */
@@ -54,7 +50,6 @@ public interface MyReservationMapper {
 
     /**
      * 예약 아이디를 사용해서 예약 삭제하는 메소드
-     *
      * @param reservationId
      * @return int
      */

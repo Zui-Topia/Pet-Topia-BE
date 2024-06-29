@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 예약 관련 요청을 처리하는 Controller 클래스
  * @apiNote 예약 등록, 개모차 잔여 개수 등의 기능을 제공
- *
  * @author 정은찬
  * @since 2024.06.19
  *
@@ -40,7 +39,6 @@ public class ReservationController {
 
     /**
      * 예약 등록에 대한 API
-     *
      * @param token
      * @param reservationDTO
      * @return ResponseEntity<BaseResponse> 예약 등록에 대한 응답
@@ -92,7 +90,6 @@ public class ReservationController {
 
     /**
      * 개모차 잔여 개수에 대한 API
-     *
      * @param branchId
      * @param reservationDate
      * @return ResponseEntity<BaseResponse>   개모차 잔여 개수에 대한 응답

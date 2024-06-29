@@ -22,8 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 마이페이지 service 클래스 구현체
- *
+ * 마이페이지 서비스 구현체
  * @author 최유경
  * @since 2024.06.19
  *
@@ -44,42 +43,43 @@ public class MyPageServiceImpl implements MyPageService {
     private final ReservationMapper reservationMapper;
 
     /**
-     * 사용자 정보 조회 메소드
-     *
      * @param userId
      * @return MyInfoDTO
      * @throws NullPointerException 1. 등록되지 않은 사용자입니다.
      */
     @Override
     public MyInfoDTO getMyInformation(int userId) throws NullPointerException {
+        // 사용자 정보 가져오기
+        MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
+        if(myPageUserDTO==null)
+            throw new NullPointerException("등록되지 않은 사용자입니다.");
+        log.info("myPageUserDTO : " + myPageUserDTO.toString());
+
+        // 반려견 정보 가져오기
+        MyPagePetDTO myPagePetDTO = myPageInformationMapper.getMyPagePetDTO(userId);
+        myPagePetDTO.setPetSizeString(PetSizeEnum
+                .findByPetBtn(myPagePetDTO.getPetSize())
+                .getPetSize());
+        log.info("myPagePetDTO : " + myPagePetDTO.toString());
         try{
-            // 사용자 정보 가져오기
-            MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
-            if(myPageUserDTO==null)
-                throw new NullPointerException("등록되지 않은 사용자입니다.");
-            log.info("myPageUserDTO : " + myPageUserDTO.toString());
-
-            // 반려견 정보 가져오기
-            MyPagePetDTO myPagePetDTO = myPageInformationMapper.getMyPagePetDTO(userId);
-            myPagePetDTO.setPetSizeString(PetSizeEnum
-                    .findByPetBtn(myPagePetDTO.getPetSize())
-                    .getPetSize());
-            log.info("myPagePetDTO : " + myPagePetDTO.toString());
-
+            MyReservationDTO myReservationDTO = getMyLatestReservation(userId);
             return MyInfoDTO.builder()
                     .myPageUserDTO(myPageUserDTO)
                     .myPagePetDTO(myPagePetDTO)
-                    .myReservationDTO(getMyLatestReservation(userId))
+                    .myReservationDTO(myReservationDTO)
                     .build();
         }
-        catch (Exception e){
-            throw new NullPointerException(e.getMessage());
+        catch (NullPointerException e){
+            log.info("오류에요!~ " + e.getMessage());
+            return MyInfoDTO.builder()
+                    .myPageUserDTO(myPageUserDTO)
+                    .myPagePetDTO(myPagePetDTO)
+                    .myReservationDTO(null)
+                    .build();
         }
     }
 
     /**
-     * 사용자의 최신 예약 1건 가져오는 메소드
-     *
      * @param userId
      * @return MyReservationDTO
      * @throws NullPointerException 1. 예약 내역이 존재하지 않습니다.
@@ -113,8 +113,6 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 사용자 과거 예약 내역 전체 조회하는 메소드
-     *
      * @apiNote 취소된 예약 내역까지 조회
      * @param userId
      * @return List<MyReservationDTO>
@@ -153,7 +151,6 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 예약 취소하는 메소드
-     *
      * @param reservationId
      * @return int
      * @throws Exception 1. 예약 삭제가 실패하였습니다.
@@ -186,7 +183,6 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 날짜 형식을 바꾸는 메소드
-     *
      * @apiNote YYYY-MM-DD 형식을 YYYY.MM.DD 형식으로 변경
      * @param reservationDate
      * @return String
@@ -203,7 +199,6 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 시간 형식을 바꾸는 메소드
-     *
      * @apiNote 오전과 오후까지 제공
      * @param reservationVisitTime
      * @return String
@@ -223,7 +218,6 @@ public class MyPageServiceImpl implements MyPageService {
 
     /**
      * 요일을 추출하는 메소드
-     *
      * @param date
      * @return String
      */

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 마이페이지 QR 관련 Controller
+ * @apiNote QR 생성 및 인증 기능 제공
  *
  * @author 최유경
  * @since 2024.06.21
