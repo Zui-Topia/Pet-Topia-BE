@@ -75,7 +75,6 @@ public class UserServiceImpl implements UserService {
 
             // userId 할당받기
             int userId = userMapper.getUserIdByEmail(signUpRequestDTO.getUserEmail());
-            log.info("userId : " + userId);
 
             // 할당받은 userId를 활용해서 password 암호화와 accessToken 발급 진행
             String encodedPassword = passwordEncoder.encode(signUpRequestDTO.getPassword());
@@ -90,12 +89,10 @@ public class UserServiceImpl implements UserService {
                     .petWeight(signUpRequestDTO.getPetWeight())
                     .petSize(signUpRequestDTO.getPetSize())
                     .build());
-
             if (insertPet < 1) {
                 throw new Exception("반려견이 생성되지 않았습니다.");
             }
 
-            log.info("accessToken : " + accessToken);
             // 암호화된 비밀번호와 액세스 토큰도 데이터베이스에 별도로 저장하기
             int result = userMapper.insertUserSecurity(UserSecurityVO
                     .builder()
@@ -106,7 +103,6 @@ public class UserServiceImpl implements UserService {
             if (result == 1)
                 return accessToken;
         } catch (Exception e) {
-            log.info(e.getMessage());
             throw new Exception("이메일 또는 비밀번호가 유효하지 않습니다.");
         }
         return null;
