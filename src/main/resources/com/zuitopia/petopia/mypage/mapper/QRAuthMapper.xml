@@ -69,7 +69,8 @@
                 left join reservation
                           on rq.reservation_id = reservation.reservation_id
         where
-            rq.qr_expire_time > sysdate
+            rq.qr_expire_time > sysdate and
+            reservation_delete_date is null
         ]]>
 	</select>
 
