@@ -21,21 +21,21 @@ import java.util.List;
 public interface MapMapper {
 
     /**
-     * 지점에 대한 층 정보를 가져오는 메소드
+     * 지점에 대한 층 정보를 가져오는 메서드
      * @param branchId
      * @return List<MapVO> 지점에 대한 층 정보
      */
     List<MapVO> getListFloorMapId(int branchId);
 
     /**
-     * 지점안 상점에 대한 메소드
+     * 지점안 상점에 대한 메서드
      * @param placeVO
      * @return List<PlaceVO> 지점 안 층 지도 정보
      */
     List<PlaceVO> getMapInfo(PlaceVO placeVO);
 
     /**
-     * 지점/층의 상점 검색 기능 정보에 대한 메소드
+     * 지점/층의 상점 검색 기능 정보에 대한 메서드
      * @param branchId
      * @return List<PlaceVO> 지점/층의 상점 정보
      */

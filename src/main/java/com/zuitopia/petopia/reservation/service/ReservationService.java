@@ -21,7 +21,7 @@ import com.zuitopia.petopia.reservation.dto.ReservationRequestDTO;
  */
 public interface ReservationService {
     /**
-     * 예약정보를 생성하는 메소드
+     * 예약정보를 생성하는 메서드
      * @param reservationRequestDTO
      * @return ReservationVO
      * @throws Exception 예약 실패
@@ -29,14 +29,14 @@ public interface ReservationService {
     ReservationVO createReservation(ReservationRequestDTO reservationRequestDTO) throws Exception;
 
     /**
-     * 개모차 잔여 개수를 가져오는 메소드
+     * 개모차 잔여 개수를 가져오는 메서드
      * @param reservationConfirmVO
      * @return Integer
      */
     Integer getStrollerCount(ReservationConfirmVO reservationConfirmVO);
 
     /**
-     * 개모차 잔여 개수를 업데이트하는 메소드
+     * 개모차 잔여 개수를 업데이트하는 메서드
      * @param strollerCnt
      * @param reservationConfirmVO
      * @return int
