@@ -2,7 +2,7 @@ package com.zuitopia.petopia.reservation.controller;
 
 import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
+import com.zuitopia.petopia.reservation.dto.ReservationRequestDTO;
 import com.zuitopia.petopia.reservation.service.ReservationService;
 import com.zuitopia.petopia.security.UserClaimDTO;
 import com.zuitopia.petopia.security.service.TokenService;
@@ -40,19 +40,19 @@ public class ReservationController {
     /**
      * 예약 등록에 대한 API
      * @param token
-     * @param reservationDTO
+     * @param reservationRequestDTO
      * @return ResponseEntity<BaseResponse> 예약 등록에 대한 응답
      */
     @PostMapping("/create")
-    public ResponseEntity<BaseResponse> reservation(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody ReservationInfoDTO reservationDTO) { // 예약하기
+    public ResponseEntity<BaseResponse> reservation(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody ReservationRequestDTO reservationRequestDTO) { // 예약하기
         // 유저 아이디 가져오기
         UserClaimDTO userClaimDTO = tokenService.getClaims(token);
-        reservationDTO.setUserId(userClaimDTO.getUserId());
+        reservationRequestDTO.setUserId(userClaimDTO.getUserId());
         
         // 프론트엔드단에 받은 예약 정보 저장하기
         ReservationConfirmVO reservationConfirmVO = ReservationConfirmVO.builder()
-                                                            .branchId(reservationDTO.getBranchId())
-                                                            .reservationDate(reservationDTO.getReservationDate())
+                                                            .branchId(reservationRequestDTO.getBranchId())
+                                                            .reservationDate(reservationRequestDTO.getReservationDate())
                                                             .build();
 
         // 반려견 유모차 잔여 개수 가져오기
@@ -62,7 +62,7 @@ public class ReservationController {
             if ( petStrollerCnt > 0) { // 유모차 잔여 개수가 남아있을 때
                 
                 // 예약 등록하기
-                ReservationVO reservationVO = reservationService.createReservation(reservationDTO);
+                ReservationVO reservationVO = reservationService.createReservation(reservationRequestDTO);
 
                 // 반려견 유모차 잔여 개수 업데이트 
                 reservationService.insertOrUpdateStrollerCount(petStrollerCnt, reservationConfirmVO);

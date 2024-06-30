@@ -15,7 +15,7 @@ import lombok.Data;
  * </pre>
  */
 @Data
-public class ReservationInfoDTO {
+public class ReservationRequestDTO {
     private int userId;                     // 예약한 유저 아이디
     private int branchId;                   // 예약 지점 아이디
     private String reservationDate;         // 원하는 예약 날짜

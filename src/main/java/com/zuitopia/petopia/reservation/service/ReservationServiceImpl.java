@@ -2,7 +2,7 @@ package com.zuitopia.petopia.reservation.service;
 
 import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
+import com.zuitopia.petopia.reservation.dto.ReservationRequestDTO;
 import com.zuitopia.petopia.reservation.mapper.ReservationMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -34,23 +34,23 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationMapper reservationMapper;
 
     /**
-     * @param reservationInfoDTO
+     * @param reservationRequestDTO
      * @return ReservationVO
      * @throws Exception 1. 예약을 실패했습니다
      */
     @Override
-    public ReservationVO createReservation(ReservationInfoDTO reservationInfoDTO) throws Exception {
+    public ReservationVO createReservation(ReservationRequestDTO reservationRequestDTO) throws Exception {
 
         // 1. ReservationVO 생성 및 ReservationDTO 정보 받아오기
         ReservationVO reservationVO = ReservationVO.builder()
-                .userId(reservationInfoDTO.getUserId())
-                .branchId(reservationInfoDTO.getBranchId())
-                .reservationDate(reservationInfoDTO.getReservationDate())
-                .reservationVisitTime(reservationInfoDTO.getReservationVisitTime())
+                .userId(reservationRequestDTO.getUserId())
+                .branchId(reservationRequestDTO.getBranchId())
+                .reservationDate(reservationRequestDTO.getReservationDate())
+                .reservationVisitTime(reservationRequestDTO.getReservationVisitTime())
                 .build();
         
         // 2. reservationToken 생성
-        String reservationToken = createRandomReservationToken(reservationInfoDTO.getUserId());
+        String reservationToken = createRandomReservationToken(reservationRequestDTO.getUserId());
         reservationVO.setReservationToken(reservationToken);
 
         // 3. 예약정보 저장하기
