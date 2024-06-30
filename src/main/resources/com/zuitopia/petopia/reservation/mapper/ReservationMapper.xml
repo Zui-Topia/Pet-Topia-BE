@@ -20,7 +20,7 @@
     </select>
 
     <!--  개모차 잔여 개수를 업데이트하는 쿼리  -->
-    <update id="updateStrollerCount" parameterType="ReservationConfirmVO">
+    <update id="updateStollerCount" parameterType="ReservationConfirmVO">
         UPDATE reservation_confirm
         SET reservation_cnt = reservation_cnt + 1
         WHERE branch_id = #{branchId}
@@ -28,7 +28,7 @@
     </update>
 
     <!--  개모차 잔여 개수를 삽입하는 쿼리  -->
-    <insert id="insertStrollerCount" parameterType="ReservationConfirmVO">
+    <insert id="insertStollerCount" parameterType="ReservationConfirmVO">
         INSERT INTO reservation_confirm (branch_id, reservation_date, reservation_cnt)
         VALUES (#{branchId}, #{reservationDate}, 1)
     </insert>
