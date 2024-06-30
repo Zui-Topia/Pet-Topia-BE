@@ -2,7 +2,7 @@ package com.zuitopia.petopia.reservation.service;
 
 import com.zuitopia.petopia.dto.ReservationVO;
 import com.zuitopia.petopia.dto.ReservationConfirmVO;
-import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
+import com.zuitopia.petopia.reservation.dto.ReservationRequestDTO;
 
 /**
  * 예약 관련 서비스 interface
@@ -22,11 +22,11 @@ import com.zuitopia.petopia.reservation.dto.ReservationInfoDTO;
 public interface ReservationService {
     /**
      * 예약정보를 생성하는 메소드
-     * @param reservationDTO
+     * @param reservationRequestDTO
      * @return ReservationVO
      * @throws Exception 예약 실패
      */
-    ReservationVO createReservation(ReservationInfoDTO reservationDTO) throws Exception;
+    ReservationVO createReservation(ReservationRequestDTO reservationRequestDTO) throws Exception;
 
     /**
      * 개모차 잔여 개수를 가져오는 메소드
