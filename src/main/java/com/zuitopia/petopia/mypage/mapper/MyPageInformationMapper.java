@@ -19,14 +19,14 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MyPageInformationMapper {
 
     /**
-     * 유저 정보를 조회하는 메소드
+     * 유저 정보를 조회하는 메서드
      * @param userId
      * @return MyPageUserDTO
      */
     MyPageUserDTO getMyPageUserDTO(int userId);
 
     /**
-     * 펫 정보를 조회하는 메소드
+     * 펫 정보를 조회하는 메서드
      * @param userId
      * @return MyPagePetDTO
      */

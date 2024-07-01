@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CORSFilter implements Filter {
 
     /**
-     * CORS 설정을 위한 필터 메소드
+     * CORS 설정을 위한 필터 메서드
      * @apiNote 요청과 응답을 처리하며, 필요한 CORS 헤더를 설정
      * @param req 서블릿 요청 객체
      * @param res 서블릿 응답 객체
@@ -46,14 +46,14 @@ public class CORSFilter implements Filter {
     }
 
     /**
-     * 필터 초기화 메소드
+     * 필터 초기화 메서드
      * @param filterConfig 필터 설정 객체
      */
     @Override
     public void init(FilterConfig filterConfig) {}
 
     /**
-     * 필터 종료 메소드
+     * 필터 종료 메서드
      */
     @Override
     public void destroy() {}

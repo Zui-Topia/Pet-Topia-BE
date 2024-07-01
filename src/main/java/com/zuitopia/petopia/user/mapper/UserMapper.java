@@ -23,7 +23,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 
     /**
-     * 이메일 중복 여부를 확인하는 메소드
+     * 이메일 중복 여부를 확인하는 메서드
      * @param email 확인할 이메일 주소
      * @return int 이메일 존재 여부 (1: 존재, 0: 존재하지 않음)
      *
@@ -31,7 +31,7 @@ public interface UserMapper {
     int checkEmailExists(String email);
 
     /**
-     * 이메일을 통해 사용자 ID를 가져오는 메소드
+     * 이메일을 통해 사용자 ID를 가져오는 메서드
      * @param userEmail 조회할 사용자의 이메일 주소
      * @return int 사용자의 ID
      *
@@ -39,7 +39,7 @@ public interface UserMapper {
     int getUserIdByEmail(String userEmail);
 
     /**
-     * 사용자 정보를 데이터베이스에 삽입하는 메소드
+     * 사용자 정보를 데이터베이스에 삽입하는 메서드
      * @param signUpRequestDTO 회원 가입 요청 정보가 담긴 DTO
      * @return int 삽입된 행의 개수
      *
@@ -47,7 +47,7 @@ public interface UserMapper {
     int insertUser(SignUpRequestDTO signUpRequestDTO);
 
     /**
-     * 사용자 보안 정보를 데이터베이스에 삽입하는 메소드
+     * 사용자 보안 정보를 데이터베이스에 삽입하는 메서드
      * @param userSecurityVO 사용자 보안 정보가 담긴 VO
      * @return int 삽입된 행의 개수
      *
@@ -55,7 +55,7 @@ public interface UserMapper {
     int insertUserSecurity(UserSecurityVO userSecurityVO);
 
     /**
-     * 반려동물 정보를 데이터베이스에 삽입하는 메소드
+     * 반려동물 정보를 데이터베이스에 삽입하는 메서드
      * @param signUpRequestDTO 반려동물 정보가 담긴 DTO
      * @return int 삽입된 행의 개수
      *
@@ -63,7 +63,7 @@ public interface UserMapper {
     int insertPet(SignUpRequestDTO signUpRequestDTO);
 
     /**
-     * 이메일을 통해 사용자 정보를 조회하는 메소드
+     * 이메일을 통해 사용자 정보를 조회하는 메서드
      * @param userEmail 조회할 사용자의 이메일 주소
      * @return UserVO 조회된 사용자 정보가 담긴 VO
      *
@@ -71,7 +71,7 @@ public interface UserMapper {
     UserVO findByEmail(String userEmail);
 
     /**
-     * 사용자 ID를 통해 사용자 보안 정보를 조회하는 메소드
+     * 사용자 ID를 통해 사용자 보안 정보를 조회하는 메서드
      * @param userId 조회할 사용자의 ID
      * @return UserSecurityVO 조회된 사용자 보안 정보가 담긴 VO
      *

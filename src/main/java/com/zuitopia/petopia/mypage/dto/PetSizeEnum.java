@@ -4,6 +4,18 @@ import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 반려견 크기에 따른 enum 클래스
+ * @author 최유경
+ * @since 2024.06.19
+ *
+ * <pre>
+ * 수정일        		수정자       				    수정내용
+ * ----------  ----------------    ---------------------------------
+ * 2024.06.22  	    최유경        		  petSizeBtnNumber 변경
+ * 2024.06.19  	    최유경        		        최초 생성
+ * </pre>
+ */
 @Getter
 @AllArgsConstructor
 public enum PetSizeEnum {

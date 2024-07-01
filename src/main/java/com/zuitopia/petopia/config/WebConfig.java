@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     /**
-     * CORS 매핑을 추가하는 메소드
+     * CORS 매핑을 추가하는 메서드
      * @apiNote 모든 경로에 대해 모든 출처에서의 GET, POST, DELETE, PUT 메소드를 허용
      * @param registry CorsRegistry 객체
      */

@@ -2,7 +2,7 @@ package com.zuitopia.petopia.mypage.service;
 
 import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
+import com.zuitopia.petopia.mypage.dto.MyPageResponseDTO;
 import com.zuitopia.petopia.mypage.dto.MyPagePetDTO;
 import com.zuitopia.petopia.mypage.dto.MyPageUserDTO;
 import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
@@ -48,7 +48,7 @@ public class MyPageServiceImpl implements MyPageService {
      * @throws NullPointerException 1. 등록되지 않은 사용자입니다.
      */
     @Override
-    public MyInfoDTO getMyInformation(int userId) throws NullPointerException {
+    public MyPageResponseDTO getMyInformation(int userId) throws NullPointerException {
         // 사용자 정보 가져오기
         MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
         if(myPageUserDTO==null)
@@ -63,15 +63,15 @@ public class MyPageServiceImpl implements MyPageService {
         log.info("myPagePetDTO : " + myPagePetDTO.toString());
         try{
             MyReservationDTO myReservationDTO = getMyLatestReservation(userId);
-            return MyInfoDTO.builder()
+            return MyPageResponseDTO.builder()
                     .myPageUserDTO(myPageUserDTO)
                     .myPagePetDTO(myPagePetDTO)
                     .myReservationDTO(myReservationDTO)
                     .build();
         }
         catch (NullPointerException e){
-            log.info("오류에요!~ " + e.getMessage());
-            return MyInfoDTO.builder()
+            log.info("[오류] " + e.getMessage());
+            return MyPageResponseDTO.builder()
                     .myPageUserDTO(myPageUserDTO)
                     .myPagePetDTO(myPagePetDTO)
                     .myReservationDTO(null)
@@ -150,7 +150,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 예약 취소하는 메소드
+     * 예약 취소하는 메서드
      * @param reservationId
      * @return int
      * @throws Exception 1. 예약 삭제가 실패하였습니다.
@@ -182,7 +182,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 날짜 형식을 바꾸는 메소드
+     * 날짜 형식을 바꾸는 메서드
      * @apiNote YYYY-MM-DD 형식을 YYYY.MM.DD 형식으로 변경
      * @param reservationDate
      * @return String
@@ -198,7 +198,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 시간 형식을 바꾸는 메소드
+     * 시간 형식을 바꾸는 메서드
      * @apiNote 오전과 오후까지 제공
      * @param reservationVisitTime
      * @return String
@@ -217,7 +217,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 요일을 추출하는 메소드
+     * 요일을 추출하는 메서드
      * @param date
      * @return String
      */

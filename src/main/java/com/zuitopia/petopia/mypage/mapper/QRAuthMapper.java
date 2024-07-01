@@ -18,28 +18,28 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface QRAuthMapper {
     /**
-     * QR insert 하는 메소드
+     * QR insert 하는 메서드
      * @param reservationId
      * @return int
      */
     int createQR(int reservationId);
 
     /**
-     * QR update 하는 메소드
+     * QR update 하는 메서드
      * @param reservationId
      * @return int
      */
     int updateReservationAuthComplete(int reservationId);
 
     /**
-     * 예약 아이디값으로 QR 조회하는 메소드
+     * 예약 아이디값으로 QR 조회하는 메서드
      * @param reservationId
      * @return ReservationQRVO
      */
     ReservationQRVO getQRByReservationId(int reservationId);
 
     /**
-     * QR 아이디값으로 예약 조회하는 메소드
+     * QR 아이디값으로 예약 조회하는 메서드
      * @param qrId
      * @return ReservationVO
      */

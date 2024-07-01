@@ -38,7 +38,7 @@ public class CustomTokenEncoder {
     private String ACCESS_TOKEN_EXPIRE_TIME; // accessToken 만료 시간
 
     /**
-     * BASE64로 key 생성하는 메소드
+     * BASE64로 key 생성하는 메서드
      * @return SecretKey
      */
     private SecretKey getSigningKey() {
@@ -47,7 +47,7 @@ public class CustomTokenEncoder {
     }
 
     /**
-     * JWT를 활용해서 accessToken 생성하는 메소드
+     * JWT를 활용해서 accessToken 생성하는 메서드
      * @apiNote 만료시간 30일로 지정
      * @param payloads
      * @return String
@@ -62,7 +62,7 @@ public class CustomTokenEncoder {
     }
 
     /**
-     * Claims 값을 추출하는 메소드
+     * Claims 값을 추출하는 메서드
      * @param token
      * @return Map<String,Object>
      */

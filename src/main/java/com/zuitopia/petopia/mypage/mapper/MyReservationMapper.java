@@ -21,35 +21,35 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MyReservationMapper {
 
     /**
-     * 유저 아이디를 사용해서 최근 예약 1건 가져오는 메소드
+     * 유저 아이디를 사용해서 최근 예약 1건 가져오는 메서드
      * @param userId
      * @return ReservationVO
      */
     ReservationVO getReservationVO(int userId);
 
     /**
-     * 예약 아이디를 사용해서 예약 정보 가져오는 메소드
+     * 예약 아이디를 사용해서 예약 정보 가져오는 메서드
      * @param reservationId
      * @return ReservationVO
      */
     ReservationVO getReservationVOByReservationId(int reservationId);
 
     /**
-     * 유저 아이디를 사용해서 전체 예약 내역 가져오는 메소드
+     * 유저 아이디를 사용해서 전체 예약 내역 가져오는 메서드
      * @param userId
      * @return List<ReservationVO>
      */
     List<ReservationVO> getReservationVOList(int userId);
 
     /**
-     *  지점 아이디를 사용해서 지점별 정보 가져오는 메소드
+     *  지점 아이디를 사용해서 지점별 정보 가져오는 메서드
      * @param branchId
      * @return PlaceDTO
      */
     PlaceDTO getReservationPlaceInfo(int branchId);
 
     /**
-     * 예약 아이디를 사용해서 예약 삭제하는 메소드
+     * 예약 아이디를 사용해서 예약 삭제하는 메서드
      * @param reservationId
      * @return int
      */
