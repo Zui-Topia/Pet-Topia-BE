@@ -23,42 +23,42 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ReservationMapper {
     
     /**
-     * 예약 정보를 삽입하는 메소드
+     * 예약 정보를 삽입하는 메서드
      * @param reservationVO
      * @return int
      */
     int insert(ReservationVO reservationVO);
 
     /**
-     * 개모차 잔여 개수를 가져오는 메소드
+     * 개모차 잔여 개수를 가져오는 메서드
      * @param reservationConfirmVO
      * @return Integer
      */
     Integer getStrollerCount(ReservationConfirmVO reservationConfirmVO);
     
     /**
-     * 개모차 개수를 등록하는 메소드
+     * 개모차 개수를 등록하는 메서드
      * @param reservationConfirmVO
      * @return int
      */
     int insertStrollerCount(ReservationConfirmVO reservationConfirmVO);
     
     /**
-     * 개모차 개수를 업데이트하는 메소드
+     * 개모차 개수를 업데이트하는 메서드
      * @param reservationConfirmVO
      * @return int
      */
     int updateStrollerCount(ReservationConfirmVO reservationConfirmVO);
 
     /**
-     * 개모차 예약 개수를 차감하는 메소드
+     * 개모차 예약 개수를 차감하는 메서드
      * @param reservationConfirmVO
      * @return int
      */
     int deleteStrollerCount(ReservationConfirmVO reservationConfirmVO);
 
     /**
-     * 개모차 개수를 삽입하는 메소드
+     * 개모차 개수를 삽입하는 메서드
      * @param reservationConfirmVO
      * @return int
      */
