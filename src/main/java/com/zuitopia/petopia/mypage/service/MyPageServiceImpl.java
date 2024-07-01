@@ -70,7 +70,7 @@ public class MyPageServiceImpl implements MyPageService {
                     .build();
         }
         catch (NullPointerException e){
-            log.info("오류에요!~ " + e.getMessage());
+            log.info("[오류] " + e.getMessage());
             return MyInfoDTO.builder()
                     .myPageUserDTO(myPageUserDTO)
                     .myPagePetDTO(myPagePetDTO)
@@ -150,7 +150,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 예약 취소하는 메소드
+     * 예약 취소하는 메서드
      * @param reservationId
      * @return int
      * @throws Exception 1. 예약 삭제가 실패하였습니다.
@@ -182,7 +182,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 날짜 형식을 바꾸는 메소드
+     * 날짜 형식을 바꾸는 메서드
      * @apiNote YYYY-MM-DD 형식을 YYYY.MM.DD 형식으로 변경
      * @param reservationDate
      * @return String
@@ -198,7 +198,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 시간 형식을 바꾸는 메소드
+     * 시간 형식을 바꾸는 메서드
      * @apiNote 오전과 오후까지 제공
      * @param reservationVisitTime
      * @return String
@@ -217,7 +217,7 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     /**
-     * 요일을 추출하는 메소드
+     * 요일을 추출하는 메서드
      * @param date
      * @return String
      */

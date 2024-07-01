@@ -81,7 +81,7 @@ public class QRServiceImpl implements QRService {
 
 
     /**
-     * 당일 날짜로 예약한 내역이 맞는지 확인하는 메소드
+     * 당일 날짜로 예약한 내역이 맞는지 확인하는 메서드
      * @param date
      * @return boolean
      */
