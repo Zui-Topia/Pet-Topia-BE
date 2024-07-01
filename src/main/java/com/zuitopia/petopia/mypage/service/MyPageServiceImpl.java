@@ -2,7 +2,7 @@ package com.zuitopia.petopia.mypage.service;
 
 import com.zuitopia.petopia.dto.ReservationConfirmVO;
 import com.zuitopia.petopia.dto.ReservationVO;
-import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
+import com.zuitopia.petopia.mypage.dto.MyPageResponseDTO;
 import com.zuitopia.petopia.mypage.dto.MyPagePetDTO;
 import com.zuitopia.petopia.mypage.dto.MyPageUserDTO;
 import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
@@ -48,7 +48,7 @@ public class MyPageServiceImpl implements MyPageService {
      * @throws NullPointerException 1. 등록되지 않은 사용자입니다.
      */
     @Override
-    public MyInfoDTO getMyInformation(int userId) throws NullPointerException {
+    public MyPageResponseDTO getMyInformation(int userId) throws NullPointerException {
         // 사용자 정보 가져오기
         MyPageUserDTO myPageUserDTO = myPageInformationMapper.getMyPageUserDTO(userId);
         if(myPageUserDTO==null)
@@ -63,7 +63,7 @@ public class MyPageServiceImpl implements MyPageService {
         log.info("myPagePetDTO : " + myPagePetDTO.toString());
         try{
             MyReservationDTO myReservationDTO = getMyLatestReservation(userId);
-            return MyInfoDTO.builder()
+            return MyPageResponseDTO.builder()
                     .myPageUserDTO(myPageUserDTO)
                     .myPagePetDTO(myPagePetDTO)
                     .myReservationDTO(myReservationDTO)
@@ -71,7 +71,7 @@ public class MyPageServiceImpl implements MyPageService {
         }
         catch (NullPointerException e){
             log.info("[오류] " + e.getMessage());
-            return MyInfoDTO.builder()
+            return MyPageResponseDTO.builder()
                     .myPageUserDTO(myPageUserDTO)
                     .myPagePetDTO(myPagePetDTO)
                     .myReservationDTO(null)

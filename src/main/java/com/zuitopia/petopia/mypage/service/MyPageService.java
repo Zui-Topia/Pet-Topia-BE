@@ -1,6 +1,6 @@
 package com.zuitopia.petopia.mypage.service;
 
-import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
+import com.zuitopia.petopia.mypage.dto.MyPageResponseDTO;
 import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface MyPageService {
      * @return MyInfoDTO
      * @throws NullPointerException 사용자 정보 오류
      */
-    MyInfoDTO getMyInformation(int userId) throws NullPointerException;
+    MyPageResponseDTO getMyInformation(int userId) throws NullPointerException;
 
     /**
      * 사용자의 최신 예약 1건 가져오는 메서드

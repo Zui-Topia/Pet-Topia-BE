@@ -20,7 +20,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 public class EnvironmentConfig {
 
     /**
-     * 프로퍼티 파일의 플레이스홀더를 지원하는 빈을 생성
+     * 프로퍼티 파일의 플레이스 홀더를 지원하는 빈을 생성
      * @return PropertySourcesPlaceholderConfigurer 프로퍼티 소스를 위한 플레이스홀더 설정 객체
      */
     @Bean

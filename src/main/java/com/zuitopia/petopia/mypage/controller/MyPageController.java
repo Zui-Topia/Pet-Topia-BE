@@ -1,7 +1,7 @@
 package com.zuitopia.petopia.mypage.controller;
 
 import com.zuitopia.petopia.mypage.dto.DeleteRequestDTO;
-import com.zuitopia.petopia.mypage.dto.MyInfoDTO;
+import com.zuitopia.petopia.mypage.dto.MyPageResponseDTO;
 import com.zuitopia.petopia.mypage.dto.MyReservationDTO;
 import com.zuitopia.petopia.mypage.service.MyPageService;
 import com.zuitopia.petopia.security.UserClaimDTO;
@@ -57,12 +57,12 @@ public class MyPageController {
             UserClaimDTO claimDTO = tokenService.getClaims(token);
             log.info(claimDTO.toString());
 
-            MyInfoDTO myInfoDTO = myPageService.getMyInformation(claimDTO.getUserId());
+            MyPageResponseDTO myPageResponseDTO = myPageService.getMyInformation(claimDTO.getUserId());
             return ResponseEntity
                     .ok()
                     .body(BaseResponse.builder()
                             .success(true)
-                            .data(myInfoDTO)
+                            .data(myPageResponseDTO)
                             .build());
         }
         catch (NullPointerException e){
