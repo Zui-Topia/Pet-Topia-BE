@@ -35,6 +35,7 @@
 <img src="https://img.shields.io/badge/google sheet-34A853?style=for-the-badge&logo=googlesheets&logoColor=white">
 <img src="https://img.shields.io/badge/google docs-4285F4?style=for-the-badge&logo=googledocs&logoColor=white">
 <img src="https://img.shields.io/badge/draw.io-F08705?style=for-the-badge&logo=diagramsdotnet&logoColor=white">
+
 <br>
 
 ## 💻 ERD Diagram
@@ -45,10 +46,11 @@
 ## 👥 Developer
   | 최유경 | 김도연 | 임재성 | 정은찬 
   | :---: | :---: | :---: | :---: | 
-  | <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/1bd7001b-da2e-437b-b131-87f88997cd28" width="105" height="140">| <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/56c6a517-ea3d-4dd0-819b-fa218b0f5d61"  width="105" height="140"> | <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/cac97b9e-05ad-42c3-8562-93d07e70c929"  width="105" height="140"> | <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/84078b88-4e33-4a0a-b637-58e0def2fc12"  width="105" height="140"> |
+  | <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/1bd7001b-da2e-437b-b131-87f88997cd28" width="150" height="200">| <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/21c9e19f-1278-490d-a24e-e5cf118b550c"  width="150" height="200"> | <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/cac97b9e-05ad-42c3-8562-93d07e70c929"  width="150" height="200"> | <img src="https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/84078b88-4e33-4a0a-b637-58e0def2fc12"  width="150" height="200"> |
   | [ykc0131](https://github.com/ykc0131) | [mju1025](https://github.com/mju1025) | [JAESEONGIM](https://github.com/JAESEONGIM) | [EunchanJeong](https://github.com/EunchanJeong) |   
 
 <!--![최유경](https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/1bd7001b-da2e-437b-b131-87f88997cd28)
+![김도연](https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/21c9e19f-1278-490d-a24e-e5cf118b550c)
 ![임재성](https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/cac97b9e-05ad-42c3-8562-93d07e70c929)
 ![정은찬](https://github.com/Zui-Topia/Pet-Topia-React/assets/61011209/84078b88-4e33-4a0a-b637-58e0def2fc12)
 -->
